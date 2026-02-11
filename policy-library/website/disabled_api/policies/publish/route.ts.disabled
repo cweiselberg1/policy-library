@@ -1,0 +1,183 @@
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { handlePolicyPublication } from '@/lib/remediation/policy-publication-handler'
+import policyIndex from '@/policy-index.json'
+import type { Database } from '@/types/database'
+
+/**
+ * POST /api/policies/publish
+ *
+ * Publishes a policy and triggers automatic remediation plan updates.
+ *
+ * Request body:
+ * {
+ *   policy_id: string
+ * }
+ *
+ * Response:
+ * {
+ *   success: boolean
+ *   publication_id: string
+ *   affected_plans: number
+ *   message: string
+ * }
+ */
+export async function POST(request: NextRequest) {
+  try {
+    const supabase = await createClient()
+
+    // Authenticate user
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+
+    // Parse request body
+    const body = await request.json()
+    const { policy_id } = body
+
+    if (!policy_id) {
+      return NextResponse.json(
+        { error: 'policy_id is required' },
+        { status: 400 }
+      )
+    }
+
+    // Validate policy exists in policy-index.json
+    const policy = policyIndex.policies.find((p: any) => p.id === policy_id)
+
+    if (!policy) {
+      return NextResponse.json(
+        { error: `Policy with id '${policy_id}' not found in policy index` },
+        { status: 404 }
+      )
+    }
+
+    // Insert publication record
+    const publicationData = {
+      policy_id,
+      published_by: user.id,
+      policy_metadata: {
+        title: policy.title,
+        category: policy.category,
+        hipaa_reference: policy.hipaa_reference,
+        applies_to: policy.applies_to,
+        version: policy.version
+      }
+    }
+
+    const { data: publication, error: pubError } = await (supabase
+      .from('policy_publications')
+      .insert(publicationData)
+      .select()
+      .single() as any)
+
+    if (pubError) {
+      console.error('Error inserting publication record:', pubError)
+      return NextResponse.json(
+        { error: 'Failed to create publication record', details: pubError.message },
+        { status: 500 }
+      )
+    }
+
+    // Trigger policy publication event handler
+    try {
+      const result = await handlePolicyPublication(supabase, policy_id, publication.id, user.id)
+
+      return NextResponse.json({
+        success: true,
+        publication_id: publication.id,
+        affected_plans: result.affected_plans,
+        closeable_plans: result.closeable_plans,
+        message: `Policy published successfully. ${result.affected_plans} remediation plan(s) updated, ${result.closeable_plans} marked as closeable.`
+      })
+    } catch (handlerError: any) {
+      console.error('Error in policy publication handler:', handlerError)
+
+      // Publication record was created but handler failed
+      // Log this for manual intervention
+      await supabase
+        .from('audit_log')
+        .insert({
+          event_type: 'policy_publication_handler_error',
+          user_id: user.id,
+          details: {
+            policy_id,
+            publication_id: publication.id,
+            error: handlerError.message
+          }
+        })
+
+      return NextResponse.json(
+        {
+          error: 'Policy published but automatic updates failed',
+          publication_id: publication.id,
+          details: handlerError.message
+        },
+        { status: 500 }
+      )
+    }
+  } catch (error: any) {
+    console.error('Error publishing policy:', error)
+    return NextResponse.json(
+      { error: 'Internal server error', details: error.message },
+      { status: 500 }
+    )
+  }
+}
+
+/**
+ * GET /api/policies/publish?policy_id=xxx
+ *
+ * Get publication history for a policy
+ */
+export async function GET(request: NextRequest) {
+  try {
+    const supabase = await createClient()
+
+    // Authenticate user
+    const { data: { user }, error: authError } = await supabase.auth.getUser()
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+
+    const searchParams = request.nextUrl.searchParams
+    const policy_id = searchParams.get('policy_id')
+
+    let query = supabase
+      .from('policy_publications')
+      .select('*')
+      .order('published_at', { ascending: false })
+
+    if (policy_id) {
+      query = query.eq('policy_id', policy_id)
+    }
+
+    const { data: publications, error } = await query
+
+    if (error) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500 }
+      )
+    }
+
+    return NextResponse.json({
+      publications: publications || []
+    })
+  } catch (error: any) {
+    console.error('Error fetching publications:', error)
+    return NextResponse.json(
+      { error: 'Internal server error', details: error.message },
+      { status: 500 }
+    )
+  }
+}

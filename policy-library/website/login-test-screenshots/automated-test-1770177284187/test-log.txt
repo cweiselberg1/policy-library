@@ -1,0 +1,98 @@
+[2026-02-04T03:54:44.187Z] === Starting Automated Double Login Test ===
+[2026-02-04T03:54:44.188Z] Screenshots will be saved to: /Users/chuckw./policy-library/website/login-test-screenshots/automated-test-1770177284187
+[2026-02-04T03:54:44.188Z] 
+[2026-02-04T03:54:46.011Z] STEP 1: Navigating to https://oneguyconsulting.com
+[2026-02-04T03:54:46.246Z] NAVIGATION: https://oneguyconsulting.com/
+[2026-02-04T03:54:46.715Z] CONSOLE [error]: Failed to load resource: the server responded with a status of 500 ()
+[2026-02-04T03:54:51.375Z] ✓ Homepage loaded
+[2026-02-04T03:54:51.375Z] 
+[2026-02-04T03:54:51.375Z] STEP 2: Looking for login button
+[2026-02-04T03:54:52.420Z] ✓ Found login button
+[2026-02-04T03:54:52.420Z] 
+[2026-02-04T03:54:52.420Z] STEP 3: Clicking login button
+[2026-02-04T03:54:52.477Z] REQUEST [GET]: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:54:52.852Z] RESPONSE [200]: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:54:52.861Z] NAVIGATION: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:54:52.865Z] REQUEST [GET]: https://portal.oneguyconsulting.com/_next/static/chunks/app/auth/login/page-45672ad2c3012f69.js
+[2026-02-04T03:54:52.989Z] CONSOLE [verbose]: [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o
+[2026-02-04T03:54:53.080Z] RESPONSE [200]: https://portal.oneguyconsulting.com/_next/static/chunks/app/auth/login/page-45672ad2c3012f69.js
+[2026-02-04T03:54:53.229Z] NAVIGATION: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:54:53.233Z] REQUEST [GET]: https://portal.oneguyconsulting.com/api/auth/session
+[2026-02-04T03:54:53.335Z] RESPONSE [200]: https://portal.oneguyconsulting.com/api/auth/session
+[2026-02-04T03:54:53.360Z] CONSOLE [error]: Failed to load resource: the server responded with a status of 404 ()
+[2026-02-04T03:54:53.378Z] REQUEST [GET]: https://portal.oneguyconsulting.com/auth/register?_rsc=1pz1r
+[2026-02-04T03:54:53.494Z] RESPONSE [200]: https://portal.oneguyconsulting.com/auth/register?_rsc=1pz1r
+[2026-02-04T03:54:53.495Z] REQUEST [GET]: https://portal.oneguyconsulting.com/_next/static/chunks/app/auth/register/page-50ace555b07ac0e8.js
+[2026-02-04T03:54:53.499Z] CONSOLE [error]: Failed to load resource: the server responded with a status of 404 ()
+[2026-02-04T03:54:53.605Z] RESPONSE [200]: https://portal.oneguyconsulting.com/_next/static/chunks/app/auth/register/page-50ace555b07ac0e8.js
+[2026-02-04T03:54:53.633Z] CONSOLE [error]: Failed to load resource: the server responded with a status of 404 ()
+[2026-02-04T03:54:54.142Z] ✓ Navigated to: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:54:54.579Z] 
+[2026-02-04T03:54:54.579Z] STEP 4: Examining authentication form (FIRST PROMPT)
+[2026-02-04T03:54:54.579Z] Current URL: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:54:54.584Z] Email field visible: true
+[2026-02-04T03:54:54.584Z] Password field visible: true
+[2026-02-04T03:54:54.584Z] 
+[2026-02-04T03:54:54.584Z] STEP 5: Filling in test credentials
+[2026-02-04T03:54:54.584Z] NOTE: Using dummy credentials - test@example.com / testpassword123
+[2026-02-04T03:54:55.733Z] ✓ Credentials entered
+[2026-02-04T03:54:55.733Z] 
+[2026-02-04T03:54:55.734Z] STEP 6: Submitting login form
+[2026-02-04T03:54:55.734Z] Clicking submit button...
+[2026-02-04T03:54:55.734Z] AUTH PROMPT COUNT: 1 (First credential entry)
+[2026-02-04T03:54:55.756Z] CONSOLE [log]: Attempting signIn...
+[2026-02-04T03:54:55.757Z] REQUEST [GET]: https://portal.oneguyconsulting.com/api/auth/providers
+[2026-02-04T03:54:55.865Z] RESPONSE [200]: https://portal.oneguyconsulting.com/api/auth/providers
+[2026-02-04T03:54:55.867Z] REQUEST [GET]: https://portal.oneguyconsulting.com/api/auth/csrf
+[2026-02-04T03:54:55.984Z] RESPONSE [200]: https://portal.oneguyconsulting.com/api/auth/csrf
+[2026-02-04T03:54:55.986Z] REQUEST [POST]: https://portal.oneguyconsulting.com/api/auth/callback/credentials
+[2026-02-04T03:54:56.196Z] RESPONSE [401]: https://portal.oneguyconsulting.com/api/auth/callback/credentials
+[2026-02-04T03:54:56.197Z] CONSOLE [error]: Failed to load resource: the server responded with a status of 401 ()
+[2026-02-04T03:54:56.197Z] CONSOLE [log]: SignIn result: {
+  "error": "CredentialsSignin",
+  "status": 401,
+  "ok": false,
+  "url": null
+}
+[2026-02-04T03:54:56.197Z] CONSOLE [log]: SignIn error: CredentialsSignin
+[2026-02-04T03:55:05.736Z] ✓ Form submitted, current URL: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:55:05.736Z] 
+[2026-02-04T03:55:06.393Z] CONSOLE [log]: Attempting signIn...
+[2026-02-04T03:55:06.394Z] REQUEST [GET]: https://portal.oneguyconsulting.com/api/auth/providers
+[2026-02-04T03:55:06.508Z] RESPONSE [200]: https://portal.oneguyconsulting.com/api/auth/providers
+[2026-02-04T03:55:06.509Z] REQUEST [GET]: https://portal.oneguyconsulting.com/api/auth/csrf
+[2026-02-04T03:55:06.616Z] RESPONSE [200]: https://portal.oneguyconsulting.com/api/auth/csrf
+[2026-02-04T03:55:06.617Z] REQUEST [POST]: https://portal.oneguyconsulting.com/api/auth/callback/credentials
+[2026-02-04T03:55:06.827Z] RESPONSE [401]: https://portal.oneguyconsulting.com/api/auth/callback/credentials
+[2026-02-04T03:55:06.827Z] CONSOLE [error]: Failed to load resource: the server responded with a status of 401 ()
+[2026-02-04T03:55:06.828Z] CONSOLE [log]: SignIn result: {
+  "error": "CredentialsSignin",
+  "status": 401,
+  "ok": false,
+  "url": null
+}
+[2026-02-04T03:55:06.828Z] CONSOLE [log]: SignIn error: CredentialsSignin
+[2026-02-04T03:55:07.847Z] STEP 7: Checking for SECOND credential prompt
+[2026-02-04T03:55:07.847Z] Current URL: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:55:07.850Z] 
+[2026-02-04T03:55:07.850Z] 🚨 DOUBLE LOGIN DETECTED! 🚨
+[2026-02-04T03:55:07.850Z] A SECOND credential prompt has appeared!
+[2026-02-04T03:55:07.850Z] AUTH PROMPT COUNT: 2
+[2026-02-04T03:55:07.850Z] 
+[2026-02-04T03:55:07.960Z] Page Title: HIPAA Compliance Made Approachable | One Guy Consulting
+[2026-02-04T03:55:07.960Z] Main Heading: Welcome Back
+[2026-02-04T03:55:07.960Z] 
+[2026-02-04T03:55:07.962Z] ✓ Saved HTML source of second prompt
+[2026-02-04T03:55:07.963Z] 
+[2026-02-04T03:55:07.963Z] STEP 8: Final state capture
+[2026-02-04T03:55:08.092Z] 
+[2026-02-04T03:55:08.092Z] === Test Results Summary ===
+[2026-02-04T03:55:08.092Z] Total authentication prompts encountered: 2
+[2026-02-04T03:55:08.092Z] Final URL: https://portal.oneguyconsulting.com/auth/login
+[2026-02-04T03:55:08.092Z] Screenshots saved to: /Users/chuckw./policy-library/website/login-test-screenshots/automated-test-1770177284187
+[2026-02-04T03:55:08.092Z] 
+[2026-02-04T03:55:08.092Z] ⚠ ISSUE CONFIRMED: Double login detected
+[2026-02-04T03:55:08.092Z] Users are being asked to authenticate TWICE
+[2026-02-04T03:55:08.092Z] 
+[2026-02-04T03:55:08.092Z] Closing browser in 3 seconds...
+[2026-02-04T03:55:11.201Z] Browser closed

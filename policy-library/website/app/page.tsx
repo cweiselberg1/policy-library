@@ -9,35 +9,36 @@ import {
   PencilSquareIcon,
   BookOpenIcon,
   ClipboardDocumentCheckIcon,
-  ShieldExclamationIcon
+  ShieldExclamationIcon,
+  ComputerDesktopIcon
 } from "@heroicons/react/24/outline";
 import { PageViewTracker } from "@/components/PageViewTracker";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+    <div className="min-h-screen bg-white">
       <PageViewTracker pageName="Home" />
       {/* Hero Section */}
-      <header className="relative overflow-hidden border-b border-slate-200 bg-white/80 backdrop-blur-sm">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-cyan-600/5" />
+      <header className="relative overflow-hidden border-b border-gray-200 bg-white">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
           {/* One Guy Consulting Badge */}
           <div className="mb-8 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-cyan-600">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600">
               <ShieldCheckIcon className="h-7 w-7 text-white" />
             </div>
             <div>
-              <p className="text-sm font-semibold tracking-wide text-blue-600">ONE GUY CONSULTING</p>
-              <p className="text-xs text-slate-600">Healthcare Compliance Experts</p>
+              <p className="text-sm font-bold tracking-wide text-blue-600 uppercase">One Guy Consulting</p>
+              <p className="text-xs font-medium text-gray-600">Healthcare Compliance Experts</p>
             </div>
           </div>
 
-          <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+          <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
             HIPAA Policy Library
           </h1>
 
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-gray-700 font-medium">
             Production-ready HIPAA compliance policies for Covered Entities and Business Associates.
             Comprehensive, customizable, and ready to deploy.
           </p>
@@ -241,7 +242,7 @@ export default function Home() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="mt-32 scroll-mt-20">
+        <section id="features" className="mt-32">
           <div className="text-center">
             <h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
               Everything You Need
@@ -355,23 +356,50 @@ export default function Home() {
               </div>
             </Link>
 
-            <div className="rounded-xl border-2 border-slate-200 bg-gradient-to-br from-white to-slate-50/50 p-8 shadow-sm">
-              <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-slate-100">
-                <ChartBarIcon className="h-8 w-8 text-slate-600" />
+            <Link
+              href="/audit/data-device"
+              className="group rounded-xl border-2 border-violet-200 bg-gradient-to-br from-white to-violet-50/50 p-8 shadow-sm transition-all hover:border-violet-300 hover:shadow-lg"
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-violet-100 transition-colors group-hover:bg-violet-200">
+                  <ComputerDesktopIcon className="h-8 w-8 text-violet-600" />
+                </div>
+                <span className="rounded-full bg-violet-600 px-3 py-1 text-xs font-bold text-white shadow-md">
+                  NEW
+                </span>
               </div>
               <h3 className="mt-6 text-xl font-bold text-slate-900">
-                More Tools Coming Soon
+                Data Device Audit
               </h3>
               <p className="mt-3 text-base text-slate-700">
-                We're building additional compliance assessment and risk management tools
+                Track and assess security controls for all devices accessing ePHI. Inventory management with compliance scoring and risk assessment
               </p>
-              <div className="mt-4 space-y-2 text-sm text-slate-600">
-                <p>• Technical Safeguards Audit</p>
-                <p>• Administrative Safeguards Review</p>
-                <p>• Business Associate Assessment</p>
-                <p>• Security Incident Response Drills</p>
+              <div className="mt-4 rounded-lg border border-violet-200 bg-white p-4">
+                <p className="text-sm font-semibold text-violet-900">Includes:</p>
+                <ul className="mt-2 space-y-1 text-sm text-violet-800">
+                  <li className="flex items-center gap-2">
+                    <CheckCircleIcon className="h-4 w-4 text-violet-600" />
+                    Device inventory tracking
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircleIcon className="h-4 w-4 text-violet-600" />
+                    Security control assessment
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircleIcon className="h-4 w-4 text-violet-600" />
+                    Compliance scoring
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircleIcon className="h-4 w-4 text-violet-600" />
+                    Export reports (MD/CSV)
+                  </li>
+                </ul>
               </div>
-            </div>
+              <div className="mt-6 flex items-center gap-1 text-base font-semibold text-violet-600">
+                Start Device Audit
+                <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
           </div>
         </section>
 

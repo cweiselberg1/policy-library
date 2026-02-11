@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-02-03T23:52:53.054Z",
+  "trigger": "auto",
+  "active_modes": {
+    "ralph": {
+      "iteration": 33,
+      "prompt": ""
+    },
+    "ultrawork": {
+      "original_prompt": "you are noe one guy consulting's new head of training. congrats on the promotion. first day; we need you to build a ralph loop. Trainee will work down their list of policies, top to bottom. When reaching the bottom of the page, they can save and exit, but the better thing to do is hit 'Continue' to the right. This will lead the trainee into HIPAA 101 training where this requirement can be checked off. Same itdea follows, We want trainee to hit 'Continue' and when they do what follows is cybersecurity awareness training "
+    }
+  },
+  "todo_summary": {
+    "pending": 0,
+    "in_progress": 0,
+    "completed": 0
+  },
+  "wisdom_exported": false
+}

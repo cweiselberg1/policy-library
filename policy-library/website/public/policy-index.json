@@ -1,0 +1,1511 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-02-03",
+  "total_policies": 101,
+  "covered_entity_count": 97,
+  "business_associate_count": 81,
+  "categories": [
+    "Administrative Safeguards",
+    "Breach Notification",
+    "Organizational Requirements",
+    "Physical Safeguards",
+    "Privacy Rule",
+    "Technical Safeguards",
+    "Uncategorized",
+    "administrative-safeguards",
+    "organizational-requirements"
+  ],
+  "policies": [
+    {
+      "id": "ba-admin-001",
+      "title": "Administrative Requirements and Personnel Designations Policy",
+      "file_path": "business-associates/security-rule/administrative-safeguards/administrative_requirements_and_personnel_designations_policy.md",
+      "category": "administrative-safeguards",
+      "applies_to": [
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.530",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-02-03",
+      "description": "Administrative Requirements and Personnel Designations for Business Associates"
+    },
+    {
+      "id": "ba-admin-002",
+      "title": "Sanctions Policy",
+      "file_path": "business-associates/security-rule/administrative-safeguards/sanctions_policy.md",
+      "category": "administrative-safeguards",
+      "applies_to": [
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.530(e)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-02-03",
+      "description": "HIPAA Policy: Workforce Sanctions, Documentation, Security Sanctions, Investigations, Penalties, and Hearings"
+    },
+    {
+      "id": "ba-admin-003",
+      "title": "Workforce Training and Security Awareness Policy",
+      "file_path": "business-associates/security-rule/administrative-safeguards/workforce_training_and_security_awareness_policy.md",
+      "category": "administrative-safeguards",
+      "applies_to": [
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.530(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-02-03",
+      "description": "Workforce Training and Security Awareness requirements for Business Associates"
+    },
+    {
+      "id": "ba-org-001",
+      "title": "Complaints, Non-Retaliation, Waiver of Rights, and Documentation Policy",
+      "file_path": "business-associates/security-rule/organizational-requirements/complaints_non_retaliation_waiver_of_rights_and_documentation_policy.md",
+      "category": "organizational-requirements",
+      "applies_to": [
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.530(d)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-02-03",
+      "description": "Complaints, Non-Retaliation, Waiver of Rights, and Documentation for Business Associates"
+    },
+    {
+      "id": "policy-001",
+      "title": "Acceptable Use and Restricted Internal Access to Protected Health Information PHI Policy",
+      "file_path": "administrative/acceptable_use_and_restricted_internal_access_to_protected_health_information_phi_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.308(a)(3)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Acceptable Use and Restricted Internal Access to Protected Health Information (PHI)"
+    },
+    {
+      "id": "policy-001",
+      "title": "Acceptable Use and Restricted Internal Access to Protected Health Information PHI Policy",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/acceptable_use_and_restricted_internal_access_to_protected_health_information_phi_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(3)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Acceptable Use and Restricted Internal Access to Protected Health Information (PHI)"
+    },
+    {
+      "id": "policy-002",
+      "title": "Accounting of Disclosures Policy p",
+      "file_path": "administrative/accounting_of_disclosures_policy_p.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.528",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure [Company] provides individuals or their personal representatives with an accounting of certain disclosures of their protected health information (PHI), as required by the HIPAA Privacy Rule."
+    },
+    {
+      "id": "policy-002",
+      "title": "Accounting of Disclosures Policy p",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/accounting_of_disclosures_policy_p.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.528",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure [Company] provides individuals or their personal representatives with an accounting of certain disclosures of their protected health information (PHI), as required by the HIPAA Privacy Rule."
+    },
+    {
+      "id": "policy-002",
+      "title": "Accounting of Disclosures Policy p",
+      "file_path": "covered-entities/privacy-rule/individual-rights/accounting_of_disclosures_policy_p.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.528",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure [Company] provides individuals or their personal representatives with an accounting of certain disclosures of their protected health information (PHI), as required by the HIPAA Privacy Rule."
+    },
+    {
+      "id": "policy-003",
+      "title": "Administrative Requirements and Personnel Designations Policy",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/administrative_requirements_and_personnel_designations_policy.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.530",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Administrative Requirements and Personnel Designations"
+    },
+    {
+      "id": "policy-004",
+      "title": "Administrative Safeguards and Assigned Security Responsibility Policy",
+      "file_path": "administrative/administrative_safeguards_and_assigned_security_responsibility_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.308(a)(2)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Administrative Safeguards and Assigned Security Responsibility"
+    },
+    {
+      "id": "policy-004",
+      "title": "Administrative Safeguards and Assigned Security Responsibility Policy",
+      "file_path": "business-associates/security-rule/administrative-safeguards/administrative_safeguards_and_assigned_security_responsibility_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(2)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Administrative Safeguards and Assigned Security Responsibility"
+    },
+    {
+      "id": "policy-004",
+      "title": "Administrative Safeguards and Assigned Security Responsibility Policy",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/administrative_safeguards_and_assigned_security_responsibility_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(2)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Administrative Safeguards and Assigned Security Responsibility"
+    },
+    {
+      "id": "policy-005",
+      "title": "Amendment of PHI Policy",
+      "file_path": "administrative/amendment_of_phi_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.526",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Individuals may request amendments to their PHI in writing."
+    },
+    {
+      "id": "policy-005",
+      "title": "Amendment of PHI Policy",
+      "file_path": "covered-entities/privacy-rule/individual-rights/amendment_of_phi_policy.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.526",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Individuals may request amendments to their PHI in writing."
+    },
+    {
+      "id": "policy-006",
+      "title": "Antivirus Malware and Automatic System Updates Policy",
+      "file_path": "administrative/antivirus_malware_and_automatic_system_updates_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(1)(i)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "[Company] will deploy, maintain, and regularly update antivirus and anti-malware software on all systems and devices that store, process, or transmit ePHI."
+    },
+    {
+      "id": "policy-006",
+      "title": "Antivirus Malware and Automatic System Updates Policy",
+      "file_path": "business-associates/security-rule/technical-safeguards/antivirus_malware_and_automatic_system_updates_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(1)(i)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "[Company] will deploy, maintain, and regularly update antivirus and anti-malware software on all systems and devices that store, process, or transmit ePHI."
+    },
+    {
+      "id": "policy-006",
+      "title": "Antivirus Malware and Automatic System Updates Policy",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/antivirus_malware_and_automatic_system_updates_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(1)(i)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "[Company] will deploy, maintain, and regularly update antivirus and anti-malware software on all systems and devices that store, process, or transmit ePHI."
+    },
+    {
+      "id": "policy-007",
+      "title": "Audit Controls System Alerts and Authentication Controls Policy",
+      "file_path": "administrative/audit_controls_system_alerts_and_authentication_controls_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Audit Controls, System Alerts, and Authentication Controls"
+    },
+    {
+      "id": "policy-007",
+      "title": "Audit Controls System Alerts and Authentication Controls Policy",
+      "file_path": "business-associates/security-rule/technical-safeguards/audit_controls_system_alerts_and_authentication_controls_policy.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Audit Controls, System Alerts, and Authentication Controls"
+    },
+    {
+      "id": "policy-007",
+      "title": "Audit Controls System Alerts and Authentication Controls Policy",
+      "file_path": "covered-entities/security-rule/technical-safeguards/audit_controls_system_alerts_and_authentication_controls_policy.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Audit Controls, System Alerts, and Authentication Controls"
+    },
+    {
+      "id": "policy-008",
+      "title": "Automatic Logoff Policy",
+      "file_path": "administrative/automatic_logoff_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": " 164.312(a)(2)(iii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-008",
+      "title": "Automatic Logoff Policy",
+      "file_path": "business-associates/security-rule/technical-safeguards/automatic_logoff_policy.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": " 164.312(a)(2)(iii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-008",
+      "title": "Automatic Logoff Policy",
+      "file_path": "covered-entities/security-rule/technical-safeguards/automatic_logoff_policy.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": " 164.312(a)(2)(iii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-009",
+      "title": "Breach Notification Policy",
+      "file_path": "administrative/breach_notification_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.400",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-009",
+      "title": "Breach Notification Policy",
+      "file_path": "business-associates/breach-notification/breach_notification_policy.md",
+      "category": "Breach Notification",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.400",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-009",
+      "title": "Breach Notification Policy",
+      "file_path": "covered-entities/breach-notification/breach_notification_policy.md",
+      "category": "Breach Notification",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.400",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-010",
+      "title": "Business Associate Agreement Policy Covering both Security and Privacy Rule Requirements",
+      "file_path": "administrative/business_associate_agreement_policy_covering_both_security_and_privacy_rule_requirements.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.502(e)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-010",
+      "title": "Business Associate Agreement Policy Covering both Security and Privacy Rule Requirements",
+      "file_path": "business-associates/security-rule/administrative-safeguards/business_associate_agreement_policy_covering_both_security_and_privacy_rule_requirements.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.502(e)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-010",
+      "title": "Business Associate Agreement Policy Covering both Security and Privacy Rule Requirements",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/business_associate_agreement_policy_covering_both_security_and_privacy_rule_requirements.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.502(e)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-011",
+      "title": "Complaints-Non-Retaliation-Waiver-of-Rights-and-Documentation-Policy-2",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/complaints-non-retaliation-waiver-of-rights-and-documentation-policy-2.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§ 164.530(d)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Complaints, Non-Retaliation, Waiver of Rights, and Documentation"
+    },
+    {
+      "id": "policy-012",
+      "title": "Confidential Communications Policy",
+      "file_path": "administrative/confidential_communications_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.522(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO PROTECT INDIVIDUAL PRIVACY BY HONORING REASONABLE REQUESTS FOR ALTERNATIVE MEANS OR LOCATIONS OF COMMUNICATION."
+    },
+    {
+      "id": "policy-012",
+      "title": "Confidential Communications Policy",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/confidential_communications_policy.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.522(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO PROTECT INDIVIDUAL PRIVACY BY HONORING REASONABLE REQUESTS FOR ALTERNATIVE MEANS OR LOCATIONS OF COMMUNICATION."
+    },
+    {
+      "id": "policy-013",
+      "title": "Data Integrity Policy s",
+      "file_path": "administrative/data_integrity_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.306(a)(1)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "HIPAA Security Policy: General Security, Administrative, and Integrity Safeguards"
+    },
+    {
+      "id": "policy-013",
+      "title": "Data Integrity Policy s",
+      "file_path": "business-associates/security-rule/technical-safeguards/data_integrity_policy_s.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.306(a)(1)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "HIPAA Security Policy: General Security, Administrative, and Integrity Safeguards"
+    },
+    {
+      "id": "policy-013",
+      "title": "Data Integrity Policy s",
+      "file_path": "covered-entities/security-rule/technical-safeguards/data_integrity_policy_s.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.306(a)(1)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "HIPAA Security Policy: General Security, Administrative, and Integrity Safeguards"
+    },
+    {
+      "id": "policy-014",
+      "title": "Data backup and storage policy",
+      "file_path": "administrative/data_backup_and_storage_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.308(a)(7)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "This policy establishes the required procedures to create, maintain, and secure retrievable exact copies of electronic Protected Health Information (ePHI) in accordance with the HIPAA Security Rule’s Contingency Plan standard and its Data Backup Plan implementation specification."
+    },
+    {
+      "id": "policy-014",
+      "title": "Data backup and storage policy",
+      "file_path": "business-associates/security-rule/administrative-safeguards/data_backup_and_storage_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(7)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "This policy establishes the required procedures to create, maintain, and secure retrievable exact copies of electronic Protected Health Information (ePHI) in accordance with the HIPAA Security Rule’s Contingency Plan standard and its Data Backup Plan implementation specification."
+    },
+    {
+      "id": "policy-014",
+      "title": "Data backup and storage policy",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/data_backup_and_storage_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(7)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "This policy establishes the required procedures to create, maintain, and secure retrievable exact copies of electronic Protected Health Information (ePHI) in accordance with the HIPAA Security Rule’s Contingency Plan standard and its Data Backup Plan implementation specification."
+    },
+    {
+      "id": "policy-015",
+      "title": "De-Identification and Re-Identification Policy s",
+      "file_path": "administrative/de-identification_and_re-identification_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.514(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "De-Identification and Re-Identification of Protected Health Information"
+    },
+    {
+      "id": "policy-015",
+      "title": "De-Identification and Re-Identification Policy s",
+      "file_path": "covered-entities/privacy-rule/uses-disclosures/de-identification_and_re-identification_policy_s.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.514(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "De-Identification and Re-Identification of Protected Health Information"
+    },
+    {
+      "id": "policy-016",
+      "title": "Device and media controls",
+      "file_path": "administrative/device_and_media_controls.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(d)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "In compliance with 45 CFR §164.310(d), 45 CFR §164.310(d)(2), & 45 CFR §164.310(d)(2)(i)-(iv)"
+    },
+    {
+      "id": "policy-016",
+      "title": "Device and media controls",
+      "file_path": "business-associates/security-rule/physical-safeguards/device_and_media_controls.md",
+      "category": "Physical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(d)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "In compliance with 45 CFR §164.310(d), 45 CFR §164.310(d)(2), & 45 CFR §164.310(d)(2)(i)-(iv)"
+    },
+    {
+      "id": "policy-016",
+      "title": "Device and media controls",
+      "file_path": "covered-entities/security-rule/physical-safeguards/device_and_media_controls.md",
+      "category": "Physical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(d)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "In compliance with 45 CFR §164.310(d), 45 CFR §164.310(d)(2), & 45 CFR §164.310(d)(2)(i)-(iv)"
+    },
+    {
+      "id": "policy-017",
+      "title": "Disaster Recovery PLAN Not Policy",
+      "file_path": "administrative/disaster_recovery_plan_not_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(7)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "The DRP is activated in response to events that result in the loss, compromise, or unavailability of ePHI or critical systems, including but not limited to:"
+    },
+    {
+      "id": "policy-017",
+      "title": "Disaster Recovery PLAN Not Policy",
+      "file_path": "business-associates/security-rule/administrative-safeguards/disaster_recovery_plan_not_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(7)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "The DRP is activated in response to events that result in the loss, compromise, or unavailability of ePHI or critical systems, including but not limited to:"
+    },
+    {
+      "id": "policy-017",
+      "title": "Disaster Recovery PLAN Not Policy",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/disaster_recovery_plan_not_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(7)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "The DRP is activated in response to events that result in the loss, compromise, or unavailability of ePHI or critical systems, including but not limited to:"
+    },
+    {
+      "id": "policy-018",
+      "title": "Disaster Recovery Policy and Contingency Planning",
+      "file_path": "administrative/disaster_recovery_policy_and_contingency_planning.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(7)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "In compliance with 45 CFR §164.308(a)(7)(ii)(A)-(E)"
+    },
+    {
+      "id": "policy-018",
+      "title": "Disaster Recovery Policy and Contingency Planning",
+      "file_path": "business-associates/security-rule/administrative-safeguards/disaster_recovery_policy_and_contingency_planning.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(7)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "In compliance with 45 CFR §164.308(a)(7)(ii)(A)-(E)"
+    },
+    {
+      "id": "policy-018",
+      "title": "Disaster Recovery Policy and Contingency Planning",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/disaster_recovery_policy_and_contingency_planning.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(7)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "In compliance with 45 CFR §164.308(a)(7)(ii)(A)-(E)"
+    },
+    {
+      "id": "policy-019",
+      "title": "Documentation-Records-Retention-Policy",
+      "file_path": "administrative/documentation-records-retention-policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.316(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure all HIPAA-related policies, procedures, and actions are properly documented and retained for compliance."
+    },
+    {
+      "id": "policy-019",
+      "title": "Documentation-Records-Retention-Policy",
+      "file_path": "business-associates/security-rule/organizational-requirements/documentation-records-retention-policy.md",
+      "category": "Organizational Requirements",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.316(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure all HIPAA-related policies, procedures, and actions are properly documented and retained for compliance."
+    },
+    {
+      "id": "policy-019",
+      "title": "Documentation-Records-Retention-Policy",
+      "file_path": "covered-entities/security-rule/organizational-requirements/documentation-records-retention-policy.md",
+      "category": "Organizational Requirements",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.316(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure all HIPAA-related policies, procedures, and actions are properly documented and retained for compliance."
+    },
+    {
+      "id": "policy-020",
+      "title": "Encryption Decryption and Transmission Security Policy",
+      "file_path": "administrative/encryption_decryption_and_transmission_security_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Encryption, De-Encryption, and Transmission Security"
+    },
+    {
+      "id": "policy-020",
+      "title": "Encryption Decryption and Transmission Security Policy",
+      "file_path": "business-associates/security-rule/technical-safeguards/encryption_decryption_and_transmission_security_policy.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Encryption, De-Encryption, and Transmission Security"
+    },
+    {
+      "id": "policy-020",
+      "title": "Encryption Decryption and Transmission Security Policy",
+      "file_path": "covered-entities/security-rule/technical-safeguards/encryption_decryption_and_transmission_security_policy.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Encryption, De-Encryption, and Transmission Security"
+    },
+    {
+      "id": "policy-021",
+      "title": "Facility Access Controls Policy",
+      "file_path": "administrative/facility_access_controls_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(a)(1)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To establish and implement policies and procedures that limit physical access to electronic information systems and the facilities in which they are housed, while ensuring that properly authorized access is allowed, in compliance with the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-021",
+      "title": "Facility Access Controls Policy",
+      "file_path": "business-associates/security-rule/physical-safeguards/facility_access_controls_policy.md",
+      "category": "Physical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(a)(1)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To establish and implement policies and procedures that limit physical access to electronic information systems and the facilities in which they are housed, while ensuring that properly authorized access is allowed, in compliance with the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-021",
+      "title": "Facility Access Controls Policy",
+      "file_path": "covered-entities/security-rule/physical-safeguards/facility_access_controls_policy.md",
+      "category": "Physical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(a)(1)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To establish and implement policies and procedures that limit physical access to electronic information systems and the facilities in which they are housed, while ensuring that properly authorized access is allowed, in compliance with the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-022",
+      "title": "Individual Access Rights Policy p",
+      "file_path": "administrative/individual_access_rights_policy_p.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.524",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To fulfill HIPAA’s Right of Access (45 CFR §164.524) by:"
+    },
+    {
+      "id": "policy-022",
+      "title": "Individual Access Rights Policy p",
+      "file_path": "covered-entities/privacy-rule/individual-rights/individual_access_rights_policy_p.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.524",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To fulfill HIPAA’s Right of Access (45 CFR §164.524) by:"
+    },
+    {
+      "id": "policy-023",
+      "title": "Minimum Necessary Policy",
+      "file_path": "administrative/minimum_necessary_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§ 164.502(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To establish guidelines ensuring the use, disclosure, and requests of Protected Health Information (PHI) are limited to the minimum necessary to accomplish the intended purpose, as required by the HIPAA Privacy Rule."
+    },
+    {
+      "id": "policy-023",
+      "title": "Minimum Necessary Policy",
+      "file_path": "covered-entities/privacy-rule/uses-disclosures/minimum_necessary_policy.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§ 164.502(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To establish guidelines ensuring the use, disclosure, and requests of Protected Health Information (PHI) are limited to the minimum necessary to accomplish the intended purpose, as required by the HIPAA Privacy Rule."
+    },
+    {
+      "id": "policy-024",
+      "title": "Mitigation Policy p",
+      "file_path": "administrative/mitigation_policy_p.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.530(f)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-024",
+      "title": "Mitigation Policy p",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/mitigation_policy_p.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.530(f)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-025",
+      "title": "Notice of Privacy Practices Policy p",
+      "file_path": "administrative/notice_of_privacy_practices_policy_p.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.520",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-24",
+      "description": "To ensure [Company] provides individuals with clear, accessible, and legally compliant notice of its privacy practices regarding protected health information (PHI), including updates required by the February 16, 2026 HIPAA Privacy Rule amendments."
+    },
+    {
+      "id": "policy-025",
+      "title": "Notice of Privacy Practices Policy p",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/notice_of_privacy_practices_policy_p.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.520",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-24",
+      "description": "To ensure [Company] provides individuals with clear, accessible, and legally compliant notice of its privacy practices regarding protected health information (PHI), including updates required by the February 16, 2026 HIPAA Privacy Rule amendments."
+    },
+    {
+      "id": "policy-026",
+      "title": "Ongoing Security Risk Assessment Policy s",
+      "file_path": "administrative/ongoing_security_risk_assessment_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(1)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure [Company] conducts an accurate and thorough assessment of the potential risks and vulnerabilities to the confidentiality, integrity, and availability of electronic protected health information (ePHI), as required by the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-026",
+      "title": "Ongoing Security Risk Assessment Policy s",
+      "file_path": "business-associates/security-rule/administrative-safeguards/ongoing_security_risk_assessment_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(1)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure [Company] conducts an accurate and thorough assessment of the potential risks and vulnerabilities to the confidentiality, integrity, and availability of electronic protected health information (ePHI), as required by the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-026",
+      "title": "Ongoing Security Risk Assessment Policy s",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/ongoing_security_risk_assessment_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(1)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure [Company] conducts an accurate and thorough assessment of the potential risks and vulnerabilities to the confidentiality, integrity, and availability of electronic protected health information (ePHI), as required by the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-027",
+      "title": "Password Authentication Management Policy",
+      "file_path": "administrative/password_authentication_management_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO SAFEGUARD ACCESS TO EPHI THROUGH SECURE AUTHENTICATION AND PASSWORD STANDARDS."
+    },
+    {
+      "id": "policy-027",
+      "title": "Password Authentication Management Policy",
+      "file_path": "business-associates/security-rule/technical-safeguards/password_authentication_management_policy.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO SAFEGUARD ACCESS TO EPHI THROUGH SECURE AUTHENTICATION AND PASSWORD STANDARDS."
+    },
+    {
+      "id": "policy-027",
+      "title": "Password Authentication Management Policy",
+      "file_path": "covered-entities/security-rule/technical-safeguards/password_authentication_management_policy.md",
+      "category": "Technical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.312(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO SAFEGUARD ACCESS TO EPHI THROUGH SECURE AUTHENTICATION AND PASSWORD STANDARDS."
+    },
+    {
+      "id": "policy-028",
+      "title": "Personal Representatives Policy",
+      "file_path": "administrative/personal_representatives_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.502(g)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure [Organization Name] complies with the HIPAA Privacy Rule by appropriately recognizing and responding to personal representatives of individuals, as defined by federal regulation and applicable state law, regarding access to and control over PHI."
+    },
+    {
+      "id": "policy-028",
+      "title": "Personal Representatives Policy",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/personal_representatives_policy.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.502(g)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To ensure [Organization Name] complies with the HIPAA Privacy Rule by appropriately recognizing and responding to personal representatives of individuals, as defined by federal regulation and applicable state law, regarding access to and control over PHI."
+    },
+    {
+      "id": "policy-029",
+      "title": "Restriction-Requests-Policy",
+      "file_path": "administrative/restriction-requests-policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.522(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "TO OUTLINE HOW THE ORGANIZATION HANDLES PATIENT REQUESTS TO RESTRICT THE USE OR DISCLOSURE OF PHI."
+    },
+    {
+      "id": "policy-029",
+      "title": "Restriction-Requests-Policy",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/restriction-requests-policy.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.522(a)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "TO OUTLINE HOW THE ORGANIZATION HANDLES PATIENT REQUESTS TO RESTRICT THE USE OR DISCLOSURE OF PHI."
+    },
+    {
+      "id": "policy-030",
+      "title": "Sanctions Policy p",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/sanctions_policy_p.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.530(e)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "HIPAA Policy: Workforce Sanctions, Documentation, Security Sanctions, Investigations, Penalties, and Hearings"
+    },
+    {
+      "id": "policy-031",
+      "title": "Security Incident Response and Reporting Policy s",
+      "file_path": "administrative/security_incident_response_and_reporting_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(6)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To establish and implement policies and procedures for the identification, reporting, response, documentation, and mitigation of security incidents involving ePHI, as required by the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-031",
+      "title": "Security Incident Response and Reporting Policy s",
+      "file_path": "business-associates/security-rule/administrative-safeguards/security_incident_response_and_reporting_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(6)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To establish and implement policies and procedures for the identification, reporting, response, documentation, and mitigation of security incidents involving ePHI, as required by the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-031",
+      "title": "Security Incident Response and Reporting Policy s",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/security_incident_response_and_reporting_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(6)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "To establish and implement policies and procedures for the identification, reporting, response, documentation, and mitigation of security incidents involving ePHI, as required by the HIPAA Security Rule."
+    },
+    {
+      "id": "policy-032",
+      "title": "Termination Procedures Policy s",
+      "file_path": "administrative/termination_procedures_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(3)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Human Resources (HR) or the responsible supervisor must provide advance notice to the Compliance Officer and IT Department (or applicable individual) when a workforce member’s employment or engagement is ending, or when their role changes such that access to PHI/ePHI is no longer required."
+    },
+    {
+      "id": "policy-032",
+      "title": "Termination Procedures Policy s",
+      "file_path": "business-associates/security-rule/administrative-safeguards/termination_procedures_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(3)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Human Resources (HR) or the responsible supervisor must provide advance notice to the Compliance Officer and IT Department (or applicable individual) when a workforce member’s employment or engagement is ending, or when their role changes such that access to PHI/ePHI is no longer required."
+    },
+    {
+      "id": "policy-032",
+      "title": "Termination Procedures Policy s",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/termination_procedures_policy_s.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(3)(ii)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Human Resources (HR) or the responsible supervisor must provide advance notice to the Compliance Officer and IT Department (or applicable individual) when a workforce member’s employment or engagement is ending, or when their role changes such that access to PHI/ePHI is no longer required."
+    },
+    {
+      "id": "policy-033",
+      "title": "Uses and Disclosures of Protected Health Information PHI Policy Covering both the HIPAA Privacy and Security Rules",
+      "file_path": "administrative/uses_and_disclosures_of_protected_health_information_phi_policy_covering_both_the_hipaa_privacy_and_security_rules.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Uses and Disclosures of Protected Health Information (PHI)"
+    },
+    {
+      "id": "policy-033",
+      "title": "Uses and Disclosures of Protected Health Information PHI Policy Covering both the HIPAA Privacy and Security Rules",
+      "file_path": "covered-entities/privacy-rule/uses-disclosures/uses_and_disclosures_of_protected_health_information_phi_policy_covering_both_the_hipaa_privacy_and_security_rules.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.502",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "Uses and Disclosures of Protected Health Information (PHI)"
+    },
+    {
+      "id": "policy-034",
+      "title": "Vendor Management Oversight Policy",
+      "file_path": "administrative/vendor_management_oversight_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.502(e)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO ENSURE VENDORS AND BUSINESS ASSOCIATES WITH PHI ACCESS COMPLY WITH HIPAA REQUIREMENTS."
+    },
+    {
+      "id": "policy-034",
+      "title": "Vendor Management Oversight Policy",
+      "file_path": "business-associates/security-rule/administrative-safeguards/vendor_management_oversight_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.502(e)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO ENSURE VENDORS AND BUSINESS ASSOCIATES WITH PHI ACCESS COMPLY WITH HIPAA REQUIREMENTS."
+    },
+    {
+      "id": "policy-034",
+      "title": "Vendor Management Oversight Policy",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/vendor_management_oversight_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.502(e)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO ENSURE VENDORS AND BUSINESS ASSOCIATES WITH PHI ACCESS COMPLY WITH HIPAA REQUIREMENTS."
+    },
+    {
+      "id": "policy-035",
+      "title": "Workforce-Security-Policy",
+      "file_path": "administrative/workforce-security-policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(3)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO ENSURE ONLY AUTHORIZED WORKFORCE MEMBERS HAVE ACCESS TO PHI."
+    },
+    {
+      "id": "policy-035",
+      "title": "Workforce-Security-Policy",
+      "file_path": "business-associates/security-rule/administrative-safeguards/workforce-security-policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(3)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO ENSURE ONLY AUTHORIZED WORKFORCE MEMBERS HAVE ACCESS TO PHI."
+    },
+    {
+      "id": "policy-035",
+      "title": "Workforce-Security-Policy",
+      "file_path": "covered-entities/security-rule/administrative-safeguards/workforce-security-policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.308(a)(3)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO ENSURE ONLY AUTHORIZED WORKFORCE MEMBERS HAVE ACCESS TO PHI."
+    },
+    {
+      "id": "policy-036",
+      "title": "Workforce Training and Security Awareness Policy s",
+      "file_path": "covered-entities/privacy-rule/administrative-requirements/workforce_training_and_security_awareness_policy_s.md",
+      "category": "Privacy Rule",
+      "applies_to": [
+        "covered_entity"
+      ],
+      "hipaa_reference": "§164.530(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "●  Note - Wherever [Company] is visible, it is understood that the Organization being discussed is __________Enter your Organization Name Here _____________"
+    },
+    {
+      "id": "policy-037",
+      "title": "Workstation-Use-Policy",
+      "file_path": "administrative/workstation-use-policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO GOVERN THE PROPER FUNCTIONS AND PHYSICAL PLACEMENT OF WORKSTATIONS THAT ACCESS PHI."
+    },
+    {
+      "id": "policy-037",
+      "title": "Workstation-Use-Policy",
+      "file_path": "business-associates/security-rule/physical-safeguards/workstation-use-policy.md",
+      "category": "Physical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO GOVERN THE PROPER FUNCTIONS AND PHYSICAL PLACEMENT OF WORKSTATIONS THAT ACCESS PHI."
+    },
+    {
+      "id": "policy-037",
+      "title": "Workstation-Use-Policy",
+      "file_path": "covered-entities/security-rule/physical-safeguards/workstation-use-policy.md",
+      "category": "Physical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(b)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO GOVERN THE PROPER FUNCTIONS AND PHYSICAL PLACEMENT OF WORKSTATIONS THAT ACCESS PHI."
+    },
+    {
+      "id": "policy-038",
+      "title": "Workstation Security Policy",
+      "file_path": "administrative/workstation_security_policy.md",
+      "category": "Administrative Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(c)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO IMPLEMENT PHYSICAL SAFEGUARDS THAT PREVENT UNAUTHORIZED ACCESS TO WORKSTATIONS ACCESSING PHI."
+    },
+    {
+      "id": "policy-038",
+      "title": "Workstation Security Policy",
+      "file_path": "business-associates/security-rule/physical-safeguards/workstation_security_policy.md",
+      "category": "Physical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(c)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO IMPLEMENT PHYSICAL SAFEGUARDS THAT PREVENT UNAUTHORIZED ACCESS TO WORKSTATIONS ACCESSING PHI."
+    },
+    {
+      "id": "policy-038",
+      "title": "Workstation Security Policy",
+      "file_path": "covered-entities/security-rule/physical-safeguards/workstation_security_policy.md",
+      "category": "Physical Safeguards",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "§164.310(c)",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-01-19",
+      "description": "2  TO IMPLEMENT PHYSICAL SAFEGUARDS THAT PREVENT UNAUTHORIZED ACCESS TO WORKSTATIONS ACCESSING PHI."
+    },
+    {
+      "id": "policy-100",
+      "title": "Changelog",
+      "file_path": "website/node_modules/jszip/CHANGES.md",
+      "category": "Uncategorized",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-02-03",
+      "description": ""
+    },
+    {
+      "id": "policy-101",
+      "title": "Sponsors",
+      "file_path": "website/node_modules/jszip/sponsors.md",
+      "category": "Uncategorized",
+      "applies_to": [
+        "covered_entity",
+        "business_associate"
+      ],
+      "hipaa_reference": "",
+      "required": true,
+      "version": "1.0",
+      "last_updated": "2026-02-03",
+      "description": ""
+    }
+  ]
+}
