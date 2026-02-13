@@ -76,7 +76,7 @@ We created 7 guides for you:
 | **404_ISSUE_RESOLVED.md** | Explains the basePath issue |
 | **SEED_DATA_GUIDE.md** | How to load test data |
 | **TESTING_GUIDE.md** | Step-by-step testing checklist |
-| **DEPLOYMENT_VERIFICATION.md** | Complete feature verification |
+| **archive/superseded-docs/DEPLOYMENT_VERIFICATION.md** | Complete feature verification (archived) |
 
 ## Quick Stats
 

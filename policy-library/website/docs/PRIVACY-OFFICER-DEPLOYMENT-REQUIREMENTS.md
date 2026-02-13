@@ -924,7 +924,7 @@ npm run build            # Build production bundle
 npm start               # Run production server
 
 # Testing
-npm test                # Run Jest tests
+npm test                # Run Playwright tests
 npm run test:watch     # Run tests in watch mode
 npm run coverage       # Generate coverage report
 

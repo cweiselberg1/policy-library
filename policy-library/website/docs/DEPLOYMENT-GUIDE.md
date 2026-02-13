@@ -73,7 +73,7 @@ NEXT_PUBLIC_ENABLE_INCIDENTS=true
 NEXT_PUBLIC_ENABLE_BLOG=true
 ```
 
-**Note**: Do not commit `.env.local` to version control. Use `.env.example` as the template.
+**Note**: Do not commit `.env.local` to version control. Use `.env.local.example` as the template.
 
 ### Running Locally
 

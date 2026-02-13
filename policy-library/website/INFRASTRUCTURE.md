@@ -492,7 +492,7 @@ curl -vI https://portal.oneguyconsulting.com 2>&1 | grep "expire"
 **From Local Machine:**
 ```bash
 # Using psql (PostgreSQL client)
-psql postgresql://postgres:[PASSWORD]@db.evjheselciisyjquhbsc.supabase.co:5432/postgres
+psql postgresql://postgres:[PASSWORD]@db.jyjytbwjifeqtfowqcqf.supabase.co:5432/postgres
 
 # Once connected, run:
 \dt                    # List all tables

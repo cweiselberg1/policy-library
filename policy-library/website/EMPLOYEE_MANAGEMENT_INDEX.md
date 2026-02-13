@@ -125,7 +125,7 @@
 
 #### Testing Strategy
 - Database tests (SQL)
-- API tests (TypeScript with Jest)
+- API tests (TypeScript with Playwright)
 - Frontend tests (React Testing Library)
 
 #### Deployment Checklist
@@ -326,7 +326,7 @@ Employee → direct permissions (override roles)
 
 ### Testing
 - ✅ SQL test queries
-- ✅ API test examples (Jest)
+- ✅ API test examples (Playwright)
 - ✅ Frontend test examples (React Testing Library)
 
 ### Documentation
