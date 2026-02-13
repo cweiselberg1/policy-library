@@ -10,7 +10,10 @@ import {
   ChartBarIcon,
   BellIcon,
   Cog6ToothIcon,
+  ShieldCheckIcon,
+  ArrowRightIcon,
 } from '@heroicons/react/24/outline';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
 interface DashboardStats {
   total_employees: number;
@@ -131,9 +134,9 @@ export default function PrivacyOfficerDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
-                Privacy Officer Dashboard
+                HIPAA Compliance Dashboard
               </h1>
-              <p className="mt-2 text-slate-400">Manage compliance and organizational structure</p>
+              <p className="mt-2 text-slate-400">Privacy Officer Workflow - 12 Steps to Compliance</p>
             </div>
             <div className="flex items-center gap-4">
               <button className="relative p-3 text-slate-400 hover:text-cyan-400 transition-colors">
@@ -157,6 +160,47 @@ export default function PrivacyOfficerDashboard() {
       </header>
 
       <main className="max-w-7xl mx-auto px-6 py-12">
+        {/* Workflow Progress */}
+        <div className="mb-12">
+          <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8">
+            <h2 className="text-2xl font-bold text-white mb-2">Workflow Progress</h2>
+            <p className="text-slate-400 mb-6">1 of 12 steps completed</p>
+
+            {/* Progress Bar */}
+            <div className="w-full bg-slate-700/50 rounded-full h-2 mb-8">
+              <div className="bg-blue-600 h-2 rounded-full" style={{ width: '8.33%' }}></div>
+            </div>
+
+            {/* Workflow Steps */}
+            <div className="grid grid-cols-1 gap-4">
+              <Link
+                href="/dashboard/privacy-officer/employees"
+                className="group flex items-center justify-between bg-slate-900/50 border border-slate-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all"
+              >
+                <div className="flex items-center gap-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10 text-blue-400 font-bold text-lg">
+                    1
+                  </div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/10">
+                    <ShieldCheckIcon className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-white mb-1">Assign Privacy Officer</h3>
+                    <p className="text-sm text-slate-400">Designate responsible HIPAA compliance officer</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 text-emerald-400 rounded-full text-sm font-medium">
+                    <CheckCircleIcon className="h-4 w-4" />
+                    Completed
+                  </span>
+                  <ArrowRightIcon className="h-5 w-5 text-slate-400 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
           <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-xl border border-blue-500/20 rounded-2xl p-6">
