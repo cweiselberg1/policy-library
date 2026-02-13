@@ -87,7 +87,7 @@ pm2 list
 NODE_ENV=production
 PORT=5007
 COOKIE_SECURE=true
-DATABASE_URL=postgresql://[USER]:[PASS]@db.evjheselciisyjquhbsc.supabase.co:5432/postgres
+DATABASE_URL=postgresql://[USER]:[PASS]@db.jyjytbwjifeqtfowqcqf.supabase.co:5432/postgres
 SESSION_SECRET=[SECURE_VALUE]
 RESEND_API_KEY=[CONFIGURED]
 EMAIL_FROM=incidents@oneguyconsulting.com
@@ -112,6 +112,8 @@ APP_URL=https://portal.oneguyconsulting.com
 | **Deploy Method** | Git push to main branch (auto-deploy) |
 | **Local Path** | `/Users/chuckw./policy-library/website/` |
 | **Repository** | policy-library (within monorepo) |
+
+⚠️ **Build Configuration Note:** TypeScript build errors are currently suppressed via `ignoreBuildErrors: true` in next.config.ts. This is temporary until Supabase types are generated. Production deployments should eventually remove this flag to catch type errors.
 
 **Purpose:**
 - Policy library documentation (HIPAA Step 5)
@@ -198,7 +200,7 @@ NEXT_PUBLIC_MIXPANEL_DEBUG=false
 |-----------|-------|
 | **Provider** | Supabase (PostgreSQL) |
 | **Project ID** | jyjytbwjifeqtfowqcqf |
-| **Endpoint** | db.evjheselciisyjquhbsc.supabase.co:5432 |
+| **Endpoint** | db.jyjytbwjifeqtfowqcqf.supabase.co:5432 |
 | **Database** | postgres |
 | **Region** | [Verify in Supabase dashboard] |
 | **Access** | Dashboard at supabase.com (cweiselberg1@gmail.com) |
@@ -232,7 +234,7 @@ NEXT_PUBLIC_MIXPANEL_DEBUG=false
 
 **Connection String (PostgreSQL):**
 ```bash
-postgresql://postgres:[PASSWORD]@db.evjheselciisyjquhbsc.supabase.co:5432/postgres
+postgresql://postgres:[PASSWORD]@db.jyjytbwjifeqtfowqcqf.supabase.co:5432/postgres
 ```
 
 **Backup Access:**
@@ -789,8 +791,7 @@ git push
 
 - **Incident Management System**: `/Users/chuckw./incident-management-system/`
 - **Policy Library**: `/Users/chuckw./policy-library/website/`
-- **Deployment Guide**: `/Users/chuckw./policy-library/website/.omc/autopilot/DEPLOYMENT_GUIDE.md`
-- **Production Verification**: `/Users/chuckw./policy-library/website/DEPLOYMENT_VERIFICATION.md`
+- **Deployment Guide**: `/Users/chuckw./policy-library/website/docs/DEPLOYMENT-GUIDE.md`
 - **Critical Finding**: `/Users/chuckw./.omc/autopilot/critical-finding.md`
 
 ### External Resources
@@ -851,7 +852,7 @@ systemctl reload nginx
 
 ```bash
 # Local psql connection
-psql postgresql://postgres:[PASSWORD]@db.evjheselciisyjquhbsc.supabase.co:5432/postgres
+psql postgresql://postgres:[PASSWORD]@db.jyjytbwjifeqtfowqcqf.supabase.co:5432/postgres
 
 # List tables
 \dt
