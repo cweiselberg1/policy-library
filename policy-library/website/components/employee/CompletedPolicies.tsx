@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { CheckCircleIcon, DocumentTextIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 import CertificateDownload from '@/components/certificates/CertificateDownload';
 
 interface CompletedAssignment {
@@ -26,33 +26,33 @@ export default function CompletedPolicies({ assignments }: CompletedPoliciesProp
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-slate-900 mb-6">Completed Policies</h2>
+      <h2 className="text-2xl font-bold text-white mb-6">Completed Policies</h2>
 
       <div className="space-y-4">
         {assignments.slice(0, displayCount).map((assignment) => (
           <div
             key={assignment.id}
-            className="bg-white rounded-xl border-2 border-emerald-200 p-6 shadow-sm"
+            className="bg-slate-800/50 backdrop-blur-xl rounded-xl border border-emerald-500/20 p-6"
           >
             <div className="flex items-start gap-4">
               {/* Icon */}
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-100">
-                <CheckCircleIcon className="h-7 w-7 text-emerald-600" />
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-500/10">
+                <CheckCircleIcon className="h-7 w-7 text-emerald-400" />
               </div>
 
               {/* Content */}
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <h3 className="text-lg font-semibold text-white mb-2">
                   {assignment.bundle_name}
                 </h3>
-                <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600 mb-3">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mb-3">
                   <div className="flex items-center gap-1">
                     <DocumentTextIcon className="h-4 w-4" />
                     <span>{assignment.policy_count} {assignment.policy_count === 1 ? 'policy' : 'policies'}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <CheckCircleIcon className="h-4 w-4 text-emerald-600" />
-                    <span className="text-emerald-600 font-medium">
+                    <CheckCircleIcon className="h-4 w-4 text-emerald-400" />
+                    <span className="text-emerald-400 font-medium">
                       Completed {new Date(assignment.completed_at).toLocaleDateString('en-US', {
                         month: 'short',
                         day: 'numeric',
@@ -65,12 +65,12 @@ export default function CompletedPolicies({ assignments }: CompletedPoliciesProp
                 {/* Actions */}
                 <div className="flex flex-wrap items-center gap-3">
                   <Link
-                    href={`/dashboard/employee/policies/${assignment.policy_bundle_id}`}
-                    className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                    href={`/dashboard/employee/policies/view?id=${assignment.policy_bundle_id}`}
+                    className="text-sm text-blue-400 hover:text-blue-300 font-medium"
                   >
                     View Policy
                   </Link>
-                  <span className="text-slate-300">•</span>
+                  <span className="text-slate-600">•</span>
                   <CertificateDownload assignmentId={assignment.id} bundleName={assignment.bundle_name} />
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function CompletedPolicies({ assignments }: CompletedPoliciesProp
       {hasMore && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-6 w-full py-3 border-2 border-slate-200 rounded-lg text-slate-700 font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors"
+          className="mt-6 w-full py-3 border border-slate-700 rounded-lg text-slate-300 font-medium hover:bg-slate-800 hover:border-slate-600 transition-colors"
         >
           {expanded ? 'Show Less' : `Show All ${assignments.length} Completed Policies`}
         </button>

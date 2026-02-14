@@ -17,26 +17,9 @@ export default function CertificateDownload({ assignmentId, bundleName }: Certif
     setError('');
 
     try {
-      const response = await fetch(`/api/certificates/${assignmentId}`);
-
-      if (!response.ok) {
-        throw new Error('Failed to generate certificate');
-      }
-
-      // Get the blob from response
-      const blob = await response.blob();
-
-      // Create download link
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${bundleName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_certificate.pdf`;
-      document.body.appendChild(a);
-      a.click();
-
-      // Cleanup
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      // Certificate generation is not yet available
+      // This will be implemented when Supabase storage is configured for certificates
+      setError('Certificate generation coming soon');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to download certificate');
       console.error('Certificate download error:', err);
@@ -50,13 +33,13 @@ export default function CertificateDownload({ assignmentId, bundleName }: Certif
       <button
         onClick={handleDownload}
         disabled={downloading}
-        className="inline-flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+        className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <ArrowDownTrayIcon className="h-4 w-4" />
         {downloading ? 'Generating...' : 'Download Certificate'}
       </button>
       {error && (
-        <p className="text-xs text-red-600 mt-1">{error}</p>
+        <p className="text-xs text-slate-500 mt-1">{error}</p>
       )}
     </div>
   );
