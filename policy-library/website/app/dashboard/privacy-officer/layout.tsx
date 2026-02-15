@@ -77,7 +77,7 @@ const navigation: NavItem[] = [
   },
   {
     name: 'Vendors',
-    href: 'https://vendors.oneguyconsulting.com',
+    href: 'http://vendors.oneguyconsulting.com',
     icon: BuildingStorefrontIcon,
   },
   {
