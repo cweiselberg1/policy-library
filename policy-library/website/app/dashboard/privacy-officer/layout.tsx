@@ -7,6 +7,7 @@ import {
   HomeIcon,
   DocumentTextIcon,
   ClipboardDocumentCheckIcon,
+  ShieldExclamationIcon,
   ExclamationTriangleIcon,
   WrenchScrewdriverIcon,
   BellIcon,
@@ -32,6 +33,11 @@ const navigation: NavItem[] = [
     name: 'Dashboard',
     href: '/dashboard/privacy-officer',
     icon: HomeIcon,
+  },
+  {
+    name: 'Security Risk Assessment',
+    href: '/sra',
+    icon: ShieldExclamationIcon,
   },
   {
     name: 'Policies',
