@@ -17,7 +17,6 @@ import {
   Bars3Icon,
   XMarkIcon,
   UserGroupIcon,
-  BuildingOfficeIcon,
   BuildingStorefrontIcon,
 } from '@heroicons/react/24/outline';
 
@@ -72,11 +71,9 @@ const navigation: NavItem[] = [
     name: 'Employees',
     href: '/dashboard/privacy-officer/employees',
     icon: UserGroupIcon,
-  },
-  {
-    name: 'Departments',
-    href: '/dashboard/privacy-officer/departments',
-    icon: BuildingOfficeIcon,
+    children: [
+      { name: 'Departments', href: '/dashboard/privacy-officer/departments' },
+    ],
   },
   {
     name: 'Vendors',
