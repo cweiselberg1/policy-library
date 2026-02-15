@@ -28,16 +28,16 @@ export default function ModuleCard({
     <div
       className={`relative overflow-hidden rounded-xl border-2 p-6 transition-all ${
         locked
-          ? 'border-slate-200 bg-slate-50 opacity-60'
+          ? 'border-dark-700 bg-dark-900 opacity-60'
           : completed
-          ? 'border-emerald-200 bg-gradient-to-br from-white to-emerald-50/50 hover:border-emerald-300 hover:shadow-lg'
-          : 'border-blue-200 bg-gradient-to-br from-white to-blue-50/50 hover:border-blue-300 hover:shadow-lg'
+          ? 'border-emerald-500/30 bg-gradient-to-br from-dark-800 to-emerald-900/20 hover:border-emerald-400/50 hover:shadow-lg'
+          : 'border-copper-500/30 bg-gradient-to-br from-dark-800 to-copper-900/20 hover:border-copper-400/50 hover:shadow-lg'
       } ${!locked ? 'cursor-pointer' : 'cursor-not-allowed'}`}
     >
       {/* Background Decoration */}
       {!locked && (
         <div className={`absolute -right-8 -top-8 h-32 w-32 rounded-full blur-2xl ${
-          completed ? 'bg-emerald-600/10' : 'bg-blue-600/10'
+          completed ? 'bg-emerald-600/10' : 'bg-copper-600/10'
         }`} />
       )}
 
@@ -45,10 +45,10 @@ export default function ModuleCard({
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className={`flex h-12 w-12 items-center justify-center rounded-lg ${
-            locked ? 'bg-slate-200' : completed ? 'bg-emerald-100' : 'bg-blue-100'
+            locked ? 'bg-dark-800' : completed ? 'bg-emerald-900/50' : 'bg-copper-900/50'
           }`}>
             {locked ? (
-              <LockClosedIcon className="h-6 w-6 text-slate-500" />
+              <LockClosedIcon className="h-6 w-6 text-dark-500" />
             ) : (
               icon
             )}
@@ -62,17 +62,17 @@ export default function ModuleCard({
         </div>
 
         {/* Title */}
-        <h3 className="mt-4 text-xl font-bold text-slate-900">{title}</h3>
+        <h3 className="mt-4 text-xl font-bold text-white">{title}</h3>
 
         {/* Description */}
-        <p className="mt-2 text-sm text-slate-600">{description}</p>
+        <p className="mt-2 text-sm text-dark-400">{description}</p>
 
         {/* Duration */}
         <div className="mt-4 flex items-center justify-between">
-          <span className="text-sm text-slate-500">{duration}</span>
+          <span className="text-sm text-dark-500">{duration}</span>
           {!locked && (
             <span className={`flex items-center gap-1 text-sm font-semibold ${
-              completed ? 'text-emerald-600' : 'text-blue-600'
+              completed ? 'text-emerald-500' : 'text-copper-500'
             }`}>
               {completed ? 'Review' : 'Start'}
               <ArrowRightIcon className="h-4 w-4" />

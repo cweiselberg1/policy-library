@@ -33,8 +33,8 @@ export default function QuizQuestion({
   const isCorrect = selectedAnswer === correctAnswer;
 
   return (
-    <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm">
-      <h4 className="text-lg font-semibold text-slate-900 mb-4">{question}</h4>
+    <div className="bg-dark-800 rounded-lg border border-dark-700 p-6 shadow-sm">
+      <h4 className="text-lg font-semibold text-white mb-4">{question}</h4>
 
       <div className="space-y-3 mb-4">
         {options.map((option, index) => (
@@ -45,20 +45,20 @@ export default function QuizQuestion({
             className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all ${
               showFeedback
                 ? index === correctAnswer
-                  ? 'border-emerald-500 bg-emerald-50'
+                  ? 'border-emerald-500 bg-emerald-900/20'
                   : index === selectedAnswer
-                  ? 'border-red-500 bg-red-50'
-                  : 'border-slate-200 bg-slate-50'
-                : 'border-slate-200 hover:border-blue-400 hover:bg-blue-50'
+                  ? 'border-red-500 bg-red-900/20'
+                  : 'border-dark-700 bg-dark-900/50'
+                : 'border-dark-700 hover:border-copper-500 hover:bg-copper-900/20'
             } ${showFeedback ? 'cursor-default' : 'cursor-pointer'}`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-slate-900">{option}</span>
+              <span className="text-sm font-medium text-white">{option}</span>
               {showFeedback && index === correctAnswer && (
-                <CheckCircleIcon className="h-5 w-5 text-emerald-600" />
+                <CheckCircleIcon className="h-5 w-5 text-emerald-500" />
               )}
               {showFeedback && index === selectedAnswer && index !== correctAnswer && (
-                <XCircleIcon className="h-5 w-5 text-red-600" />
+                <XCircleIcon className="h-5 w-5 text-red-500" />
               )}
             </div>
           </button>
@@ -69,20 +69,20 @@ export default function QuizQuestion({
       {showFeedback && (
         <div
           className={`rounded-lg p-4 ${
-            isCorrect ? 'bg-emerald-50 border border-emerald-200' : 'bg-red-50 border border-red-200'
+            isCorrect ? 'bg-emerald-900/20 border border-emerald-500/30' : 'bg-red-900/20 border border-red-500/30'
           }`}
         >
           <div className="flex items-start gap-2">
             {isCorrect ? (
-              <CheckCircleIcon className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+              <CheckCircleIcon className="h-5 w-5 text-emerald-500 flex-shrink-0 mt-0.5" />
             ) : (
-              <XCircleIcon className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+              <XCircleIcon className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
             )}
             <div>
-              <p className={`font-semibold ${isCorrect ? 'text-emerald-900' : 'text-red-900'}`}>
+              <p className={`font-semibold ${isCorrect ? 'text-emerald-300' : 'text-red-300'}`}>
                 {isCorrect ? 'Correct!' : 'Incorrect'}
               </p>
-              <p className={`text-sm mt-1 ${isCorrect ? 'text-emerald-800' : 'text-red-800'}`}>
+              <p className={`text-sm mt-1 ${isCorrect ? 'text-emerald-400' : 'text-red-400'}`}>
                 {explanation}
               </p>
             </div>

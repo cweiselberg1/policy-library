@@ -17,20 +17,20 @@ interface TrainingModuleProps {
 
 const colorSchemes = {
   blue: {
-    gradient: 'from-blue-600 to-cyan-600',
-    light: 'from-blue-50/50 to-cyan-50/30',
-    border: 'border-blue-200 hover:border-blue-300',
-    bg: 'bg-blue-50',
-    text: 'text-blue-600',
-    shadow: 'shadow-blue-600/10 hover:shadow-blue-600/20',
+    gradient: 'from-copper-600 to-evergreen-600',
+    light: 'from-copper-900/30 to-evergreen-900/30',
+    border: 'border-copper-500/30 hover:border-copper-400/50',
+    bg: 'bg-copper-900/50',
+    text: 'text-copper-500',
+    shadow: 'shadow-copper-600/10 hover:shadow-copper-600/20',
   },
   purple: {
-    gradient: 'from-purple-600 to-violet-600',
-    light: 'from-purple-50/50 to-violet-50/30',
-    border: 'border-purple-200 hover:border-purple-300',
-    bg: 'bg-purple-50',
-    text: 'text-purple-600',
-    shadow: 'shadow-purple-600/10 hover:shadow-purple-600/20',
+    gradient: 'from-copper-600 to-evergreen-600',
+    light: 'from-copper-900/30 to-evergreen-900/30',
+    border: 'border-copper-500/30 hover:border-copper-400/50',
+    bg: 'bg-copper-900/50',
+    text: 'text-copper-500',
+    shadow: 'shadow-copper-600/10 hover:shadow-copper-600/20',
   },
   orange: {
     gradient: 'from-orange-600 to-red-600',
@@ -70,13 +70,13 @@ export function TrainingModule({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-dark-900 via-evergreen-900/30 to-dark-800">
       {/* Header */}
-      <div className="border-b border-slate-200 bg-white/95 backdrop-blur-sm">
+      <div className="border-b border-dark-700 bg-dark-900/95 backdrop-blur-sm">
         <div className="mx-auto max-w-4xl px-6 py-12">
-          <div className="flex items-center gap-2 mb-4 text-sm font-semibold text-slate-600">
+          <div className="flex items-center gap-2 mb-4 text-sm font-semibold text-dark-400">
             <span>Training Module</span>
-            <span className="text-slate-400">/</span>
+            <span className="text-dark-600">/</span>
             <span className={colors.text}>
               {moduleNumber} of {totalModules}
             </span>
@@ -87,8 +87,8 @@ export function TrainingModule({
               <AcademicCapIcon className="h-9 w-9 text-white" />
             </div>
             <div className="flex-1">
-              <h1 className="text-4xl font-bold text-slate-900 mb-3">{title}</h1>
-              <p className="text-lg text-slate-700">{description}</p>
+              <h1 className="text-4xl font-bold text-white mb-3">{title}</h1>
+              <p className="text-lg text-dark-300">{description}</p>
             </div>
           </div>
 
@@ -103,8 +103,8 @@ export function TrainingModule({
                     : index === moduleNumber - 1
                     ? isCompleted
                       ? `bg-gradient-to-r ${colors.gradient}`
-                      : 'bg-slate-300'
-                    : 'bg-slate-200'
+                      : 'bg-dark-700'
+                    : 'bg-dark-800'
                 }`}
               />
             ))}
@@ -115,13 +115,13 @@ export function TrainingModule({
       {/* Content */}
       <div className="mx-auto max-w-4xl px-6 py-12">
         <div className={`rounded-2xl border-2 ${colors.border} bg-gradient-to-br ${colors.light} p-8 md:p-12 shadow-xl ${colors.shadow} mb-8`}>
-          <div className="prose prose-slate max-w-none">
+          <div className="prose prose-dark max-w-none text-dark-300">
             {content}
           </div>
         </div>
 
         {/* Completion Section */}
-        <div className="rounded-2xl border-2 border-slate-200 bg-white p-8 shadow-xl">
+        <div className="rounded-2xl border-2 border-dark-700 bg-dark-800 p-8 shadow-xl">
           <div className="mb-6">
             <label className="flex cursor-pointer items-start gap-4 group">
               <button
@@ -132,14 +132,14 @@ export function TrainingModule({
                 {isCompleted ? (
                   <CheckCircleIconSolid className={`h-8 w-8 ${colors.text}`} />
                 ) : (
-                  <div className="h-8 w-8 rounded-full border-3 border-slate-300 transition-colors group-hover:border-slate-400" />
+                  <div className="h-8 w-8 rounded-full border-3 border-dark-600 transition-colors group-hover:border-dark-500" />
                 )}
               </button>
               <div className="flex-1">
-                <p className="text-base font-semibold text-slate-900">
+                <p className="text-base font-semibold text-white">
                   I have completed this training module
                 </p>
-                <p className="mt-1 text-sm text-slate-600">
+                <p className="mt-1 text-sm text-dark-400">
                   By checking this box, you confirm that you have read and understood all content in this module.
                 </p>
               </div>
@@ -147,12 +147,12 @@ export function TrainingModule({
           </div>
 
           {!isCompleted && (
-            <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
+            <div className="mb-6 rounded-lg border border-amber-500/30 bg-amber-900/20 p-4">
               <div className="flex gap-3">
                 <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-500 text-white text-xs font-bold">
                   !
                 </div>
-                <p className="text-sm text-amber-900">
+                <p className="text-sm text-amber-300">
                   Please confirm you've completed this module before continuing.
                 </p>
               </div>
@@ -160,10 +160,10 @@ export function TrainingModule({
           )}
 
           {isCompleted && (
-            <div className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+            <div className="mb-6 rounded-lg border border-emerald-500/30 bg-emerald-900/20 p-4">
               <div className="flex gap-3">
-                <CheckCircleIconSolid className="h-6 w-6 flex-shrink-0 text-emerald-600" />
-                <p className="text-sm text-emerald-900">
+                <CheckCircleIconSolid className="h-6 w-6 flex-shrink-0 text-emerald-500" />
+                <p className="text-sm text-emerald-300">
                   Module completed! You may now proceed to the next section.
                 </p>
               </div>
@@ -174,7 +174,7 @@ export function TrainingModule({
             {onBack && (
               <button
                 onClick={onBack}
-                className="flex-1 rounded-xl border-2 border-slate-300 bg-white px-8 py-4 text-base font-semibold text-slate-900 transition-all hover:border-slate-400 hover:bg-slate-50"
+                className="flex-1 rounded-xl border-2 border-dark-600 bg-dark-900 px-8 py-4 text-base font-semibold text-white transition-all hover:border-dark-500 hover:bg-dark-800"
               >
                 Back
               </button>
@@ -185,7 +185,7 @@ export function TrainingModule({
               className={`flex-1 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-lg transition-all ${
                 isCompleted
                   ? `bg-gradient-to-r ${colors.gradient} hover:shadow-xl hover:scale-[1.02]`
-                  : 'bg-slate-300 cursor-not-allowed'
+                  : 'bg-dark-700 cursor-not-allowed'
               }`}
             >
               Continue to Next Module

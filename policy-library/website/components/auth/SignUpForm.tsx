@@ -100,7 +100,7 @@ export default function SignUpForm() {
             onChange={(e) => setFullName(e.target.value)}
             required
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-copper-500 disabled:bg-gray-50 disabled:text-gray-500"
             placeholder="John Doe"
           />
         </div>
@@ -116,7 +116,7 @@ export default function SignUpForm() {
             onChange={(e) => setEmail(e.target.value)}
             required
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-copper-500 disabled:bg-gray-50 disabled:text-gray-500"
             placeholder="you@example.com"
           />
         </div>
@@ -132,7 +132,7 @@ export default function SignUpForm() {
             onChange={(e) => setOrganization(e.target.value)}
             required
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-copper-500 disabled:bg-gray-50 disabled:text-gray-500"
             placeholder="Acme Corp"
           />
         </div>
@@ -148,7 +148,7 @@ export default function SignUpForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-copper-500 disabled:bg-gray-50 disabled:text-gray-500"
             placeholder="••••••••"
           />
           <p className="text-xs text-gray-500 mt-1">Minimum 6 characters</p>
@@ -163,7 +163,7 @@ export default function SignUpForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+          className="w-full px-4 py-2 bg-copper-600 text-white font-medium rounded-lg hover:bg-copper-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
         >
           {loading ? 'Creating account...' : 'Create Account'}
         </button>
@@ -171,7 +171,7 @@ export default function SignUpForm() {
 
       <p className="text-center text-sm text-gray-600 mt-4">
         Already have an account?{' '}
-        <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+        <Link href="/login" className="text-copper-600 hover:text-copper-700 font-medium">
           Sign in
         </Link>
       </p>

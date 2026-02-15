@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   RISK_CATEGORIES,
   RiskResponse,
@@ -32,7 +32,6 @@ import { useAnalytics } from '@/lib/mixpanel';
 const STORAGE_KEY = 'hipaa-it-risk-assessment';
 
 export default function ITRiskAssessmentClient() {
-  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [responses, setResponses] = useState<Record<string, RiskResponse>>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [report, setReport] = useState<RiskAssessmentReport | null>(null);
@@ -40,6 +39,8 @@ export default function ITRiskAssessmentClient() {
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
   const [showRiskMatrix, setShowRiskMatrix] = useState(false);
   const analytics = useAnalytics();
+
+  const allQuestions = useMemo(() => RISK_CATEGORIES.flatMap(cat => cat.questions), []);
 
   // Load saved progress from localStorage
   useEffect(() => {
@@ -49,7 +50,6 @@ export default function ITRiskAssessmentClient() {
         const data = JSON.parse(saved);
         setResponses(data.responses || {});
         setNotes(data.notes || {});
-        setCurrentCategoryIndex(data.currentCategoryIndex || 0);
         if (data.report) {
           setReport(data.report);
           setShowResults(true);
@@ -65,14 +65,11 @@ export default function ITRiskAssessmentClient() {
     const data = {
       responses,
       notes,
-      currentCategoryIndex,
       report,
       lastSaved: new Date().toISOString(),
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }, [responses, notes, currentCategoryIndex, report]);
-
-  const currentCategory = RISK_CATEGORIES[currentCategoryIndex];
+  }, [responses, notes, report]);
 
   const handleAnswer = (
     questionId: string,
@@ -99,34 +96,9 @@ export default function ITRiskAssessmentClient() {
     }));
   };
 
-  const getCategoryProgress = (category: RiskCategory) => {
-    const answered = category.questions.filter((q) => responses[q.id]).length;
-    return (answered / category.questions.length) * 100;
-  };
-
   const getTotalProgress = () => {
-    const totalQuestions = RISK_CATEGORIES.reduce((sum, c) => sum + c.questions.length, 0);
     const answeredQuestions = Object.keys(responses).length;
-    return (answeredQuestions / totalQuestions) * 100;
-  };
-
-  const goToNextCategory = () => {
-    if (currentCategoryIndex < RISK_CATEGORIES.length - 1) {
-      setCurrentCategoryIndex(currentCategoryIndex + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const goToPreviousCategory = () => {
-    if (currentCategoryIndex > 0) {
-      setCurrentCategoryIndex(currentCategoryIndex - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const goToCategory = (index: number) => {
-    setCurrentCategoryIndex(index);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return (answeredQuestions / allQuestions.length) * 100;
   };
 
   const completeAssessment = () => {
@@ -163,7 +135,6 @@ export default function ITRiskAssessmentClient() {
       analytics?.track('IT Risk Assessment Reset');
       setResponses({});
       setNotes({});
-      setCurrentCategoryIndex(0);
       setReport(null);
       setShowResults(false);
       localStorage.removeItem(STORAGE_KEY);
@@ -236,34 +207,34 @@ export default function ITRiskAssessmentClient() {
     const analysis = analyzeRiskAssessment(report.results);
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+      <div className="min-h-screen bg-pearl-50">
         <div className="mx-auto max-w-6xl px-6 py-12">
           {/* Header */}
           <div className="mb-8">
             <button
               onClick={() => setShowResults(false)}
-              className="mb-4 flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700"
+              className="mb-4 flex items-center gap-2 text-sm font-medium text-copper-600 hover:text-copper-700"
             >
               ← Back to Assessment
             </button>
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">Risk Assessment Results</h1>
-                <p className="mt-2 text-slate-600">
+                <h1 className="text-3xl font-bold text-evergreen-950" style={{ fontFamily: 'var(--font-dm-serif)' }}>Risk Assessment Results</h1>
+                <p className="mt-2 text-[--text-muted]">
                   Completed on {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
               </div>
               <div className="flex gap-2">
                 <button
                   onClick={exportReportMarkdown}
-                  className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-blue-700"
+                  className="flex items-center gap-2 rounded-lg bg-copper-600 px-4 py-2 text-sm font-semibold text-white shadow-[--shadow-copper] hover:bg-copper-700"
                 >
                   <DocumentArrowDownIcon className="h-5 w-5" />
                   Export Report
                 </button>
                 <button
                   onClick={exportReportCSV}
-                  className="flex items-center gap-2 rounded-lg border-2 border-blue-600 bg-white px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50"
+                  className="flex items-center gap-2 rounded-lg border-2 border-copper-600 bg-white px-4 py-2 text-sm font-semibold text-copper-600 hover:bg-copper-50"
                 >
                   <DocumentArrowDownIcon className="h-5 w-5" />
                   Export CSV
@@ -273,13 +244,13 @@ export default function ITRiskAssessmentClient() {
           </div>
 
           {/* Overall Risk Score Card */}
-          <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-lg">
+          <div className="mb-8 rounded-2xl border border-pearl-200 bg-white p-8 shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Overall Risk Score</p>
-                <p className="mt-2 text-6xl font-bold text-slate-900">{analysis.overallRiskScore.toFixed(1)}</p>
-                <p className="mt-2 text-lg text-slate-600">{getRiskLevelText(analysis.overallRiskScore)}</p>
-                <p className="mt-1 text-sm text-slate-500">Scale: 1-5 (Low) | 6-11 (Medium) | 12-19 (High) | 20-25 (Critical)</p>
+                <p className="text-sm font-semibold uppercase tracking-wide text-[--text-muted]">Overall Risk Score</p>
+                <p className="mt-2 text-6xl font-bold text-evergreen-950">{analysis.overallRiskScore.toFixed(1)}</p>
+                <p className="mt-2 text-lg text-[--text-secondary]">{getRiskLevelText(analysis.overallRiskScore)}</p>
+                <p className="mt-1 text-sm text-[--text-muted]">Scale: 1-5 (Low) | 6-11 (Medium) | 12-19 (High) | 20-25 (Critical)</p>
               </div>
               <div className={`flex h-32 w-32 items-center justify-center rounded-full ${
                 analysis.overallRiskScore >= 20 ? 'bg-red-100' :
@@ -319,16 +290,16 @@ export default function ITRiskAssessmentClient() {
           </div>
 
           {/* Risk Heat Map */}
-          <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
+          <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
             <button
               onClick={() => setShowRiskMatrix(!showRiskMatrix)}
               className="flex w-full items-center justify-between"
             >
-              <h2 className="text-xl font-bold text-slate-900">Risk Heat Map</h2>
+              <h2 className="text-xl font-bold text-evergreen-950">Risk Heat Map</h2>
               {showRiskMatrix ? (
-                <ChevronDownIcon className="h-5 w-5 text-slate-400" />
+                <ChevronDownIcon className="h-5 w-5 text-[--text-muted]" />
               ) : (
-                <ChevronRightIcon className="h-5 w-5 text-slate-400" />
+                <ChevronRightIcon className="h-5 w-5 text-[--text-muted]" />
               )}
             </button>
 
@@ -338,18 +309,18 @@ export default function ITRiskAssessmentClient() {
                   <table className="w-full border-collapse">
                     <thead>
                       <tr>
-                        <th className="border border-slate-300 bg-slate-100 p-2 text-xs font-semibold">Impact →<br/>Likelihood ↓</th>
-                        <th className="border border-slate-300 bg-slate-100 p-2 text-xs font-semibold">Very Low (1)</th>
-                        <th className="border border-slate-300 bg-slate-100 p-2 text-xs font-semibold">Low (2)</th>
-                        <th className="border border-slate-300 bg-slate-100 p-2 text-xs font-semibold">Medium (3)</th>
-                        <th className="border border-slate-300 bg-slate-100 p-2 text-xs font-semibold">High (4)</th>
-                        <th className="border border-slate-300 bg-slate-100 p-2 text-xs font-semibold">Critical (5)</th>
+                        <th className="border border-pearl-300 bg-pearl-100 p-2 text-xs font-semibold">Impact →<br/>Likelihood ↓</th>
+                        <th className="border border-pearl-300 bg-pearl-100 p-2 text-xs font-semibold">Very Low (1)</th>
+                        <th className="border border-pearl-300 bg-pearl-100 p-2 text-xs font-semibold">Low (2)</th>
+                        <th className="border border-pearl-300 bg-pearl-100 p-2 text-xs font-semibold">Medium (3)</th>
+                        <th className="border border-pearl-300 bg-pearl-100 p-2 text-xs font-semibold">High (4)</th>
+                        <th className="border border-pearl-300 bg-pearl-100 p-2 text-xs font-semibold">Critical (5)</th>
                       </tr>
                     </thead>
                     <tbody>
                       {['very-high', 'high', 'medium', 'low', 'very-low'].map((likelihood) => (
                         <tr key={likelihood}>
-                          <td className="border border-slate-300 bg-slate-100 p-2 text-xs font-semibold text-center">
+                          <td className="border border-pearl-300 bg-pearl-100 p-2 text-xs font-semibold text-center">
                             {likelihood === 'very-high' ? 'Very High (5)' :
                              likelihood === 'high' ? 'High (4)' :
                              likelihood === 'medium' ? 'Medium (3)' :
@@ -363,7 +334,7 @@ export default function ITRiskAssessmentClient() {
                             return (
                               <td
                                 key={impact}
-                                className={`border border-slate-300 p-4 text-center ${getRiskLevelColor(score)} ${
+                                className={`border border-pearl-300 p-4 text-center ${getRiskLevelColor(score)} ${
                                   count > 0 ? 'font-bold text-white' : 'opacity-50'
                                 }`}
                               >
@@ -377,7 +348,7 @@ export default function ITRiskAssessmentClient() {
                     </tbody>
                   </table>
                 </div>
-                <p className="mt-4 text-xs text-slate-600">
+                <p className="mt-4 text-xs text-[--text-muted]">
                   Numbers in cells indicate count of identified risks at that likelihood/impact combination.
                   Cell colors represent risk level (Green=Low, Yellow=Medium, Orange=High, Red=Critical).
                 </p>
@@ -386,8 +357,8 @@ export default function ITRiskAssessmentClient() {
           </div>
 
           {/* Category Scores */}
-          <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-xl font-bold text-slate-900">Category Risk Scores</h2>
+          <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-bold text-evergreen-950">Category Risk Scores</h2>
             <div className="space-y-4">
               {RISK_CATEGORIES.map((category) => {
                 const categoryScore = analysis.categoryScores[category.id] || 0;
@@ -395,12 +366,12 @@ export default function ITRiskAssessmentClient() {
                   <div key={category.id}>
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <p className="font-semibold text-slate-900">{category.title}</p>
-                        <p className="text-xs text-slate-500">{category.description}</p>
+                        <p className="font-semibold text-evergreen-950">{category.title}</p>
+                        <p className="text-xs text-[--text-muted]">{category.description}</p>
                       </div>
-                      <p className="text-lg font-bold text-slate-900">{categoryScore.toFixed(1)}</p>
+                      <p className="text-lg font-bold text-evergreen-950">{categoryScore.toFixed(1)}</p>
                     </div>
-                    <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-200">
+                    <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-pearl-200">
                       <div
                         className={`h-full transition-all ${getRiskLevelColor(categoryScore)}`}
                         style={{ width: `${Math.min((categoryScore / 25) * 100, 100)}%` }}
@@ -414,11 +385,11 @@ export default function ITRiskAssessmentClient() {
 
           {/* Prioritized Risks */}
           {analysis.identifiedRisks.length > 0 && (
-            <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-              <h2 className="mb-4 text-xl font-bold text-slate-900">
+            <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
+              <h2 className="mb-4 text-xl font-bold text-evergreen-950">
                 Prioritized Remediation Plan ({analysis.identifiedRisks.length} Risks)
               </h2>
-              <p className="mb-6 text-sm text-slate-600">
+              <p className="mb-6 text-sm text-[--text-secondary]">
                 Risks are listed in priority order based on risk score (Likelihood × Impact).
                 Address critical and high risks first.
               </p>
@@ -452,18 +423,18 @@ export default function ITRiskAssessmentClient() {
                           }`}>
                             {risk.riskLevel} Risk
                           </span>
-                          <span className="text-xs text-slate-600">
+                          <span className="text-xs text-[--text-muted]">
                             Score: {risk.riskScore.toFixed(1)} | {risk.categoryTitle}
                           </span>
                         </div>
-                        <p className="mb-2 font-semibold text-slate-900">{risk.question}</p>
-                        <div className="mb-2 flex gap-4 text-xs text-slate-600">
+                        <p className="mb-2 font-semibold text-evergreen-950">{risk.question}</p>
+                        <div className="mb-2 flex gap-4 text-xs text-[--text-muted]">
                           <span>Likelihood: <strong>{risk.likelihood}</strong></span>
                           <span>Impact: <strong>{risk.impact}</strong></span>
                         </div>
                         <div className="rounded-lg bg-white p-3">
-                          <p className="text-sm font-medium text-slate-700 mb-1">Remediation:</p>
-                          <p className="text-sm text-slate-600">{risk.remediation}</p>
+                          <p className="text-sm font-medium text-[--text-secondary] mb-1">Remediation:</p>
+                          <p className="text-sm text-[--text-muted]">{risk.remediation}</p>
                         </div>
                       </div>
                     </div>
@@ -472,7 +443,7 @@ export default function ITRiskAssessmentClient() {
               </div>
 
               {analysis.identifiedRisks.length > 20 && (
-                <p className="mt-4 text-center text-sm text-slate-600">
+                <p className="mt-4 text-center text-sm text-[--text-muted]">
                   Showing top 20 risks. Export full report to see all {analysis.identifiedRisks.length} identified risks.
                 </p>
               )}
@@ -480,34 +451,34 @@ export default function ITRiskAssessmentClient() {
           )}
 
           {analysis.identifiedRisks.length === 0 && (
-            <div className="mb-8 rounded-xl border border-green-200 bg-green-50 p-8 text-center">
-              <ShieldExclamationIcon className="mx-auto h-16 w-16 text-green-600" />
+            <div className="mb-8 rounded-xl border border-green-200 bg-success-tint p-8 text-center">
+              <ShieldExclamationIcon className="mx-auto h-16 w-16 text-success" />
               <h3 className="mt-4 text-xl font-bold text-green-900">Excellent Security Posture</h3>
-              <p className="mt-2 text-green-700">
+              <p className="mt-2 text-success">
                 No significant risks identified. All security controls are in place and effective.
               </p>
             </div>
           )}
 
           {/* Detailed Responses */}
-          <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-xl font-bold text-slate-900">Detailed Responses</h2>
+          <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-bold text-evergreen-950">Detailed Responses</h2>
             <div className="space-y-4">
               {RISK_CATEGORIES.map((category) => {
                 const result = report.results.find((r) => r.categoryId === category.id);
                 if (!result) return null;
 
                 return (
-                  <div key={category.id} className="border-b border-slate-200 pb-4 last:border-b-0">
+                  <div key={category.id} className="border-b border-pearl-200 pb-4 last:border-b-0">
                     <button
                       onClick={() => toggleCategory(category.id)}
                       className="flex w-full items-center justify-between py-2 text-left"
                     >
-                      <h3 className="font-semibold text-slate-900">{category.title}</h3>
+                      <h3 className="font-semibold text-evergreen-950">{category.title}</h3>
                       {expandedCategories[category.id] ? (
-                        <ChevronDownIcon className="h-5 w-5 text-slate-400" />
+                        <ChevronDownIcon className="h-5 w-5 text-[--text-muted]" />
                       ) : (
-                        <ChevronRightIcon className="h-5 w-5 text-slate-400" />
+                        <ChevronRightIcon className="h-5 w-5 text-[--text-muted]" />
                       )}
                     </button>
 
@@ -519,14 +490,14 @@ export default function ITRiskAssessmentClient() {
 
                           return (
                             <div key={response.questionId} className="flex items-start gap-3 text-sm">
-                              {response.answer === 'yes' && <CheckCircleIcon className="h-5 w-5 flex-shrink-0 text-green-600" />}
-                              {response.answer === 'no' && <XCircleIcon className="h-5 w-5 flex-shrink-0 text-red-600" />}
+                              {response.answer === 'yes' && <CheckCircleIcon className="h-5 w-5 flex-shrink-0 text-success" />}
+                              {response.answer === 'no' && <XCircleIcon className="h-5 w-5 flex-shrink-0 text-error" />}
                               {response.answer === 'partial' && <ExclamationTriangleIcon className="h-5 w-5 flex-shrink-0 text-yellow-600" />}
-                              {response.answer === 'na' && <span className="h-5 w-5 flex-shrink-0 text-slate-400">—</span>}
+                              {response.answer === 'na' && <span className="h-5 w-5 flex-shrink-0 text-[--text-muted]">—</span>}
                               <div className="flex-1">
-                                <p className="text-slate-900">{question.text}</p>
+                                <p className="text-evergreen-950">{question.text}</p>
                                 {response.notes && (
-                                  <p className="mt-1 text-xs italic text-slate-600">Note: {response.notes}</p>
+                                  <p className="mt-1 text-xs italic text-[--text-muted]">Note: {response.notes}</p>
                                 )}
                               </div>
                             </div>
@@ -544,13 +515,13 @@ export default function ITRiskAssessmentClient() {
           <div className="flex gap-4">
             <button
               onClick={() => setShowResults(false)}
-              className="flex-1 rounded-lg border-2 border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-50"
+              className="flex-1 rounded-lg border-2 border-pearl-300 bg-white px-6 py-3 font-semibold text-evergreen-950 hover:bg-pearl-50"
             >
               Continue Assessment
             </button>
             <button
               onClick={resetAssessment}
-              className="flex-1 rounded-lg border-2 border-red-300 bg-white px-6 py-3 font-semibold text-red-700 hover:bg-red-50"
+              className="flex-1 rounded-lg border-2 border-red-300 bg-white px-6 py-3 font-semibold text-error hover:bg-red-50"
             >
               Reset Assessment
             </button>
@@ -561,129 +532,74 @@ export default function ITRiskAssessmentClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+    <div className="min-h-screen bg-pearl-50">
       <div className="mx-auto max-w-7xl px-6 py-12">
+        {/* Back to Dashboard */}
+        <a
+          href="/dashboard/privacy-officer"
+          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-copper-600 hover:text-copper-700"
+        >
+          ← Privacy Officer Dashboard
+        </a>
+
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-slate-900">IT Risk Assessment Questionnaire</h1>
-          <p className="mt-3 text-lg text-slate-600">
-            Comprehensive security risk assessment covering all major IT security areas
+          <h1 className="text-4xl font-bold text-evergreen-950" style={{ fontFamily: 'var(--font-dm-serif)' }}>Security Risk Assessment</h1>
+          <p className="mt-3 text-lg text-[--text-secondary]">
+            Comprehensive security risk assessment covering all 3 HIPAA safeguard requirements
           </p>
-          <p className="mt-2 text-sm text-slate-500">
-            Based on NIST Risk Management Framework and HIPAA Security Rule requirements
+          <p className="mt-2 text-sm text-[--text-muted]">
+            Technical, Physical, and Administrative Safeguards
           </p>
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
+        <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-sm font-semibold text-slate-700">Overall Progress</p>
-            <p className="text-sm font-bold text-blue-600">{Math.round(getTotalProgress())}%</p>
+            <p className="text-sm font-semibold text-[--text-secondary]">Overall Progress</p>
+            <p className="text-sm font-bold text-copper-600">{Math.round(getTotalProgress())}%</p>
           </div>
-          <div className="h-3 w-full overflow-hidden rounded-full bg-slate-200">
+          <div className="h-3 w-full overflow-hidden rounded-full bg-pearl-200">
             <div
-              className="h-full bg-gradient-to-r from-blue-600 to-cyan-600 transition-all duration-500"
+              className="h-full bg-copper-600 transition-all duration-500"
               style={{ width: `${getTotalProgress()}%` }}
             />
           </div>
-          <p className="mt-2 text-xs text-slate-500">
-            {Object.keys(responses).length} of {RISK_CATEGORIES.reduce((sum, c) => sum + c.questions.length, 0)} questions answered
+          <p className="mt-2 text-xs text-[--text-muted]">
+            {Object.keys(responses).length} of {allQuestions.length} questions answered
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[320px,1fr]">
-          {/* Sidebar Navigation */}
-          <div className="space-y-4">
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-md">
-              <h2 className="mb-4 text-sm font-bold uppercase tracking-wide text-slate-500">Categories</h2>
-              <nav className="space-y-2">
-                {RISK_CATEGORIES.map((category, index) => {
-                  const progress = getCategoryProgress(category);
-                  const isActive = index === currentCategoryIndex;
-                  return (
-                    <button
-                      key={category.id}
-                      onClick={() => goToCategory(index)}
-                      className={`w-full rounded-lg p-3 text-left transition-all ${
-                        isActive
-                          ? 'bg-blue-50 ring-2 ring-blue-600'
-                          : 'bg-slate-50 hover:bg-slate-100'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <p className={`text-sm font-semibold ${isActive ? 'text-blue-900' : 'text-slate-900'}`}>
-                          {category.title}
-                        </p>
-                        <span className={`text-xs font-bold ${isActive ? 'text-blue-600' : 'text-slate-500'}`}>
-                          {Math.round(progress)}%
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs text-slate-500">{category.questions.length} questions</p>
-                      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
-                        <div
-                          className={`h-full transition-all ${isActive ? 'bg-blue-600' : 'bg-slate-400'}`}
-                          style={{ width: `${progress}%` }}
-                        />
-                      </div>
-                    </button>
-                  );
-                })}
-              </nav>
-
-              <div className="mt-6 space-y-2">
-                {getTotalProgress() === 100 && (
-                  <button
-                    onClick={completeAssessment}
-                    className="w-full rounded-lg bg-gradient-to-r from-emerald-600 to-green-600 px-4 py-3 text-sm font-semibold text-white shadow-md hover:shadow-lg"
-                  >
-                    Complete Assessment
-                  </button>
-                )}
-                <button
-                  onClick={resetAssessment}
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-                >
-                  Reset Progress
-                </button>
-              </div>
-            </div>
-
-            {/* Save Indicator */}
-            <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
-              <div className="flex items-center gap-2 text-xs text-slate-600">
-                <ClockIcon className="h-4 w-4" />
-                <span>Progress auto-saved</span>
-              </div>
-            </div>
-          </div>
-
+        <div className="mx-auto max-w-4xl">
           {/* Main Content */}
-          <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-md">
-            {/* Category Header */}
-            <div className="mb-8 border-b border-slate-200 pb-6">
-              <div className="mb-2 flex items-center gap-2 text-sm text-slate-500">
-                <span>Category {currentCategoryIndex + 1} of {RISK_CATEGORIES.length}</span>
-              </div>
-              <h2 className="text-3xl font-bold text-slate-900">{currentCategory.title}</h2>
-              <p className="mt-3 text-slate-600">{currentCategory.description}</p>
-            </div>
+          <div className="rounded-xl border border-pearl-200 bg-white p-8 shadow-md">
 
             {/* Questions */}
             <div className="space-y-8">
-              {currentCategory.questions.map((question, index) => {
+              {allQuestions.map((question, index) => {
                 const response = responses[question.id];
                 const showRiskInputs = response?.answer === 'no' || response?.answer === 'partial';
 
+                // Find which category this question belongs to
+                const category = RISK_CATEGORIES.find(cat =>
+                  cat.questions.some(q => q.id === question.id)
+                );
+
                 return (
-                  <div key={question.id} className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+                  <div key={question.id} className="rounded-lg border border-pearl-200 bg-pearl-50 p-6">
                     <div className="mb-4">
                       <div className="mb-2 flex items-center gap-2">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-xs font-bold text-slate-700">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-pearl-200 text-xs font-bold text-[--text-secondary]">
                           {index + 1}
                         </span>
+                        {category && (
+                          <span className="text-xs font-semibold text-copper-600">
+                            {category.title}
+                          </span>
+                        )}
                       </div>
-                      <p className="text-lg font-semibold text-slate-900">{question.text}</p>
-                      <p className="mt-2 text-sm text-slate-600">{question.guidance}</p>
+                      <p className="text-lg font-semibold text-evergreen-950">{question.text}</p>
+                      <p className="mt-2 text-sm text-[--text-muted]">{question.guidance}</p>
                     </div>
 
                     {/* Answer Buttons */}
@@ -693,7 +609,7 @@ export default function ITRiskAssessmentClient() {
                         className={`flex items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition-all ${
                           response?.answer === 'yes'
                             ? 'border-green-600 bg-green-50 text-green-700'
-                            : 'border-slate-300 bg-white text-slate-700 hover:border-green-400'
+                            : 'border-pearl-300 bg-white text-[--text-secondary] hover:border-green-400'
                         }`}
                       >
                         <CheckCircleIcon className="h-4 w-4" />
@@ -704,7 +620,7 @@ export default function ITRiskAssessmentClient() {
                         className={`flex items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition-all ${
                           response?.answer === 'no'
                             ? 'border-red-600 bg-red-50 text-red-700'
-                            : 'border-slate-300 bg-white text-slate-700 hover:border-red-400'
+                            : 'border-pearl-300 bg-white text-[--text-secondary] hover:border-red-400'
                         }`}
                       >
                         <XCircleIcon className="h-4 w-4" />
@@ -715,7 +631,7 @@ export default function ITRiskAssessmentClient() {
                         className={`flex items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition-all ${
                           response?.answer === 'partial'
                             ? 'border-yellow-600 bg-yellow-50 text-yellow-700'
-                            : 'border-slate-300 bg-white text-slate-700 hover:border-yellow-400'
+                            : 'border-pearl-300 bg-white text-[--text-secondary] hover:border-yellow-400'
                         }`}
                       >
                         <ExclamationTriangleIcon className="h-4 w-4" />
@@ -725,8 +641,8 @@ export default function ITRiskAssessmentClient() {
                         onClick={() => handleAnswer(question.id, 'na')}
                         className={`flex items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition-all ${
                           response?.answer === 'na'
-                            ? 'border-slate-600 bg-slate-100 text-slate-700'
-                            : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400'
+                            ? 'border-evergreen-700 bg-evergreen-50 text-[--text-secondary]'
+                            : 'border-pearl-300 bg-white text-[--text-secondary] hover:border-pearl-400'
                         }`}
                       >
                         N/A
@@ -741,7 +657,7 @@ export default function ITRiskAssessmentClient() {
                         </p>
                         <div className="grid gap-4 md:grid-cols-2">
                           <div>
-                            <label className="mb-2 block text-xs font-medium text-slate-700">
+                            <label className="mb-2 block text-xs font-medium text-[--text-secondary]">
                               Likelihood
                             </label>
                             <select
@@ -752,7 +668,7 @@ export default function ITRiskAssessmentClient() {
                                 e.target.value as RiskLikelihood,
                                 response.impact || question.defaultImpact
                               )}
-                              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm"
+                              className="w-full rounded-lg border border-pearl-300 bg-white px-3 py-2 text-sm"
                             >
                               <option value="very-low">Very Low</option>
                               <option value="low">Low</option>
@@ -762,7 +678,7 @@ export default function ITRiskAssessmentClient() {
                             </select>
                           </div>
                           <div>
-                            <label className="mb-2 block text-xs font-medium text-slate-700">
+                            <label className="mb-2 block text-xs font-medium text-[--text-secondary]">
                               Impact
                             </label>
                             <select
@@ -773,7 +689,7 @@ export default function ITRiskAssessmentClient() {
                                 response.likelihood || question.defaultLikelihood,
                                 e.target.value as RiskImpact
                               )}
-                              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm"
+                              className="w-full rounded-lg border border-pearl-300 bg-white px-3 py-2 text-sm"
                             >
                               <option value="very-low">Very Low</option>
                               <option value="low">Low</option>
@@ -785,7 +701,7 @@ export default function ITRiskAssessmentClient() {
                         </div>
                         {response.likelihood && response.impact && (
                           <div className="mt-3 rounded-lg bg-white p-3">
-                            <p className="text-xs font-semibold text-slate-700">
+                            <p className="text-xs font-semibold text-[--text-secondary]">
                               Risk Level: <span className={`${
                                 calculateRiskLevel(response.likelihood, response.impact) === 'critical' ? 'text-red-700' :
                                 calculateRiskLevel(response.likelihood, response.impact) === 'high' ? 'text-orange-700' :
@@ -802,7 +718,7 @@ export default function ITRiskAssessmentClient() {
 
                     {/* Notes */}
                     <div>
-                      <label htmlFor={`notes-${question.id}`} className="mb-1 block text-sm font-medium text-slate-700">
+                      <label htmlFor={`notes-${question.id}`} className="mb-1 block text-sm font-medium text-[--text-secondary]">
                         Notes (optional)
                       </label>
                       <textarea
@@ -810,7 +726,7 @@ export default function ITRiskAssessmentClient() {
                         value={notes[question.id] || ''}
                         onChange={(e) => handleNoteChange(question.id, e.target.value)}
                         placeholder="Add any relevant notes or context..."
-                        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                        className="w-full rounded-lg border border-pearl-300 bg-white px-3 py-2 text-sm text-evergreen-950 placeholder-pearl-400 focus:border-copper-500 focus:outline-none focus:ring-2 focus:ring-copper-500/20"
                         rows={2}
                       />
                     </div>
@@ -820,31 +736,20 @@ export default function ITRiskAssessmentClient() {
             </div>
 
             {/* Navigation */}
-            <div className="mt-8 flex items-center justify-between border-t border-slate-200 pt-6">
+            <div className="mt-8 flex items-center justify-center gap-4 border-t border-pearl-200 pt-6">
               <button
-                onClick={goToPreviousCategory}
-                disabled={currentCategoryIndex === 0}
-                className="rounded-lg border-2 border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                onClick={completeAssessment}
+                disabled={getTotalProgress() < 100}
+                className="rounded-lg bg-gradient-to-r from-copper-600 to-copper-500 px-6 py-3 font-semibold text-white shadow-[--shadow-copper] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Previous
+                Complete Assessment
               </button>
-
-              {currentCategoryIndex === RISK_CATEGORIES.length - 1 ? (
-                <button
-                  onClick={completeAssessment}
-                  disabled={getTotalProgress() < 100}
-                  className="rounded-lg bg-gradient-to-r from-emerald-600 to-green-600 px-6 py-3 font-semibold text-white shadow-md hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  Complete Assessment
-                </button>
-              ) : (
-                <button
-                  onClick={goToNextCategory}
-                  className="rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 font-semibold text-white shadow-md hover:shadow-lg"
-                >
-                  Next Category
-                </button>
-              )}
+              <button
+                onClick={resetAssessment}
+                className="rounded-lg border-2 border-red-300 bg-white px-6 py-3 font-semibold text-error hover:bg-red-50"
+              >
+                Reset Progress
+              </button>
             </div>
           </div>
         </div>

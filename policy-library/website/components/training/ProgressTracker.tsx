@@ -16,21 +16,21 @@ interface ProgressTrackerProps {
 
 export default function ProgressTracker({ currentStep, totalSteps, percentage, steps }: ProgressTrackerProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+    <div className="bg-dark-800 rounded-lg shadow-sm border border-dark-700 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-slate-900">Your Progress</h3>
-        <span className="text-2xl font-bold text-blue-600">{Math.round(percentage)}%</span>
+        <h3 className="text-lg font-semibold text-white">Your Progress</h3>
+        <span className="text-2xl font-bold text-copper-500">{Math.round(percentage)}%</span>
       </div>
 
       {/* Progress Bar */}
       <div className="mb-6">
-        <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+        <div className="h-3 bg-dark-900 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-blue-600 to-cyan-600 transition-all duration-500"
+            className="h-full bg-gradient-to-r from-copper-600 to-evergreen-600 transition-all duration-500"
             style={{ width: `${percentage}%` }}
           />
         </div>
-        <p className="text-sm text-slate-600 mt-2">
+        <p className="text-sm text-dark-400 mt-2">
           Step {currentStep} of {totalSteps}
         </p>
       </div>
@@ -42,17 +42,17 @@ export default function ProgressTracker({ currentStep, totalSteps, percentage, s
             {step.completed ? (
               <CheckCircleIcon className="h-6 w-6 text-emerald-500 flex-shrink-0" />
             ) : index + 1 === currentStep ? (
-              <ClockIcon className="h-6 w-6 text-blue-600 flex-shrink-0" />
+              <ClockIcon className="h-6 w-6 text-copper-500 flex-shrink-0" />
             ) : (
-              <div className="h-6 w-6 rounded-full border-2 border-slate-300 flex-shrink-0" />
+              <div className="h-6 w-6 rounded-full border-2 border-dark-600 flex-shrink-0" />
             )}
             <span
               className={`text-sm ${
                 step.completed
-                  ? 'text-slate-600 line-through'
+                  ? 'text-dark-500 line-through'
                   : index + 1 === currentStep
-                  ? 'text-slate-900 font-medium'
-                  : 'text-slate-500'
+                  ? 'text-white font-medium'
+                  : 'text-dark-500'
               }`}
             >
               {step.title}

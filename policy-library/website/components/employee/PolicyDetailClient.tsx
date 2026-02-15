@@ -67,8 +67,8 @@ export default function PolicyDetailClient({ bundleId }: PolicyDetailClientProps
     return (
       <div className="flex items-center justify-center py-32">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-          <p className="mt-4 text-slate-400">Loading policy details...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-copper-500 mx-auto"></div>
+          <p className="mt-4 text-dark-400">Loading policy details...</p>
         </div>
       </div>
     );
@@ -77,12 +77,12 @@ export default function PolicyDetailClient({ bundleId }: PolicyDetailClientProps
   if (error || !assignment) {
     return (
       <div className="flex items-center justify-center py-32">
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-8 max-w-md text-center">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-lg p-8 max-w-md text-center">
           <ExclamationTriangleIcon className="h-12 w-12 text-red-400 mx-auto mb-4" />
           <p className="text-red-400 mb-4">{error || 'Assignment not found'}</p>
           <Link
             href="/dashboard/employee/policies"
-            className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-block px-6 py-2 bg-copper-600 text-white rounded-lg hover:bg-copper-700 transition-colors"
           >
             Back to Policies
           </Link>
@@ -99,15 +99,15 @@ export default function PolicyDetailClient({ bundleId }: PolicyDetailClientProps
     <div className="p-6 lg:p-10 max-w-4xl">
       {/* Breadcrumb */}
       <nav className="mb-6">
-        <ol className="flex items-center gap-2 text-sm text-slate-400">
+        <ol className="flex items-center gap-2 text-sm text-dark-400">
           <li>
-            <Link href="/dashboard/employee" className="hover:text-slate-200 transition-colors">
+            <Link href="/dashboard/employee" className="hover:text-dark-200 transition-colors">
               Dashboard
             </Link>
           </li>
           <li>/</li>
           <li>
-            <Link href="/dashboard/employee/policies" className="hover:text-slate-200 transition-colors">
+            <Link href="/dashboard/employee/policies" className="hover:text-dark-200 transition-colors">
               My Policies
             </Link>
           </li>
@@ -117,17 +117,17 @@ export default function PolicyDetailClient({ bundleId }: PolicyDetailClientProps
       </nav>
 
       {/* Bundle Header */}
-      <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 mb-8">
+      <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-8 mb-8">
         <div className="flex items-start gap-6">
           <div className={`flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl ${
-            isCompleted ? 'bg-emerald-500/10' : assignment.is_overdue ? 'bg-red-500/10' : 'bg-blue-500/10'
+            isCompleted ? 'bg-emerald-500/10' : assignment.is_overdue ? 'bg-red-500/10' : 'bg-copper-500/10'
           }`}>
             {isCompleted ? (
               <CheckCircleIcon className="h-9 w-9 text-emerald-400" />
             ) : assignment.is_overdue ? (
               <ExclamationTriangleIcon className="h-9 w-9 text-red-400" />
             ) : (
-              <DocumentTextIcon className="h-9 w-9 text-blue-400" />
+              <DocumentTextIcon className="h-9 w-9 text-copper-400" />
             )}
           </div>
           <div className="flex-1">
@@ -151,9 +151,9 @@ export default function PolicyDetailClient({ bundleId }: PolicyDetailClientProps
               )}
             </div>
             {bundleDescription && (
-              <p className="text-slate-400 mb-4">{bundleDescription}</p>
+              <p className="text-dark-400 mb-4">{bundleDescription}</p>
             )}
-            <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400">
+            <div className="flex flex-wrap items-center gap-6 text-sm text-dark-400">
               <div className="flex items-center gap-2">
                 <DocumentTextIcon className="h-4 w-4" />
                 <span>{policyNames.length} {policyNames.length === 1 ? 'policy' : 'policies'}</span>
@@ -192,9 +192,9 @@ export default function PolicyDetailClient({ bundleId }: PolicyDetailClientProps
           {policyNames.map((name, index) => (
             <div
               key={index}
-              className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-4 flex items-start gap-4"
+              className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-lg p-4 flex items-start gap-4"
             >
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-slate-700 text-sm font-bold text-slate-300">
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-dark-700 text-sm font-bold text-dark-300">
                 {index + 1}
               </div>
               <div>
@@ -203,8 +203,8 @@ export default function PolicyDetailClient({ bundleId }: PolicyDetailClientProps
             </div>
           ))}
           {policyNames.length === 0 && (
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-6 text-center">
-              <p className="text-slate-400">No individual policies listed in this bundle.</p>
+            <div className="bg-dark-800/50 border border-dark-700/50 rounded-lg p-6 text-center">
+              <p className="text-dark-400">No individual policies listed in this bundle.</p>
             </div>
           )}
         </div>

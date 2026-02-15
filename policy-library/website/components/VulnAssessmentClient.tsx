@@ -39,8 +39,8 @@ const SEVERITY_COLORS: Record<VulnSeverity, { bg: string; text: string; badge: s
   critical: { bg: 'bg-red-50', text: 'text-red-700', badge: 'bg-red-600 text-white' },
   high: { bg: 'bg-orange-50', text: 'text-orange-700', badge: 'bg-orange-500 text-white' },
   medium: { bg: 'bg-yellow-50', text: 'text-yellow-700', badge: 'bg-yellow-500 text-white' },
-  low: { bg: 'bg-blue-50', text: 'text-blue-700', badge: 'bg-blue-500 text-white' },
-  info: { bg: 'bg-slate-50', text: 'text-slate-600', badge: 'bg-slate-400 text-white' },
+  low: { bg: 'bg-copper-50', text: 'text-copper-700', badge: 'bg-copper-500 text-white' },
+  info: { bg: 'bg-pearl-50', text: 'text-[--text-muted]', badge: 'bg-dark-400 text-white' },
 };
 
 export default function VulnAssessmentClient() {
@@ -236,34 +236,34 @@ export default function VulnAssessmentClient() {
 
   if (viewMode === 'report' && report) {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-pearl-50">
         <div className="mx-auto max-w-6xl px-6 py-12">
           {/* Header */}
           <div className="mb-8">
             <button
               onClick={() => setViewMode('import')}
-              className="mb-4 flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700"
+              className="mb-4 flex items-center gap-2 text-sm font-medium text-copper-600 hover:text-copper-700"
             >
               ← Back to Import & Review
             </button>
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">Vulnerability Assessment Report</h1>
-                <p className="mt-2 text-slate-600">
+                <h1 className="text-3xl font-bold text-evergreen-950">Vulnerability Assessment Report</h1>
+                <p className="mt-2 text-[--text-muted]">
                   {report.totalFindings} findings from {report.scans.length} scan{report.scans.length !== 1 ? 's' : ''}
                 </p>
               </div>
               <div className="flex gap-2">
                 <button
                   onClick={exportMarkdown}
-                  className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-blue-700"
+                  className="flex items-center gap-2 rounded-lg bg-copper-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-copper-700"
                 >
                   <DocumentArrowDownIcon className="h-5 w-5" />
                   Export Report
                 </button>
                 <button
                   onClick={exportCSV}
-                  className="flex items-center gap-2 rounded-lg border-2 border-blue-600 bg-white px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50"
+                  className="flex items-center gap-2 rounded-lg border-2 border-copper-600 bg-white px-4 py-2 text-sm font-semibold text-copper-600 hover:bg-copper-50"
                 >
                   <DocumentArrowDownIcon className="h-5 w-5" />
                   Export CSV
@@ -273,8 +273,8 @@ export default function VulnAssessmentClient() {
           </div>
 
           {/* Severity Breakdown */}
-          <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-lg">
-            <h2 className="mb-4 text-lg font-bold text-slate-900">Severity Breakdown</h2>
+          <div className="mb-8 rounded-2xl border border-dark-200 bg-white p-8 shadow-lg">
+            <h2 className="mb-4 text-lg font-bold text-evergreen-950">Severity Breakdown</h2>
             <div className="grid grid-cols-5 gap-4">
               {(['critical', 'high', 'medium', 'low', 'info'] as VulnSeverity[]).map((sev) => (
                 <div key={sev} className={`rounded-lg p-4 ${SEVERITY_COLORS[sev].bg}`}>
@@ -289,8 +289,8 @@ export default function VulnAssessmentClient() {
 
           {/* Top Risks */}
           {report.topRisks.length > 0 && (
-            <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-              <h2 className="mb-4 text-xl font-bold text-slate-900">Top Risks</h2>
+            <div className="mb-8 rounded-xl border border-dark-200 bg-white p-6 shadow-md">
+              <h2 className="mb-4 text-xl font-bold text-evergreen-950">Top Risks</h2>
               <div className="space-y-3">
                 {report.topRisks.map((risk, i) => (
                   <div key={risk.id} className={`flex items-start gap-4 rounded-lg border-2 p-4 ${SEVERITY_COLORS[risk.severity].bg}`}>
@@ -302,10 +302,10 @@ export default function VulnAssessmentClient() {
                         <span className={`rounded-full px-2 py-0.5 text-xs font-bold uppercase ${SEVERITY_COLORS[risk.severity].badge}`}>
                           {risk.severity}
                         </span>
-                        <span className="text-xs text-slate-500">{risk.source} | {risk.target}</span>
+                        <span className="text-xs text-dark-500">{risk.source} | {risk.target}</span>
                       </div>
-                      <p className="mt-1 font-semibold text-slate-900">{risk.title}</p>
-                      <p className="mt-1 text-sm text-slate-600">{risk.remediation}</p>
+                      <p className="mt-1 font-semibold text-evergreen-950">{risk.title}</p>
+                      <p className="mt-1 text-sm text-[--text-muted]">{risk.remediation}</p>
                     </div>
                   </div>
                 ))}
@@ -314,25 +314,25 @@ export default function VulnAssessmentClient() {
           )}
 
           {/* Scans Summary */}
-          <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-xl font-bold text-slate-900">Scans Included</h2>
+          <div className="mb-8 rounded-xl border border-dark-200 bg-white p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-bold text-evergreen-950">Scans Included</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-200">
-                    <th className="pb-2 text-left font-semibold text-slate-700">Tool</th>
-                    <th className="pb-2 text-left font-semibold text-slate-700">Target</th>
-                    <th className="pb-2 text-left font-semibold text-slate-700">File</th>
-                    <th className="pb-2 text-right font-semibold text-slate-700">Findings</th>
+                  <tr className="border-b border-dark-200">
+                    <th className="pb-2 text-left font-semibold text-dark-700">Tool</th>
+                    <th className="pb-2 text-left font-semibold text-dark-700">Target</th>
+                    <th className="pb-2 text-left font-semibold text-dark-700">File</th>
+                    <th className="pb-2 text-right font-semibold text-dark-700">Findings</th>
                   </tr>
                 </thead>
                 <tbody>
                   {report.scans.map((scan, i) => (
-                    <tr key={i} className="border-b border-slate-100">
-                      <td className="py-2 font-medium text-slate-900">{scan.tool}</td>
-                      <td className="py-2 text-slate-600">{scan.target}</td>
-                      <td className="py-2 text-slate-500">{scan.rawFileName}</td>
-                      <td className="py-2 text-right font-semibold text-slate-900">{scan.findings.length}</td>
+                    <tr key={i} className="border-b border-pearl-100">
+                      <td className="py-2 font-medium text-evergreen-950">{scan.tool}</td>
+                      <td className="py-2 text-[--text-muted]">{scan.target}</td>
+                      <td className="py-2 text-dark-500">{scan.rawFileName}</td>
+                      <td className="py-2 text-right font-semibold text-evergreen-950">{scan.findings.length}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -347,12 +347,12 @@ export default function VulnAssessmentClient() {
   // ─── Import & Review View ─────────────────
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-pearl-50">
       <div className="mx-auto max-w-7xl px-6 py-12">
         {/* Back to Dashboard */}
         <a
           href="/dashboard/privacy-officer"
-          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700"
+          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-copper-600 hover:text-copper-700"
         >
           ← Privacy Officer Dashboard
         </a>
@@ -361,8 +361,8 @@ export default function VulnAssessmentClient() {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Vulnerability Assessment</h1>
-              <p className="mt-2 text-slate-600">
+              <h1 className="text-3xl font-bold text-evergreen-950">Vulnerability Assessment</h1>
+              <p className="mt-2 text-[--text-muted]">
                 Import scan results from Nmap, Nuclei, ZAP, Nikto, Lynis, Trivy, or OpenVAS
               </p>
             </div>
@@ -371,7 +371,7 @@ export default function VulnAssessmentClient() {
                 <>
                   <button
                     onClick={() => setViewMode('report')}
-                    className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-blue-700"
+                    className="flex items-center gap-2 rounded-lg bg-copper-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-copper-700"
                   >
                     <DocumentTextIcon className="h-5 w-5" />
                     View Report
@@ -390,13 +390,13 @@ export default function VulnAssessmentClient() {
         </div>
 
         {/* Upload Area */}
-        <div className="mb-8 rounded-xl border-2 border-dashed border-slate-300 bg-white p-8 text-center">
-          <ArrowUpTrayIcon className="mx-auto h-12 w-12 text-slate-400" />
-          <p className="mt-4 text-lg font-semibold text-slate-700">Import Scan Results</p>
-          <p className="mt-1 text-sm text-slate-500">
+        <div className="mb-8 rounded-xl border-2 border-dashed border-dark-300 bg-white p-8 text-center">
+          <ArrowUpTrayIcon className="mx-auto h-12 w-12 text-dark-400" />
+          <p className="mt-4 text-lg font-semibold text-dark-700">Import Scan Results</p>
+          <p className="mt-1 text-sm text-dark-500">
             Upload JSON, JSONL, XML, or text files from your security tools
           </p>
-          <label className="mt-4 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-blue-700">
+          <label className="mt-4 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-copper-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-copper-700">
             <ArrowUpTrayIcon className="h-5 w-5" />
             Choose Files
             <input
@@ -407,7 +407,7 @@ export default function VulnAssessmentClient() {
               className="hidden"
             />
           </label>
-          <p className="mt-3 text-xs text-slate-400">
+          <p className="mt-3 text-xs text-dark-400">
             Supported: Nmap (.xml), Nuclei (.jsonl), ZAP (.json), Nikto (.json), Lynis (.dat/.json), Trivy (.json), OpenVAS (.json)
           </p>
         </div>
@@ -434,9 +434,9 @@ export default function VulnAssessmentClient() {
 
         {/* Severity Summary Bar */}
         {allFindings.length > 0 && (
-          <div className="mb-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="mb-6 rounded-xl border border-dark-200 bg-white p-4 shadow-sm">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-slate-700">
+              <p className="text-sm font-semibold text-dark-700">
                 {allFindings.length} Total Findings from {scans.length} Scan{scans.length !== 1 ? 's' : ''}
               </p>
               <div className="flex gap-3">
@@ -460,19 +460,19 @@ export default function VulnAssessmentClient() {
 
         {/* Imported Scans List */}
         {scans.length > 0 && (
-          <div className="mb-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-            <h3 className="mb-3 text-sm font-semibold text-slate-700">Imported Scans</h3>
+          <div className="mb-6 rounded-xl border border-dark-200 bg-white p-4 shadow-sm">
+            <h3 className="mb-3 text-sm font-semibold text-dark-700">Imported Scans</h3>
             <div className="flex flex-wrap gap-2">
               {scans.map((scan, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"
+                  className="flex items-center gap-2 rounded-lg border border-dark-200 bg-pearl-50 px-3 py-2"
                 >
-                  <span className="text-sm font-medium text-slate-700">{scan.tool}</span>
-                  <span className="text-xs text-slate-500">({scan.findings.length} findings)</span>
+                  <span className="text-sm font-medium text-dark-700">{scan.tool}</span>
+                  <span className="text-xs text-dark-500">({scan.findings.length} findings)</span>
                   <button
                     onClick={() => removeScan(i)}
-                    className="ml-1 rounded p-0.5 text-slate-400 hover:bg-red-100 hover:text-red-600"
+                    className="ml-1 rounded p-0.5 text-dark-400 hover:bg-red-100 hover:text-red-600"
                   >
                     <XMarkIcon className="h-4 w-4" />
                   </button>
@@ -486,11 +486,11 @@ export default function VulnAssessmentClient() {
         {allFindings.length > 0 && (
           <div className="mb-4 flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <FunnelIcon className="h-4 w-4 text-slate-500" />
+              <FunnelIcon className="h-4 w-4 text-dark-500" />
               <select
                 value={filterSource}
                 onChange={(e) => setFilterSource(e.target.value as VulnSource | 'all')}
-                className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-700"
+                className="rounded-lg border border-dark-300 bg-white px-3 py-1.5 text-sm text-dark-700"
               >
                 <option value="all">All Tools</option>
                 {activeSources.map((src) => (
@@ -500,7 +500,7 @@ export default function VulnAssessmentClient() {
                 ))}
               </select>
             </div>
-            <span className="text-sm text-slate-500">
+            <span className="text-sm text-dark-500">
               {filteredFindings.length} of {allFindings.length} findings
             </span>
           </div>
@@ -508,37 +508,37 @@ export default function VulnAssessmentClient() {
 
         {/* Findings Table */}
         {filteredFindings.length > 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white shadow-md">
+          <div className="rounded-xl border border-dark-200 bg-white shadow-md">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50">
+                  <tr className="border-b border-dark-200 bg-pearl-50">
                     <th className="w-10 px-4 py-3"></th>
                     <th
-                      className="cursor-pointer px-4 py-3 text-left font-semibold text-slate-700 hover:text-blue-600"
+                      className="cursor-pointer px-4 py-3 text-left font-semibold text-dark-700 hover:text-copper-600"
                       onClick={() => handleSort('severity')}
                     >
                       Severity {sortField === 'severity' && (sortDir === 'desc' ? '↓' : '↑')}
                     </th>
                     <th
-                      className="cursor-pointer px-4 py-3 text-left font-semibold text-slate-700 hover:text-blue-600"
+                      className="cursor-pointer px-4 py-3 text-left font-semibold text-dark-700 hover:text-copper-600"
                       onClick={() => handleSort('title')}
                     >
                       Finding {sortField === 'title' && (sortDir === 'desc' ? '↓' : '↑')}
                     </th>
                     <th
-                      className="cursor-pointer px-4 py-3 text-left font-semibold text-slate-700 hover:text-blue-600"
+                      className="cursor-pointer px-4 py-3 text-left font-semibold text-dark-700 hover:text-copper-600"
                       onClick={() => handleSort('target')}
                     >
                       Target {sortField === 'target' && (sortDir === 'desc' ? '↓' : '↑')}
                     </th>
                     <th
-                      className="cursor-pointer px-4 py-3 text-left font-semibold text-slate-700 hover:text-blue-600"
+                      className="cursor-pointer px-4 py-3 text-left font-semibold text-dark-700 hover:text-copper-600"
                       onClick={() => handleSort('source')}
                     >
                       Source {sortField === 'source' && (sortDir === 'desc' ? '↓' : '↑')}
                     </th>
-                    <th className="px-4 py-3 text-left font-semibold text-slate-700">CVE</th>
+                    <th className="px-4 py-3 text-left font-semibold text-dark-700">CVE</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -546,14 +546,14 @@ export default function VulnAssessmentClient() {
                     <>
                       <tr
                         key={finding.id}
-                        className={`cursor-pointer border-b border-slate-100 transition-colors hover:bg-slate-50 ${
-                          expandedFinding === finding.id ? 'bg-slate-50' : ''
+                        className={`cursor-pointer border-b border-pearl-100 transition-colors hover:bg-pearl-50 ${
+                          expandedFinding === finding.id ? 'bg-pearl-50' : ''
                         }`}
                         onClick={() => setExpandedFinding(expandedFinding === finding.id ? null : finding.id)}
                       >
                         <td className="px-4 py-3">
                           <ChevronDownIcon
-                            className={`h-4 w-4 text-slate-400 transition-transform ${
+                            className={`h-4 w-4 text-dark-400 transition-transform ${
                               expandedFinding === finding.id ? 'rotate-180' : ''
                             }`}
                           />
@@ -563,52 +563,52 @@ export default function VulnAssessmentClient() {
                             {finding.severity}
                           </span>
                         </td>
-                        <td className="max-w-xs truncate px-4 py-3 font-medium text-slate-900">
+                        <td className="max-w-xs truncate px-4 py-3 font-medium text-evergreen-950">
                           {finding.title}
                         </td>
-                        <td className="max-w-[150px] truncate px-4 py-3 text-slate-600">
+                        <td className="max-w-[150px] truncate px-4 py-3 text-[--text-muted]">
                           {finding.target}
                         </td>
-                        <td className="px-4 py-3 capitalize text-slate-600">{finding.source}</td>
-                        <td className="px-4 py-3 text-slate-500">
+                        <td className="px-4 py-3 capitalize text-[--text-muted]">{finding.source}</td>
+                        <td className="px-4 py-3 text-dark-500">
                           {finding.cve?.join(', ') || '—'}
                         </td>
                       </tr>
                       {expandedFinding === finding.id && (
-                        <tr key={`${finding.id}-detail`} className="border-b border-slate-200">
-                          <td colSpan={6} className="bg-slate-50 px-8 py-4">
+                        <tr key={`${finding.id}-detail`} className="border-b border-dark-200">
+                          <td colSpan={6} className="bg-pearl-50 px-8 py-4">
                             <div className="grid gap-3 md:grid-cols-2">
                               <div>
-                                <p className="text-xs font-semibold uppercase text-slate-500">Description</p>
-                                <p className="mt-1 text-sm text-slate-700">{finding.description || 'No description available'}</p>
+                                <p className="text-xs font-semibold uppercase text-dark-500">Description</p>
+                                <p className="mt-1 text-sm text-dark-700">{finding.description || 'No description available'}</p>
                               </div>
                               <div>
-                                <p className="text-xs font-semibold uppercase text-slate-500">Remediation</p>
-                                <p className="mt-1 text-sm text-slate-700">{finding.remediation}</p>
+                                <p className="text-xs font-semibold uppercase text-dark-500">Remediation</p>
+                                <p className="mt-1 text-sm text-dark-700">{finding.remediation}</p>
                               </div>
                               {finding.port && (
                                 <div>
-                                  <p className="text-xs font-semibold uppercase text-slate-500">Port</p>
-                                  <p className="mt-1 text-sm text-slate-700">{finding.port}/{finding.protocol || 'tcp'}</p>
+                                  <p className="text-xs font-semibold uppercase text-dark-500">Port</p>
+                                  <p className="mt-1 text-sm text-dark-700">{finding.port}/{finding.protocol || 'tcp'}</p>
                                 </div>
                               )}
                               {finding.cvss && (
                                 <div>
-                                  <p className="text-xs font-semibold uppercase text-slate-500">CVSS Score</p>
-                                  <p className="mt-1 text-sm text-slate-700">{finding.cvss}</p>
+                                  <p className="text-xs font-semibold uppercase text-dark-500">CVSS Score</p>
+                                  <p className="mt-1 text-sm text-dark-700">{finding.cvss}</p>
                                 </div>
                               )}
                               {finding.evidence && (
                                 <div className="md:col-span-2">
-                                  <p className="text-xs font-semibold uppercase text-slate-500">Evidence</p>
-                                  <pre className="mt-1 overflow-x-auto rounded bg-slate-100 p-2 text-xs text-slate-700">
+                                  <p className="text-xs font-semibold uppercase text-dark-500">Evidence</p>
+                                  <pre className="mt-1 overflow-x-auto rounded bg-pearl-100 p-2 text-xs text-dark-700">
                                     {finding.evidence}
                                   </pre>
                                 </div>
                               )}
                               {finding.reference && finding.reference.length > 0 && (
                                 <div className="md:col-span-2">
-                                  <p className="text-xs font-semibold uppercase text-slate-500">References</p>
+                                  <p className="text-xs font-semibold uppercase text-dark-500">References</p>
                                   <div className="mt-1 flex flex-wrap gap-2">
                                     {finding.reference.map((ref, i) => (
                                       <a
@@ -616,7 +616,7 @@ export default function VulnAssessmentClient() {
                                         href={ref}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-xs text-blue-600 hover:underline"
+                                        className="text-xs text-copper-600 hover:underline"
                                         onClick={(e) => e.stopPropagation()}
                                       >
                                         {ref.length > 60 ? ref.substring(0, 60) + '...' : ref}
@@ -639,19 +639,19 @@ export default function VulnAssessmentClient() {
 
         {/* Empty State */}
         {allFindings.length === 0 && (
-          <div className="rounded-xl border border-slate-200 bg-white p-12 text-center">
-            <ShieldExclamationIcon className="mx-auto h-16 w-16 text-slate-300" />
-            <h3 className="mt-4 text-lg font-semibold text-slate-700">No Scan Results Yet</h3>
-            <p className="mt-2 text-sm text-slate-500">
+          <div className="rounded-xl border border-dark-200 bg-white p-12 text-center">
+            <ShieldExclamationIcon className="mx-auto h-16 w-16 text-dark-300" />
+            <h3 className="mt-4 text-lg font-semibold text-dark-700">No Scan Results Yet</h3>
+            <p className="mt-2 text-sm text-dark-500">
               Run security scans using the tools in ~/security-tools/ and import the results above.
             </p>
             <div className="mx-auto mt-6 max-w-md text-left">
-              <p className="mb-2 text-xs font-semibold uppercase text-slate-500">Quick Start</p>
-              <div className="space-y-1 rounded-lg bg-slate-50 p-4 font-mono text-xs text-slate-600">
+              <p className="mb-2 text-xs font-semibold uppercase text-dark-500">Quick Start</p>
+              <div className="space-y-1 rounded-lg bg-pearl-50 p-4 font-mono text-xs text-[--text-muted]">
                 <p>cd ~/security-tools</p>
                 <p>./run-nmap.sh scanme.nmap.org</p>
                 <p>./run-nuclei.sh https://example.com</p>
-                <p className="text-slate-400"># Then import results/*.json above</p>
+                <p className="text-dark-400"># Then import results/*.json above</p>
               </div>
             </div>
           </div>

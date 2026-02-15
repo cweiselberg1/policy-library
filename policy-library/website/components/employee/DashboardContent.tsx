@@ -88,8 +88,8 @@ export default function DashboardContent() {
     return (
       <div className="flex items-center justify-center py-32">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-          <p className="mt-4 text-slate-400">Loading your policies...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-copper-500 mx-auto"></div>
+          <p className="mt-4 text-dark-400">Loading your policies...</p>
         </div>
       </div>
     );
@@ -98,11 +98,11 @@ export default function DashboardContent() {
   if (error) {
     return (
       <div className="flex items-center justify-center py-32">
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-8 max-w-md">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-lg p-8 max-w-md">
           <p className="text-red-400 mb-4">{error}</p>
           <button
             onClick={fetchDashboardData}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="w-full px-4 py-2 bg-copper-600 text-white rounded-lg hover:bg-copper-700 transition-colors"
           >
             Try Again
           </button>
@@ -116,7 +116,7 @@ export default function DashboardContent() {
       {/* Page Header */}
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-white">Policy Dashboard</h1>
-        <p className="mt-1 text-slate-400">Review and acknowledge your assigned policies</p>
+        <p className="mt-1 text-dark-400">Review and acknowledge your assigned policies</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-8">
@@ -154,17 +154,17 @@ export default function DashboardContent() {
                   <Link
                     key={assignment.id}
                     href={`/dashboard/employee/policies/view?id=${assignment.policy_bundle_id}`}
-                    className="block bg-slate-800/50 backdrop-blur-xl rounded-xl border border-slate-700/50 p-6 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/5 transition-all"
+                    className="block bg-dark-800/50 backdrop-blur-xl rounded-xl border border-dark-700/50 p-6 hover:border-copper-500/50 hover:shadow-lg hover:shadow-copper-500/5 transition-all"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-blue-500/10">
-                        <DocumentTextIcon className="h-7 w-7 text-blue-400" />
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-copper-500/10">
+                        <DocumentTextIcon className="h-7 w-7 text-copper-400" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-lg font-semibold text-white mb-2">
                           {assignment.bundle_name}
                         </h3>
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-dark-400">
                           <div className="flex items-center gap-1">
                             <DocumentTextIcon className="h-4 w-4" />
                             <span>{assignment.policy_count} {assignment.policy_count === 1 ? 'policy' : 'policies'}</span>
@@ -188,7 +188,7 @@ export default function DashboardContent() {
                         </div>
                       </div>
                       <div className="flex items-center">
-                        <span className="text-sm font-medium text-blue-400">Review →</span>
+                        <span className="text-sm font-medium text-copper-400">Review →</span>
                       </div>
                     </div>
                   </Link>
@@ -196,7 +196,7 @@ export default function DashboardContent() {
               </div>
               <Link
                 href="/dashboard/employee/policies"
-                className="mt-6 inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium"
+                className="mt-6 inline-flex items-center gap-2 text-copper-400 hover:text-copper-300 font-medium"
               >
                 View All Policies →
               </Link>
@@ -224,14 +224,14 @@ export default function DashboardContent() {
           {stats && <ProgressSummary stats={stats} />}
 
           {/* Help Card */}
-          <div className="mt-6 bg-slate-800/50 backdrop-blur-xl rounded-lg border border-slate-700/50 p-6">
+          <div className="mt-6 bg-dark-800/50 backdrop-blur-xl rounded-lg border border-dark-700/50 p-6">
             <h3 className="text-lg font-semibold text-white mb-2">Need Help?</h3>
-            <p className="text-sm text-slate-400 mb-4">
+            <p className="text-sm text-dark-400 mb-4">
               If you have questions about these policies or need assistance, contact your Privacy Officer or compliance team.
             </p>
             <a
               href="mailto:compliance@example.com"
-              className="text-sm text-blue-400 hover:text-blue-300 font-medium"
+              className="text-sm text-copper-400 hover:text-copper-300 font-medium"
             >
               Contact Support →
             </a>

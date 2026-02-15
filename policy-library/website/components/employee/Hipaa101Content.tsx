@@ -227,13 +227,13 @@ export default function Hipaa101Content() {
   const hasPassed = quizScore >= passingScore;
 
   return (
-    <div className="min-h-screen bg-slate-900 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-evergreen-950 via-dark-900 to-evergreen-900 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
           <Link
             href="/dashboard/employee/training"
-            className="inline-flex items-center text-sm text-slate-400 hover:text-white mb-4 transition-colors"
+            className="inline-flex items-center text-sm text-dark-400 hover:text-white mb-4 transition-colors"
           >
             <ArrowLeftIcon className="h-4 w-4 mr-2" />
             Back to Training
@@ -241,14 +241,14 @@ export default function Hipaa101Content() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-white flex items-center gap-3">
-                <ShieldCheckIcon className="h-8 w-8 text-blue-400" />
+                <ShieldCheckIcon className="h-8 w-8 text-copper-400" />
                 HIPAA 101
               </h1>
-              <p className="mt-2 text-slate-400">
+              <p className="mt-2 text-dark-400">
                 Learn the fundamentals of HIPAA compliance and patient privacy
               </p>
             </div>
-            <div className="flex items-center gap-2 text-sm text-slate-400">
+            <div className="flex items-center gap-2 text-sm text-dark-400">
               <ClockIcon className="h-5 w-5" />
               <span>15-20 minutes</span>
             </div>
@@ -258,32 +258,32 @@ export default function Hipaa101Content() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar Progress */}
           <div className="lg:col-span-1">
-            <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6 sticky top-8">
-              <h2 className="text-sm font-semibold text-slate-400 uppercase mb-4">
+            <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-6 sticky top-8">
+              <h2 className="text-sm font-semibold text-dark-400 uppercase mb-4">
                 Training Steps
               </h2>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
                   <CheckCircleIcon className="h-5 w-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-slate-300">Policy Review</p>
-                    <p className="text-xs text-slate-500">Completed</p>
+                    <p className="text-sm font-medium text-dark-300">Policy Review</p>
+                    <p className="text-xs text-dark-500">Completed</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="h-5 w-5 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-copper-500 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <div className="h-2 w-2 rounded-full bg-white"></div>
                   </div>
                   <div>
                     <p className="text-sm font-medium text-white">HIPAA 101</p>
-                    <p className="text-xs text-blue-400">In Progress</p>
+                    <p className="text-xs text-copper-400">In Progress</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="h-5 w-5 rounded-full border-2 border-slate-600 flex-shrink-0 mt-0.5"></div>
+                  <div className="h-5 w-5 rounded-full border-2 border-dark-600 flex-shrink-0 mt-0.5"></div>
                   <div>
-                    <p className="text-sm font-medium text-slate-500">Cybersecurity</p>
-                    <p className="text-xs text-slate-600">Locked</p>
+                    <p className="text-sm font-medium text-dark-500">Cybersecurity</p>
+                    <p className="text-xs text-dark-600">Locked</p>
                   </div>
                 </div>
               </div>
@@ -295,12 +295,12 @@ export default function Hipaa101Content() {
             {!showQuiz ? (
               <div className="space-y-6">
                 {/* Section Progress */}
-                <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6">
+                <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-sm font-semibold text-slate-400">
+                    <h3 className="text-sm font-semibold text-dark-400">
                       Section {currentSection + 1} of {sections.length}
                     </h3>
-                    <span className="text-sm text-slate-400">
+                    <span className="text-sm text-dark-400">
                       {Math.round(((currentSection + 1) / sections.length) * 100)}% Complete
                     </span>
                   </div>
@@ -312,8 +312,8 @@ export default function Hipaa101Content() {
                           index < currentSection
                             ? 'bg-emerald-500'
                             : index === currentSection
-                            ? 'bg-blue-500'
-                            : 'bg-slate-700'
+                            ? 'bg-copper-500'
+                            : 'bg-dark-700'
                         }`}
                       />
                     ))}
@@ -321,18 +321,18 @@ export default function Hipaa101Content() {
                 </div>
 
                 {/* Section Content */}
-                <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-8">
+                <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-8">
                   <h2 className="text-2xl font-bold text-white mb-4">
                     {sections[currentSection].title}
                   </h2>
-                  <p className="text-slate-300 mb-6 leading-relaxed">
+                  <p className="text-dark-300 mb-6 leading-relaxed">
                     {sections[currentSection].content.intro}
                   </p>
                   <div className="space-y-3">
                     {sections[currentSection].content.points.map((point, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <ChevronRightIcon className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <p className="text-slate-300">{point}</p>
+                        <ChevronRightIcon className="h-5 w-5 text-copper-400 flex-shrink-0 mt-0.5" />
+                        <p className="text-dark-300">{point}</p>
                       </div>
                     ))}
                   </div>
@@ -345,8 +345,8 @@ export default function Hipaa101Content() {
                     disabled={currentSection === 0}
                     className={`px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 ${
                       currentSection === 0
-                        ? 'bg-slate-700/50 text-slate-500 cursor-not-allowed'
-                        : 'bg-slate-700 text-white hover:bg-slate-600'
+                        ? 'bg-dark-700/50 text-dark-500 cursor-not-allowed'
+                        : 'bg-dark-700 text-white hover:bg-dark-600'
                     }`}
                   >
                     <ArrowLeftIcon className="h-5 w-5" />
@@ -354,7 +354,7 @@ export default function Hipaa101Content() {
                   </button>
                   <button
                     onClick={handleNextSection}
-                    className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-cyan-700 transition-all flex items-center gap-2"
+                    className="px-6 py-3 bg-gradient-to-r from-copper-600 to-copper-700 text-white rounded-lg font-medium hover:from-copper-500 hover:to-copper-600 transition-all flex items-center gap-2"
                   >
                     {currentSection === sections.length - 1 ? 'Take Quiz' : 'Next'}
                     <ArrowRightIcon className="h-5 w-5" />
@@ -364,9 +364,9 @@ export default function Hipaa101Content() {
             ) : (
               <div className="space-y-6">
                 {/* Quiz Header */}
-                <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6">
+                <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-6">
                   <h2 className="text-2xl font-bold text-white mb-2">Knowledge Check</h2>
-                  <p className="text-slate-400">
+                  <p className="text-dark-400">
                     Answer all questions to complete this module. You need {passingScore} out of{' '}
                     {quizQuestions.length} correct to pass.
                   </p>
@@ -378,7 +378,7 @@ export default function Hipaa101Content() {
                     {quizQuestions.map((question, qIndex) => (
                       <div
                         key={question.id}
-                        className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6"
+                        className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-6"
                       >
                         <h3 className="text-lg font-semibold text-white mb-4">
                           {qIndex + 1}. {question.question}
@@ -389,8 +389,8 @@ export default function Hipaa101Content() {
                               key={oIndex}
                               className={`flex items-start gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
                                 quizAnswers[qIndex] === oIndex
-                                  ? 'bg-blue-500/10 border-blue-500/50'
-                                  : 'bg-slate-700/30 border-slate-600/50 hover:border-slate-500'
+                                  ? 'bg-copper-500/10 border-copper-500/50'
+                                  : 'bg-dark-700/30 border-dark-600/50 hover:border-dark-500'
                               }`}
                             >
                               <input
@@ -400,7 +400,7 @@ export default function Hipaa101Content() {
                                 onChange={() => handleQuizAnswer(qIndex, oIndex)}
                                 className="mt-0.5"
                               />
-                              <span className="text-slate-300">{option}</span>
+                              <span className="text-dark-300">{option}</span>
                             </label>
                           ))}
                         </div>
@@ -410,7 +410,7 @@ export default function Hipaa101Content() {
                     <div className="flex justify-between items-center">
                       <button
                         onClick={() => setShowQuiz(false)}
-                        className="px-6 py-3 bg-slate-700 text-white rounded-lg font-medium hover:bg-slate-600 transition-all flex items-center gap-2"
+                        className="px-6 py-3 bg-dark-700 text-white rounded-lg font-medium hover:bg-dark-600 transition-all flex items-center gap-2"
                       >
                         <ArrowLeftIcon className="h-5 w-5" />
                         Back to Sections
@@ -420,8 +420,8 @@ export default function Hipaa101Content() {
                         disabled={quizAnswers.includes(null)}
                         className={`px-6 py-3 rounded-lg font-medium transition-all ${
                           quizAnswers.includes(null)
-                            ? 'bg-slate-700/50 text-slate-500 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700'
+                            ? 'bg-dark-700/50 text-dark-500 cursor-not-allowed'
+                            : 'bg-gradient-to-r from-copper-600 to-copper-700 text-white hover:from-copper-500 hover:to-copper-600'
                         }`}
                       >
                         Submit Quiz
@@ -451,12 +451,12 @@ export default function Hipaa101Content() {
                           <h2 className="text-2xl font-bold text-white mb-2">
                             Congratulations!
                           </h2>
-                          <p className="text-slate-300 mb-4">
+                          <p className="text-dark-300 mb-4">
                             You passed with a score of {quizScore} out of {quizQuestions.length}
                           </p>
                           <button
                             onClick={handleContinue}
-                            className="px-8 py-3 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-lg font-medium hover:from-emerald-700 hover:to-green-700 transition-all inline-flex items-center gap-2"
+                            className="px-8 py-3 bg-gradient-to-r from-emerald-600 to-evergreen-600 text-white rounded-lg font-medium hover:from-emerald-700 hover:to-evergreen-700 transition-all inline-flex items-center gap-2"
                           >
                             Continue to Cybersecurity
                             <ArrowRightIcon className="h-5 w-5" />
@@ -468,7 +468,7 @@ export default function Hipaa101Content() {
                           <h2 className="text-2xl font-bold text-white mb-2">
                             Additional Review Needed
                           </h2>
-                          <p className="text-slate-300 mb-4">
+                          <p className="text-dark-300 mb-4">
                             You scored {quizScore} out of {quizQuestions.length}. You need at least{' '}
                             {passingScore} to pass.
                           </p>
@@ -479,7 +479,7 @@ export default function Hipaa101Content() {
                               setShowQuiz(false);
                               setCurrentSection(0);
                             }}
-                            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-cyan-700 transition-all inline-flex items-center gap-2"
+                            className="px-8 py-3 bg-gradient-to-r from-copper-600 to-copper-700 text-white rounded-lg font-medium hover:from-copper-500 hover:to-copper-600 transition-all inline-flex items-center gap-2"
                           >
                             Review Material & Retake
                             <ArrowLeftIcon className="h-5 w-5" />
@@ -489,7 +489,7 @@ export default function Hipaa101Content() {
                     </div>
 
                     {/* Answer Review */}
-                    <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6">
+                    <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-6">
                       <h3 className="text-xl font-bold text-white mb-4">Answer Review</h3>
                       <div className="space-y-4">
                         {quizQuestions.map((question, qIndex) => {
@@ -513,7 +513,7 @@ export default function Hipaa101Content() {
                                 <div className="flex-1">
                                   <p className="text-white font-medium">{question.question}</p>
                                   {!isCorrect && (
-                                    <p className="text-sm text-slate-400 mt-1">
+                                    <p className="text-sm text-dark-400 mt-1">
                                       Your answer: {question.options[userAnswer!]}
                                     </p>
                                   )}

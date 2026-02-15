@@ -127,29 +127,29 @@ export default function TrainingHubContent() {
       return { label: 'Completed', className: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' };
     }
     if (isModuleLocked(module)) {
-      return { label: 'Locked', className: 'bg-slate-700/50 text-slate-400 border border-slate-600' };
+      return { label: 'Locked', className: 'bg-dark-700/50 text-dark-400 border border-dark-600' };
     }
     if (progress.current_step === module.id) {
-      return { label: 'In Progress', className: 'bg-blue-500/10 text-blue-400 border border-blue-500/20' };
+      return { label: 'In Progress', className: 'bg-copper-500/10 text-copper-400 border border-copper-500/20' };
     }
-    return { label: 'Available', className: 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' };
+    return { label: 'Available', className: 'bg-evergreen-500/10 text-evergreen-400 border border-evergreen-500/20' };
   };
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="text-slate-400">Loading...</div>
+      <div className="min-h-screen bg-gradient-to-br from-evergreen-950 via-dark-900 to-evergreen-900 flex items-center justify-center">
+        <div className="text-dark-400">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-evergreen-950 via-dark-900 to-evergreen-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Progress Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-slate-800 rounded-lg border border-slate-700 p-6 sticky top-8">
+            <div className="bg-dark-800 rounded-lg border border-dark-700 p-6 sticky top-8">
               <h3 className="text-lg font-semibold text-white mb-4">Your Progress</h3>
 
               {/* Progress Circle */}
@@ -163,7 +163,7 @@ export default function TrainingHubContent() {
                       stroke="currentColor"
                       strokeWidth="8"
                       fill="none"
-                      className="text-slate-700"
+                      className="text-dark-700"
                     />
                     <circle
                       cx="64"
@@ -174,7 +174,7 @@ export default function TrainingHubContent() {
                       fill="none"
                       strokeDasharray={`${2 * Math.PI * 56}`}
                       strokeDashoffset={`${2 * Math.PI * 56 * (1 - progress.percentage / 100)}`}
-                      className="text-blue-600 transition-all duration-500"
+                      className="text-copper-600 transition-all duration-500"
                       strokeLinecap="round"
                     />
                   </svg>
@@ -197,26 +197,26 @@ export default function TrainingHubContent() {
                         {completed ? (
                           <CheckCircleIcon className="w-6 h-6 text-emerald-400" />
                         ) : locked ? (
-                          <LockClosedIcon className="w-6 h-6 text-slate-500" />
+                          <LockClosedIcon className="w-6 h-6 text-dark-500" />
                         ) : (
                           <div
                             className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                              current ? 'border-blue-500 bg-blue-500/20' : 'border-slate-600 bg-slate-700/50'
+                              current ? 'border-copper-500 bg-copper-500/20' : 'border-dark-600 bg-dark-700/50'
                             }`}
                           >
-                            <span className="text-xs font-semibold text-slate-300">{index + 1}</span>
+                            <span className="text-xs font-semibold text-dark-300">{index + 1}</span>
                           </div>
                         )}
                       </div>
                       <div className="flex-1">
                         <div
                           className={`text-sm font-medium ${
-                            completed ? 'text-emerald-400' : locked ? 'text-slate-500' : 'text-slate-300'
+                            completed ? 'text-emerald-400' : locked ? 'text-dark-500' : 'text-dark-300'
                           }`}
                         >
                           {module.title}
                         </div>
-                        <div className="text-xs text-slate-500 mt-0.5">{module.duration}</div>
+                        <div className="text-xs text-dark-500 mt-0.5">{module.duration}</div>
                       </div>
                     </div>
                   );
@@ -229,7 +229,7 @@ export default function TrainingHubContent() {
           <div className="lg:col-span-3">
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-white mb-2">Training Hub</h1>
-              <p className="text-slate-400">
+              <p className="text-dark-400">
                 Complete all training modules to ensure HIPAA compliance and protect patient data.
               </p>
             </div>
@@ -245,12 +245,12 @@ export default function TrainingHubContent() {
                 return (
                   <div
                     key={module.id}
-                    className={`bg-slate-800 rounded-lg border overflow-hidden transition-all ${
+                    className={`bg-dark-800 rounded-lg border overflow-hidden transition-all ${
                       locked
-                        ? 'border-slate-700 opacity-60'
+                        ? 'border-dark-700 opacity-60'
                         : completed
                         ? 'border-emerald-500/30 shadow-lg shadow-emerald-500/5'
-                        : 'border-slate-700 hover:border-blue-600/50 hover:shadow-lg hover:shadow-blue-600/5'
+                        : 'border-dark-700 hover:border-copper-600/50 hover:shadow-lg hover:shadow-copper-600/5'
                     }`}
                   >
                     <div className="p-6">
@@ -261,16 +261,16 @@ export default function TrainingHubContent() {
                             completed
                               ? 'bg-emerald-500/10 border border-emerald-500/20'
                               : locked
-                              ? 'bg-slate-700/50 border border-slate-600'
-                              : 'bg-blue-500/10 border border-blue-500/20'
+                              ? 'bg-dark-700/50 border border-dark-600'
+                              : 'bg-copper-500/10 border border-copper-500/20'
                           }`}
                         >
                           {completed ? (
                             <CheckCircleIcon className="w-7 h-7 text-emerald-400" />
                           ) : locked ? (
-                            <LockClosedIcon className="w-7 h-7 text-slate-500" />
+                            <LockClosedIcon className="w-7 h-7 text-dark-500" />
                           ) : (
-                            <Icon className="w-7 h-7 text-blue-400" />
+                            <Icon className="w-7 h-7 text-copper-400" />
                           )}
                         </div>
 
@@ -282,9 +282,9 @@ export default function TrainingHubContent() {
                               {status.label}
                             </span>
                           </div>
-                          <p className="text-slate-400 mb-4">{module.description}</p>
+                          <p className="text-dark-400 mb-4">{module.description}</p>
                           <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-1.5 text-sm text-slate-500">
+                            <div className="flex items-center gap-1.5 text-sm text-dark-500">
                               <ClockIcon className="w-4 h-4" />
                               <span>{module.duration}</span>
                             </div>
@@ -293,8 +293,8 @@ export default function TrainingHubContent() {
                                 href={module.href}
                                 className={`ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                   completed
-                                    ? 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                                    ? 'bg-dark-700 text-dark-300 hover:bg-dark-600'
+                                    : 'bg-copper-600 text-white hover:bg-copper-700'
                                 }`}
                               >
                                 {completed ? 'Review' : 'Start Module'}
@@ -302,7 +302,7 @@ export default function TrainingHubContent() {
                               </Link>
                             )}
                             {locked && (
-                              <div className="ml-auto text-sm text-slate-500">Complete previous module to unlock</div>
+                              <div className="ml-auto text-sm text-dark-500">Complete previous module to unlock</div>
                             )}
                           </div>
                         </div>
@@ -320,7 +320,7 @@ export default function TrainingHubContent() {
                   <CheckCircleIcon className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <h3 className="text-lg font-semibold text-emerald-400 mb-1">Training Complete!</h3>
-                    <p className="text-slate-300">
+                    <p className="text-dark-300">
                       Congratulations! You have completed all required training modules. Your certificate will be
                       generated automatically.
                     </p>

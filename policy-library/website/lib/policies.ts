@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { remark } from 'remark';
-import html from 'remark-html';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
 import matter from 'gray-matter';
 
 export interface Policy {
@@ -117,7 +118,8 @@ export function getPolicyContent(policy: Policy): string {
  */
 export async function markdownToHtml(markdown: string): Promise<string> {
   const result = await remark()
-    .use(html, { sanitize: false })
+    .use(remarkRehype)     // converts mdast -> hast
+    .use(rehypeStringify)  // converts hast -> HTML string
     .process(markdown);
   return result.toString();
 }

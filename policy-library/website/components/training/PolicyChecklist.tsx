@@ -58,36 +58,36 @@ export function PolicyChecklist({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/30 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-dark-900 via-evergreen-900/30 to-dark-800">
       {/* Sticky Header with Progress */}
-      <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm shadow-sm">
+      <div className="sticky top-0 z-50 border-b border-dark-700 bg-dark-900/95 backdrop-blur-sm shadow-sm">
         <div className="mx-auto max-w-5xl px-6 py-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600 shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-copper-600 to-evergreen-600 shadow-lg">
                 <BookOpenIcon className="h-7 w-7 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-900">Policy Review</h1>
-                <p className="text-sm text-slate-600">Acknowledge all required policies</p>
+                <h1 className="text-2xl font-bold text-white">Policy Review</h1>
+                <p className="text-sm text-dark-400">Acknowledge all required policies</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-3xl font-bold text-emerald-600">{completedCount}/{totalPolicies}</p>
-              <p className="text-xs text-slate-600">Policies</p>
+              <p className="text-3xl font-bold text-copper-500">{completedCount}/{totalPolicies}</p>
+              <p className="text-xs text-dark-400">Policies</p>
             </div>
           </div>
 
           {/* Progress Bar */}
-          <div className="relative h-3 w-full overflow-hidden rounded-full bg-slate-200">
+          <div className="relative h-3 w-full overflow-hidden rounded-full bg-dark-800">
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 transition-all duration-500 ease-out shadow-lg shadow-emerald-600/30"
+              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-copper-600 to-evergreen-600 transition-all duration-500 ease-out shadow-lg shadow-copper-600/30"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="mt-2 text-center text-sm font-medium text-slate-700">
+          <p className="mt-2 text-center text-sm font-medium text-dark-300">
             {allComplete ? (
-              <span className="text-emerald-600">All policies reviewed!</span>
+              <span className="text-copper-500">All policies reviewed!</span>
             ) : (
               <span>{totalPolicies - completedCount} remaining</span>
             )}
@@ -103,10 +103,10 @@ export function PolicyChecklist({
             return (
               <div
                 key={policy.id}
-                className={`group relative overflow-hidden rounded-xl border-2 bg-white p-6 transition-all duration-200 ${
+                className={`group relative overflow-hidden rounded-xl border-2 bg-dark-800 p-6 transition-all duration-200 ${
                   isCompleted
-                    ? 'border-emerald-300 shadow-lg shadow-emerald-600/10'
-                    : 'border-slate-200 hover:border-slate-300 hover:shadow-md'
+                    ? 'border-emerald-500/30 shadow-lg shadow-emerald-600/10'
+                    : 'border-dark-700 hover:border-dark-600 hover:shadow-md'
                 }`}
               >
                 <div className="flex items-start gap-4">
@@ -119,7 +119,7 @@ export function PolicyChecklist({
                     {isCompleted ? (
                       <CheckCircleIconSolid className="h-8 w-8 text-emerald-600" />
                     ) : (
-                      <div className="h-8 w-8 rounded-full border-3 border-slate-300 transition-colors group-hover:border-slate-400" />
+                      <div className="h-8 w-8 rounded-full border-3 border-dark-600 transition-colors group-hover:border-dark-500" />
                     )}
                   </button>
 
@@ -128,22 +128,22 @@ export function PolicyChecklist({
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="inline-flex items-center justify-center rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">
+                          <span className="inline-flex items-center justify-center rounded-full bg-dark-900 px-3 py-1 text-xs font-bold text-dark-300">
                             #{String(index + 1).padStart(2, '0')}
                           </span>
                           {policy.required && (
-                            <span className="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-semibold text-red-700">
+                            <span className="inline-flex items-center rounded-full bg-red-900/50 px-2.5 py-0.5 text-xs font-semibold text-red-400">
                               Required
                             </span>
                           )}
                         </div>
-                        <h3 className="text-lg font-bold text-slate-900 mb-1">{policy.title}</h3>
-                        <p className="text-sm text-slate-600 mb-3">{policy.description}</p>
+                        <h3 className="text-lg font-bold text-white mb-1">{policy.title}</h3>
+                        <p className="text-sm text-dark-400 mb-3">{policy.description}</p>
                         <div className="flex flex-wrap gap-2 text-xs">
-                          <span className="rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-700">
+                          <span className="rounded-full bg-copper-900/50 px-3 py-1 font-medium text-copper-400">
                             {policy.category}
                           </span>
-                          <span className="rounded-full bg-purple-50 px-3 py-1 font-medium text-purple-700">
+                          <span className="rounded-full bg-evergreen-900/50 px-3 py-1 font-medium text-evergreen-400">
                             {policy.hipaa_reference}
                           </span>
                         </div>
@@ -154,7 +154,7 @@ export function PolicyChecklist({
 
                 {/* Completion Overlay */}
                 {isCompleted && (
-                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-emerald-600/5 to-teal-600/5" />
+                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-emerald-600/5 to-emerald-600/5" />
                 )}
               </div>
             );
@@ -162,16 +162,16 @@ export function PolicyChecklist({
         </div>
 
         {/* Action Buttons - Fixed at bottom when scrolled */}
-        <div className="sticky bottom-0 mt-12 rounded-2xl border-2 border-slate-200 bg-white/95 backdrop-blur-sm p-8 shadow-2xl">
+        <div className="sticky bottom-0 mt-12 rounded-2xl border-2 border-dark-700 bg-dark-900/95 backdrop-blur-sm p-8 shadow-2xl">
           {!allComplete && (
-            <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
+            <div className="mb-6 rounded-lg border border-amber-500/30 bg-amber-900/20 p-4">
               <div className="flex gap-3">
                 <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-500 text-white text-xs font-bold">
                   !
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-amber-900">Review All Policies</p>
-                  <p className="text-sm text-amber-800">
+                  <p className="text-sm font-semibold text-amber-300">Review All Policies</p>
+                  <p className="text-sm text-amber-400">
                     You must acknowledge all {totalPolicies} policies before continuing to the next module.
                   </p>
                 </div>
@@ -180,12 +180,12 @@ export function PolicyChecklist({
           )}
 
           {allComplete && (
-            <div className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+            <div className="mb-6 rounded-lg border border-emerald-500/30 bg-emerald-900/20 p-4">
               <div className="flex gap-3">
-                <CheckCircleIconSolid className="h-6 w-6 flex-shrink-0 text-emerald-600" />
+                <CheckCircleIconSolid className="h-6 w-6 flex-shrink-0 text-emerald-500" />
                 <div>
-                  <p className="text-sm font-semibold text-emerald-900">All Policies Reviewed</p>
-                  <p className="text-sm text-emerald-800">
+                  <p className="text-sm font-semibold text-emerald-300">All Policies Reviewed</p>
+                  <p className="text-sm text-emerald-400">
                     Great job! You've acknowledged all required policies.
                   </p>
                 </div>
@@ -196,7 +196,7 @@ export function PolicyChecklist({
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={handleSave}
-              className="flex-1 rounded-xl border-2 border-slate-300 bg-white px-8 py-4 text-base font-semibold text-slate-900 transition-all hover:border-slate-400 hover:bg-slate-50"
+              className="flex-1 rounded-xl border-2 border-dark-600 bg-dark-800 px-8 py-4 text-base font-semibold text-white transition-all hover:border-dark-500 hover:bg-dark-700"
             >
               Save & Exit
             </button>
@@ -205,8 +205,8 @@ export function PolicyChecklist({
               disabled={!allComplete}
               className={`flex-1 rounded-xl px-8 py-4 text-base font-semibold text-white shadow-lg transition-all ${
                 allComplete
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-600/25 hover:shadow-xl hover:shadow-emerald-600/40 hover:scale-[1.02]'
-                  : 'bg-slate-300 cursor-not-allowed'
+                  ? 'bg-gradient-to-r from-copper-600 to-evergreen-600 shadow-copper-600/25 hover:shadow-xl hover:shadow-copper-600/40 hover:scale-[1.02]'
+                  : 'bg-dark-700 cursor-not-allowed'
               }`}
             >
               Continue to Next Module
@@ -218,7 +218,7 @@ export function PolicyChecklist({
       {/* Scroll Indicator */}
       {showScrollPrompt && completedCount < totalPolicies && (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="rounded-full bg-slate-900/90 px-4 py-2 text-sm font-medium text-white shadow-lg">
+          <div className="rounded-full bg-dark-800/90 px-4 py-2 text-sm font-medium text-white shadow-lg">
             Scroll to review all policies ↓
           </div>
         </div>

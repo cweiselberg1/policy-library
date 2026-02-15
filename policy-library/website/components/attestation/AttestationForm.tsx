@@ -67,13 +67,13 @@ export default function AttestationForm({ assignmentId, bundleName, onComplete }
   }
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl border border-slate-700/50 overflow-hidden">
+    <div className="bg-dark-800/50 backdrop-blur-xl rounded-xl border border-dark-700/50 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-br from-blue-900/50 to-slate-800/50 border-b border-slate-700/50 p-6">
+      <div className="bg-gradient-to-br from-evergreen-900/50 to-dark-800/50 border-b border-dark-700/50 p-6">
         <h3 className="text-xl font-bold text-white mb-2">
           Policy Acknowledgment
         </h3>
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-dark-400">
           Please confirm that you have read and understood the policy above
         </p>
       </div>
@@ -94,14 +94,14 @@ export default function AttestationForm({ assignmentId, bundleName, onComplete }
                 type="checkbox"
                 checked={agreed}
                 onChange={(e) => setAgreed(e.target.checked)}
-                className="h-5 w-5 rounded border-slate-600 bg-slate-900 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                className="h-5 w-5 rounded border-dark-600 bg-dark-900 text-copper-600 focus:ring-2 focus:ring-copper-500 focus:ring-offset-0 cursor-pointer"
               />
             </div>
             <div className="flex-1">
-              <span className="text-base text-white font-medium group-hover:text-blue-400 transition-colors">
+              <span className="text-base text-white font-medium group-hover:text-copper-400 transition-colors">
                 I acknowledge that I have read, understood, and agree to comply with the policies in &quot;{bundleName}&quot;
               </span>
-              <p className="text-sm text-slate-400 mt-1">
+              <p className="text-sm text-dark-400 mt-1">
                 By checking this box, you confirm that you have carefully reviewed all policies and understand your responsibilities.
               </p>
             </div>
@@ -115,7 +115,7 @@ export default function AttestationForm({ assignmentId, bundleName, onComplete }
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <PencilIcon className="h-5 w-5 text-slate-500" />
+              <PencilIcon className="h-5 w-5 text-dark-500" />
             </div>
             <input
               type="text"
@@ -123,25 +123,25 @@ export default function AttestationForm({ assignmentId, bundleName, onComplete }
               value={signature}
               onChange={(e) => setSignature(e.target.value)}
               placeholder="Enter your full name"
-              className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
+              className="w-full pl-12 pr-4 py-3 bg-dark-900/50 border border-dark-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-copper-500 focus:border-transparent transition-shadow"
               disabled={submitting}
             />
           </div>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-2 text-sm text-dark-400">
             Type your full name as it appears in your employment records. This serves as your electronic signature.
           </p>
         </div>
 
         {/* Legal Notice */}
-        <div className="mb-6 bg-slate-900/50 border border-slate-700/50 rounded-lg p-4">
-          <p className="text-xs text-slate-400 leading-relaxed">
-            <strong className="text-slate-300">Legal Notice:</strong> By submitting this attestation, you acknowledge that your electronic signature is legally binding and equivalent to a handwritten signature. This acknowledgment will be recorded with a timestamp and may be used for compliance and audit purposes.
+        <div className="mb-6 bg-dark-900/50 border border-dark-700/50 rounded-lg p-4">
+          <p className="text-xs text-dark-400 leading-relaxed">
+            <strong className="text-dark-300">Legal Notice:</strong> By submitting this attestation, you acknowledge that your electronic signature is legally binding and equivalent to a handwritten signature. This acknowledgment will be recorded with a timestamp and may be used for compliance and audit purposes.
           </p>
         </div>
 
         {/* Submit Button */}
         <div className="flex items-center justify-between gap-4">
-          <div className="text-sm text-slate-400">
+          <div className="text-sm text-dark-400">
             <span className="text-red-400">*</span> Required field
           </div>
           <button
@@ -149,8 +149,8 @@ export default function AttestationForm({ assignmentId, bundleName, onComplete }
             disabled={submitting || !agreed || !signature.trim()}
             className={`px-8 py-4 rounded-lg font-semibold text-white transition-all ${
               submitting || !agreed || !signature.trim()
-                ? 'bg-slate-700 cursor-not-allowed text-slate-500'
-                : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-lg hover:shadow-blue-600/20 hover:scale-[1.02]'
+                ? 'bg-dark-700 cursor-not-allowed text-dark-500'
+                : 'bg-gradient-to-r from-copper-600 to-copper-700 hover:shadow-lg hover:shadow-copper-600/20 hover:scale-[1.02]'
             }`}
           >
             {submitting ? (
@@ -168,8 +168,8 @@ export default function AttestationForm({ assignmentId, bundleName, onComplete }
         </div>
 
         {/* Info Footer */}
-        <div className="mt-6 pt-6 border-t border-slate-700/50">
-          <p className="text-xs text-slate-500 text-center">
+        <div className="mt-6 pt-6 border-t border-dark-700/50">
+          <p className="text-xs text-dark-500 text-center">
             After submission, you will receive confirmation and this acknowledgment will be recorded in your employee file.
           </p>
         </div>

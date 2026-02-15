@@ -1,34 +1,43 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Serif_Display, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { MixpanelProvider } from "@/components/MixpanelProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSerif = DM_Serif_Display({
+  weight: "400",
   subsets: ["latin"],
+  variable: "--font-dm-serif",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSans = DM_Sans({
   subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "HIPAA Policy Library | One Guy Consulting",
-  description: "Production-ready HIPAA compliance policies for Covered Entities and Business Associates. 100% Security Rule coverage. 39 CE policies and 23 BA policies - ready to customize.",
-  keywords: ["HIPAA", "compliance", "policies", "healthcare", "security", "privacy", "covered entity", "business associate"],
+  title: "HIPAA Compliance Portal | One Guy Consulting",
+  description: "HIPAA compliance portal for healthcare organizations. Manage policies, audits, risk assessments, incidents, and remediation plans.",
+  keywords: ["HIPAA", "compliance", "portal", "healthcare", "security", "privacy", "audit", "risk assessment"],
   authors: [{ name: "One Guy Consulting" }],
   openGraph: {
-    title: "HIPAA Policy Library",
-    description: "39 CE policies and 23 BA policies - ready to customize",
+    title: "HIPAA Compliance Portal",
+    description: "Manage HIPAA compliance — policies, audits, risk assessments, and more",
     type: "website",
-    url: "https://hipaa-policy-library.oneGuyconsulting.com",
-    siteName: "HIPAA Policy Library",
+    url: "https://portal.oneguyconsulting.com",
+    siteName: "HIPAA Compliance Portal",
   },
   twitter: {
     card: "summary_large_image",
-    title: "HIPAA Policy Library",
-    description: "Production-ready HIPAA compliance policies for healthcare organizations",
+    title: "HIPAA Compliance Portal",
+    description: "HIPAA compliance portal for healthcare organizations",
   },
   robots: "index, follow",
   viewport: "width=device-width, initial-scale=1",
@@ -42,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <MixpanelProvider>
           {children}

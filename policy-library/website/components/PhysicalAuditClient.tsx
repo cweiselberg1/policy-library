@@ -191,26 +191,26 @@ export default function PhysicalAuditClient() {
     const recommendations = generateRecommendations(report.results);
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+      <div className="min-h-screen bg-gradient-to-br from-pearl-50 via-evergreen-50/30 to-pearl-100">
         <div className="mx-auto max-w-5xl px-6 py-12">
           {/* Header */}
           <div className="mb-8">
             <button
               onClick={() => setShowResults(false)}
-              className="mb-4 flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700"
+              className="mb-4 flex items-center gap-2 text-sm font-medium text-copper-600 hover:text-copper-700"
             >
               ← Back to Audit
             </button>
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">Audit Results</h1>
-                <p className="mt-2 text-slate-600">
+                <h1 className="text-3xl font-bold text-evergreen-950" style={{ fontFamily: 'var(--font-dm-serif)' }}>Audit Results</h1>
+                <p className="mt-2 text-[--text-muted]">
                   Completed on {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
               </div>
               <button
                 onClick={exportReport}
-                className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-blue-700"
+                className="flex items-center gap-2 rounded-lg bg-copper-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-copper-700"
               >
                 <DocumentArrowDownIcon className="h-5 w-5" />
                 Export Report
@@ -219,15 +219,15 @@ export default function PhysicalAuditClient() {
           </div>
 
           {/* Score Card */}
-          <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-lg">
+          <div className="mb-8 rounded-2xl border border-pearl-200 bg-white p-8 shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Overall Compliance Score</p>
-                <p className="mt-2 text-6xl font-bold text-slate-900">{score}%</p>
+                <p className="text-sm font-semibold uppercase tracking-wide text-[--text-muted]">Overall Compliance Score</p>
+                <p className="mt-2 text-6xl font-bold text-evergreen-950">{score}%</p>
               </div>
-              <div className={`flex h-32 w-32 items-center justify-center rounded-full ${score >= 80 ? 'bg-emerald-100' : score >= 60 ? 'bg-yellow-100' : 'bg-red-100'}`}>
+              <div className={`flex h-32 w-32 items-center justify-center rounded-full ${score >= 80 ? 'bg-evergreen-100' : score >= 60 ? 'bg-yellow-100' : 'bg-red-100'}`}>
                 {score >= 80 ? (
-                  <ShieldCheckIcon className="h-16 w-16 text-emerald-600" />
+                  <ShieldCheckIcon className="h-16 w-16 text-success" />
                 ) : (
                   <ExclamationTriangleIcon className="h-16 w-16 text-yellow-600" />
                 )}
@@ -235,24 +235,24 @@ export default function PhysicalAuditClient() {
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-4">
-              <div className="rounded-lg bg-emerald-50 p-4">
-                <p className="text-2xl font-bold text-emerald-700">{findings.compliant}</p>
-                <p className="text-sm text-emerald-600">Compliant</p>
+              <div className="rounded-lg bg-success-tint p-4">
+                <p className="text-2xl font-bold text-evergreen-700">{findings.compliant}</p>
+                <p className="text-sm text-success">Compliant</p>
               </div>
               <div className="rounded-lg bg-red-50 p-4">
                 <p className="text-2xl font-bold text-red-700">{findings.gaps}</p>
                 <p className="text-sm text-red-600">Gaps Identified</p>
               </div>
-              <div className="rounded-lg bg-slate-100 p-4">
-                <p className="text-2xl font-bold text-slate-700">{findings.notApplicable}</p>
-                <p className="text-sm text-slate-600">Not Applicable</p>
+              <div className="rounded-lg bg-pearl-100 p-4">
+                <p className="text-2xl font-bold text-[--text-secondary]">{findings.notApplicable}</p>
+                <p className="text-sm text-[--text-muted]">Not Applicable</p>
               </div>
             </div>
           </div>
 
           {/* Section Scores */}
-          <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-xl font-bold text-slate-900">Section Scores</h2>
+          <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-bold text-evergreen-950">Section Scores</h2>
             <div className="space-y-4">
               {AUDIT_SECTIONS.map((section) => {
                 const sectionScore = sectionScores[section.id] || 0;
@@ -260,14 +260,14 @@ export default function PhysicalAuditClient() {
                   <div key={section.id}>
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <p className="font-semibold text-slate-900">{section.title}</p>
-                        <p className="text-xs text-slate-500">{section.cfr}</p>
+                        <p className="font-semibold text-evergreen-950">{section.title}</p>
+                        <p className="text-xs text-[--text-muted]">{section.cfr}</p>
                       </div>
-                      <p className="text-lg font-bold text-slate-900">{Math.round(sectionScore)}%</p>
+                      <p className="text-lg font-bold text-evergreen-950">{Math.round(sectionScore)}%</p>
                     </div>
-                    <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-200">
+                    <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-pearl-200">
                       <div
-                        className={`h-full transition-all ${sectionScore >= 80 ? 'bg-emerald-500' : sectionScore >= 60 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                        className={`h-full transition-all ${sectionScore >= 80 ? 'bg-success-tint0' : sectionScore >= 60 ? 'bg-yellow-500' : 'bg-red-500'}`}
                         style={{ width: `${sectionScore}%` }}
                       />
                     </div>
@@ -279,9 +279,9 @@ export default function PhysicalAuditClient() {
 
           {/* Recommendations */}
           {recommendations.length > 0 && (
-            <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-              <h2 className="mb-4 text-xl font-bold text-slate-900">Recommendations</h2>
-              <p className="mb-6 text-sm text-slate-600">
+            <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
+              <h2 className="mb-4 text-xl font-bold text-evergreen-950">Recommendations</h2>
+              <p className="mb-6 text-sm text-[--text-muted]">
                 The following gaps were identified and require remediation to achieve full HIPAA compliance.
               </p>
 
@@ -289,7 +289,7 @@ export default function PhysicalAuditClient() {
                 {recommendations.map((rec, index) => (
                   <div
                     key={`${rec.sectionId}-${rec.questionId}`}
-                    className="rounded-lg border border-slate-200 bg-slate-50 p-4"
+                    className="rounded-lg border border-pearl-200 bg-pearl-50 p-4"
                   >
                     <div className="flex items-start gap-3">
                       <div className={`mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full ${rec.priority === 'high' ? 'bg-red-100 text-red-600' : 'bg-yellow-100 text-yellow-600'}`}>
@@ -300,13 +300,13 @@ export default function PhysicalAuditClient() {
                           <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${rec.priority === 'high' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
                             {rec.priority === 'high' ? 'Required' : 'Addressable'}
                           </span>
-                          <span className="text-xs text-slate-500">{rec.cfr}</span>
+                          <span className="text-xs text-[--text-muted]">{rec.cfr}</span>
                         </div>
-                        <p className="mb-2 text-sm font-semibold text-slate-900">{rec.sectionTitle}</p>
-                        <p className="mb-2 text-sm text-slate-700">
+                        <p className="mb-2 text-sm font-semibold text-evergreen-950">{rec.sectionTitle}</p>
+                        <p className="mb-2 text-sm text-[--text-secondary]">
                           <span className="font-medium">Gap:</span> {rec.question}
                         </p>
-                        <p className="text-sm text-slate-600">
+                        <p className="text-sm text-[--text-muted]">
                           <span className="font-medium">Recommendation:</span> {rec.recommendation}
                         </p>
                       </div>
@@ -318,24 +318,24 @@ export default function PhysicalAuditClient() {
           )}
 
           {/* Detailed Responses */}
-          <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-            <h2 className="mb-4 text-xl font-bold text-slate-900">Detailed Responses</h2>
+          <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-bold text-evergreen-950">Detailed Responses</h2>
             <div className="space-y-4">
               {AUDIT_SECTIONS.map((section) => {
                 const result = report.results.find((r) => r.sectionId === section.id);
                 if (!result) return null;
 
                 return (
-                  <div key={section.id} className="border-b border-slate-200 pb-4 last:border-b-0">
+                  <div key={section.id} className="border-b border-pearl-200 pb-4 last:border-b-0">
                     <button
                       onClick={() => toggleSection(section.id)}
                       className="flex w-full items-center justify-between py-2 text-left"
                     >
-                      <h3 className="font-semibold text-slate-900">{section.title}</h3>
+                      <h3 className="font-semibold text-evergreen-950">{section.title}</h3>
                       {expandedSections[section.id] ? (
-                        <ChevronDownIcon className="h-5 w-5 text-slate-400" />
+                        <ChevronDownIcon className="h-5 w-5 text-[--text-muted]" />
                       ) : (
-                        <ChevronRightIcon className="h-5 w-5 text-slate-400" />
+                        <ChevronRightIcon className="h-5 w-5 text-[--text-muted]" />
                       )}
                     </button>
 
@@ -347,13 +347,13 @@ export default function PhysicalAuditClient() {
 
                           return (
                             <div key={response.questionId} className="flex items-start gap-3 text-sm">
-                              {response.answer === 'yes' && <CheckCircleIcon className="h-5 w-5 flex-shrink-0 text-emerald-600" />}
+                              {response.answer === 'yes' && <CheckCircleIcon className="h-5 w-5 flex-shrink-0 text-success" />}
                               {response.answer === 'no' && <XCircleIcon className="h-5 w-5 flex-shrink-0 text-red-600" />}
-                              {response.answer === 'na' && <MinusCircleIcon className="h-5 w-5 flex-shrink-0 text-slate-400" />}
+                              {response.answer === 'na' && <MinusCircleIcon className="h-5 w-5 flex-shrink-0 text-[--text-muted]" />}
                               <div className="flex-1">
-                                <p className="text-slate-900">{question.text}</p>
+                                <p className="text-evergreen-950">{question.text}</p>
                                 {response.notes && (
-                                  <p className="mt-1 text-xs italic text-slate-600">Note: {response.notes}</p>
+                                  <p className="mt-1 text-xs italic text-[--text-muted]">Note: {response.notes}</p>
                                 )}
                               </div>
                             </div>
@@ -371,7 +371,7 @@ export default function PhysicalAuditClient() {
           <div className="flex gap-4">
             <button
               onClick={() => setShowResults(false)}
-              className="flex-1 rounded-lg border-2 border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-50"
+              className="flex-1 rounded-lg border-2 border-pearl-300 bg-white px-6 py-3 font-semibold text-evergreen-950 hover:bg-pearl-50"
             >
               Continue Audit
             </button>
@@ -388,29 +388,29 @@ export default function PhysicalAuditClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-pearl-50 via-evergreen-50/30 to-pearl-100">
       <div className="mx-auto max-w-7xl px-6 py-12">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-slate-900">HIPAA Physical Safeguards Audit</h1>
-          <p className="mt-3 text-lg text-slate-600">
+          <h1 className="text-4xl font-bold text-evergreen-950" style={{ fontFamily: 'var(--font-dm-serif)' }}>HIPAA Physical Safeguards Audit</h1>
+          <p className="mt-3 text-lg text-[--text-muted]">
             Assess your organization's compliance with HIPAA §164.310 Physical Safeguards
           </p>
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 shadow-md">
+        <div className="mb-8 rounded-xl border border-pearl-200 bg-white p-6 shadow-md">
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-sm font-semibold text-slate-700">Overall Progress</p>
-            <p className="text-sm font-bold text-blue-600">{Math.round(getTotalProgress())}%</p>
+            <p className="text-sm font-semibold text-[--text-secondary]">Overall Progress</p>
+            <p className="text-sm font-bold text-copper-600">{Math.round(getTotalProgress())}%</p>
           </div>
-          <div className="h-3 w-full overflow-hidden rounded-full bg-slate-200">
+          <div className="h-3 w-full overflow-hidden rounded-full bg-pearl-200">
             <div
-              className="h-full bg-gradient-to-r from-blue-600 to-cyan-600 transition-all duration-500"
+              className="h-full bg-gradient-to-r from-copper-600 to-copper-500 transition-all duration-500"
               style={{ width: `${getTotalProgress()}%` }}
             />
           </div>
-          <p className="mt-2 text-xs text-slate-500">
+          <p className="mt-2 text-xs text-[--text-muted]">
             {Object.keys(responses).length} of {AUDIT_SECTIONS.reduce((sum, s) => sum + s.questions.length, 0)} questions answered
           </p>
         </div>
@@ -418,8 +418,8 @@ export default function PhysicalAuditClient() {
         <div className="grid gap-8 lg:grid-cols-[300px,1fr]">
           {/* Sidebar Navigation */}
           <div className="space-y-4">
-            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-md">
-              <h2 className="mb-4 text-sm font-bold uppercase tracking-wide text-slate-500">Sections</h2>
+            <div className="rounded-xl border border-pearl-200 bg-white p-4 shadow-md">
+              <h2 className="mb-4 text-sm font-bold uppercase tracking-wide text-[--text-muted]">Sections</h2>
               <nav className="space-y-2">
                 {AUDIT_SECTIONS.map((section, index) => {
                   const progress = getSectionProgress(section);
@@ -430,22 +430,22 @@ export default function PhysicalAuditClient() {
                       onClick={() => goToSection(index)}
                       className={`w-full rounded-lg p-3 text-left transition-all ${
                         isActive
-                          ? 'bg-blue-50 ring-2 ring-blue-600'
-                          : 'bg-slate-50 hover:bg-slate-100'
+                          ? 'bg-copper-50 ring-2 ring-copper-600'
+                          : 'bg-pearl-50 hover:bg-pearl-100'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <p className={`text-sm font-semibold ${isActive ? 'text-blue-900' : 'text-slate-900'}`}>
+                        <p className={`text-sm font-semibold ${isActive ? 'text-copper-900' : 'text-evergreen-950'}`}>
                           {section.title}
                         </p>
-                        <span className={`text-xs font-bold ${isActive ? 'text-blue-600' : 'text-slate-500'}`}>
+                        <span className={`text-xs font-bold ${isActive ? 'text-copper-600' : 'text-[--text-muted]'}`}>
                           {Math.round(progress)}%
                         </span>
                       </div>
-                      <p className="mt-1 text-xs text-slate-500">{section.cfr}</p>
-                      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
+                      <p className="mt-1 text-xs text-[--text-muted]">{section.cfr}</p>
+                      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-pearl-200">
                         <div
-                          className={`h-full transition-all ${isActive ? 'bg-blue-600' : 'bg-slate-400'}`}
+                          className={`h-full transition-all ${isActive ? 'bg-copper-600' : 'bg-pearl-400'}`}
                           style={{ width: `${progress}%` }}
                         />
                       </div>
@@ -458,14 +458,14 @@ export default function PhysicalAuditClient() {
                 {getTotalProgress() === 100 && (
                   <button
                     onClick={completeAudit}
-                    className="w-full rounded-lg bg-gradient-to-r from-emerald-600 to-green-600 px-4 py-3 text-sm font-semibold text-white shadow-md hover:shadow-lg"
+                    className="w-full rounded-lg bg-gradient-to-r from-copper-600 to-copper-500 px-4 py-3 text-sm font-semibold text-white shadow-md hover:shadow-lg"
                   >
                     Complete Audit
                   </button>
                 )}
                 <button
                   onClick={resetAudit}
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  className="w-full rounded-lg border border-pearl-300 bg-white px-4 py-2 text-sm font-semibold text-[--text-secondary] hover:bg-pearl-50"
                 >
                   Reset Progress
                 </button>
@@ -473,8 +473,8 @@ export default function PhysicalAuditClient() {
             </div>
 
             {/* Save Indicator */}
-            <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
-              <div className="flex items-center gap-2 text-xs text-slate-600">
+            <div className="rounded-lg border border-pearl-200 bg-white p-3 shadow-sm">
+              <div className="flex items-center gap-2 text-xs text-[--text-muted]">
                 <ClockIcon className="h-4 w-4" />
                 <span>Progress auto-saved</span>
               </div>
@@ -482,16 +482,16 @@ export default function PhysicalAuditClient() {
           </div>
 
           {/* Main Content */}
-          <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-md">
+          <div className="rounded-xl border border-pearl-200 bg-white p-8 shadow-md">
             {/* Section Header */}
-            <div className="mb-8 border-b border-slate-200 pb-6">
-              <div className="mb-2 flex items-center gap-2 text-sm text-slate-500">
+            <div className="mb-8 border-b border-pearl-200 pb-6">
+              <div className="mb-2 flex items-center gap-2 text-sm text-[--text-muted]">
                 <span>Section {currentSectionIndex + 1} of {AUDIT_SECTIONS.length}</span>
                 <span>•</span>
                 <span>{currentSection.cfr}</span>
               </div>
-              <h2 className="text-3xl font-bold text-slate-900">{currentSection.title}</h2>
-              <p className="mt-3 text-slate-600">{currentSection.description}</p>
+              <h2 className="text-3xl font-bold text-evergreen-950">{currentSection.title}</h2>
+              <p className="mt-3 text-[--text-muted]">{currentSection.description}</p>
             </div>
 
             {/* Questions */}
@@ -499,11 +499,11 @@ export default function PhysicalAuditClient() {
               {currentSection.questions.map((question, index) => {
                 const response = responses[question.id];
                 return (
-                  <div key={question.id} className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+                  <div key={question.id} className="rounded-lg border border-pearl-200 bg-pearl-50 p-6">
                     <div className="mb-4 flex items-start justify-between">
                       <div className="flex-1">
                         <div className="mb-2 flex items-center gap-2">
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-xs font-bold text-slate-700">
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-pearl-200 text-xs font-bold text-[--text-secondary]">
                             {index + 1}
                           </span>
                           {question.required && (
@@ -511,10 +511,10 @@ export default function PhysicalAuditClient() {
                               Required
                             </span>
                           )}
-                          <span className="text-xs text-slate-500">{question.cfr}</span>
+                          <span className="text-xs text-[--text-muted]">{question.cfr}</span>
                         </div>
-                        <p className="text-lg font-semibold text-slate-900">{question.text}</p>
-                        <p className="mt-2 text-sm text-slate-600">{question.guidance}</p>
+                        <p className="text-lg font-semibold text-evergreen-950">{question.text}</p>
+                        <p className="mt-2 text-sm text-[--text-muted]">{question.guidance}</p>
                       </div>
                     </div>
 
@@ -524,8 +524,8 @@ export default function PhysicalAuditClient() {
                         onClick={() => handleAnswer(question.id, 'yes')}
                         className={`flex flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 font-semibold transition-all ${
                           response?.answer === 'yes'
-                            ? 'border-emerald-600 bg-emerald-50 text-emerald-700'
-                            : 'border-slate-300 bg-white text-slate-700 hover:border-emerald-400'
+                            ? 'border-evergreen-600 bg-success-tint text-evergreen-700'
+                            : 'border-pearl-300 bg-white text-[--text-secondary] hover:border-emerald-400'
                         }`}
                       >
                         <CheckCircleIcon className="h-5 w-5" />
@@ -536,7 +536,7 @@ export default function PhysicalAuditClient() {
                         className={`flex flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 font-semibold transition-all ${
                           response?.answer === 'no'
                             ? 'border-red-600 bg-red-50 text-red-700'
-                            : 'border-slate-300 bg-white text-slate-700 hover:border-red-400'
+                            : 'border-pearl-300 bg-white text-[--text-secondary] hover:border-red-400'
                         }`}
                       >
                         <XCircleIcon className="h-5 w-5" />
@@ -546,8 +546,8 @@ export default function PhysicalAuditClient() {
                         onClick={() => handleAnswer(question.id, 'na')}
                         className={`flex flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 font-semibold transition-all ${
                           response?.answer === 'na'
-                            ? 'border-slate-600 bg-slate-100 text-slate-700'
-                            : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400'
+                            ? 'border-pearl-600 bg-pearl-100 text-[--text-secondary]'
+                            : 'border-pearl-300 bg-white text-[--text-secondary] hover:border-pearl-400'
                         }`}
                       >
                         <MinusCircleIcon className="h-5 w-5" />
@@ -557,7 +557,7 @@ export default function PhysicalAuditClient() {
 
                     {/* Notes */}
                     <div>
-                      <label htmlFor={`notes-${question.id}`} className="mb-1 block text-sm font-medium text-slate-700">
+                      <label htmlFor={`notes-${question.id}`} className="mb-1 block text-sm font-medium text-[--text-secondary]">
                         Notes (optional)
                       </label>
                       <textarea
@@ -565,7 +565,7 @@ export default function PhysicalAuditClient() {
                         value={notes[question.id] || ''}
                         onChange={(e) => handleNoteChange(question.id, e.target.value)}
                         placeholder="Add any relevant notes or context..."
-                        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                        className="w-full rounded-lg border border-pearl-300 bg-white px-3 py-2 text-sm text-evergreen-950 placeholder-pearl-400 focus:border-copper-500 focus:outline-none focus:ring-2 focus:ring-copper-500/20"
                         rows={2}
                       />
                     </div>
@@ -575,11 +575,11 @@ export default function PhysicalAuditClient() {
             </div>
 
             {/* Navigation */}
-            <div className="mt-8 flex items-center justify-between border-t border-slate-200 pt-6">
+            <div className="mt-8 flex items-center justify-between border-t border-pearl-200 pt-6">
               <button
                 onClick={goToPreviousSection}
                 disabled={currentSectionIndex === 0}
-                className="rounded-lg border-2 border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                className="rounded-lg border-2 border-pearl-300 bg-white px-6 py-3 font-semibold text-evergreen-950 hover:bg-pearl-50 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Previous
               </button>
@@ -588,14 +588,14 @@ export default function PhysicalAuditClient() {
                 <button
                   onClick={completeAudit}
                   disabled={getTotalProgress() < 100}
-                  className="rounded-lg bg-gradient-to-r from-emerald-600 to-green-600 px-6 py-3 font-semibold text-white shadow-md hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-lg bg-gradient-to-r from-copper-600 to-copper-500 px-6 py-3 font-semibold text-white shadow-md hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Complete Audit
                 </button>
               ) : (
                 <button
                   onClick={goToNextSection}
-                  className="rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 font-semibold text-white shadow-md hover:shadow-lg"
+                  className="rounded-lg bg-gradient-to-r from-copper-600 to-copper-500 px-6 py-3 font-semibold text-white shadow-md hover:shadow-lg"
                 >
                   Next Section
                 </button>

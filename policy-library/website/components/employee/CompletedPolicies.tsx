@@ -32,7 +32,7 @@ export default function CompletedPolicies({ assignments }: CompletedPoliciesProp
         {assignments.slice(0, displayCount).map((assignment) => (
           <div
             key={assignment.id}
-            className="bg-slate-800/50 backdrop-blur-xl rounded-xl border border-emerald-500/20 p-6"
+            className="bg-dark-800/50 backdrop-blur-xl rounded-xl border border-emerald-500/20 p-6"
           >
             <div className="flex items-start gap-4">
               {/* Icon */}
@@ -45,7 +45,7 @@ export default function CompletedPolicies({ assignments }: CompletedPoliciesProp
                 <h3 className="text-lg font-semibold text-white mb-2">
                   {assignment.bundle_name}
                 </h3>
-                <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mb-3">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-dark-400 mb-3">
                   <div className="flex items-center gap-1">
                     <DocumentTextIcon className="h-4 w-4" />
                     <span>{assignment.policy_count} {assignment.policy_count === 1 ? 'policy' : 'policies'}</span>
@@ -66,11 +66,11 @@ export default function CompletedPolicies({ assignments }: CompletedPoliciesProp
                 <div className="flex flex-wrap items-center gap-3">
                   <Link
                     href={`/dashboard/employee/policies/view?id=${assignment.policy_bundle_id}`}
-                    className="text-sm text-blue-400 hover:text-blue-300 font-medium"
+                    className="text-sm text-copper-400 hover:text-copper-300 font-medium"
                   >
                     View Policy
                   </Link>
-                  <span className="text-slate-600">•</span>
+                  <span className="text-dark-600">•</span>
                   <CertificateDownload assignmentId={assignment.id} bundleName={assignment.bundle_name} />
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function CompletedPolicies({ assignments }: CompletedPoliciesProp
       {hasMore && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-6 w-full py-3 border border-slate-700 rounded-lg text-slate-300 font-medium hover:bg-slate-800 hover:border-slate-600 transition-colors"
+          className="mt-6 w-full py-3 border border-dark-700 rounded-lg text-dark-300 font-medium hover:bg-dark-800 hover:border-dark-600 transition-colors"
         >
           {expanded ? 'Show Less' : `Show All ${assignments.length} Completed Policies`}
         </button>

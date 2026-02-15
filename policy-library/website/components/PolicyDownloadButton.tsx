@@ -18,7 +18,7 @@ export function PolicyDownloadButton({ policy, content, variant = 'secondary', c
     return (
       <button
         onClick={handleDownload}
-        className={`p-2 text-gray-600 hover:text-blue-600 transition-colors ${className}`}
+        className={`p-2 text-gray-600 hover:text-copper-600 transition-colors ${className}`}
         title="Download policy"
         aria-label="Download policy"
       >
@@ -30,7 +30,7 @@ export function PolicyDownloadButton({ policy, content, variant = 'secondary', c
   }
 
   const baseClasses = variant === 'primary'
-    ? 'bg-blue-600 text-white hover:bg-blue-700'
+    ? 'bg-copper-600 text-white hover:bg-copper-700'
     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50';
 
   return (

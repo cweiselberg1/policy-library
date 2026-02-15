@@ -123,8 +123,8 @@ export default function PoliciesListContent() {
     return (
       <div className="flex items-center justify-center py-32">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-          <p className="mt-4 text-slate-400">Loading policies...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-copper-500 mx-auto"></div>
+          <p className="mt-4 text-dark-400">Loading policies...</p>
         </div>
       </div>
     );
@@ -133,11 +133,11 @@ export default function PoliciesListContent() {
   if (error) {
     return (
       <div className="flex items-center justify-center py-32">
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-8 max-w-md">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-lg p-8 max-w-md">
           <p className="text-red-400 mb-4">{error}</p>
           <button
             onClick={fetchAssignments}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="w-full px-4 py-2 bg-copper-600 text-white rounded-lg hover:bg-copper-700 transition-colors"
           >
             Try Again
           </button>
@@ -151,13 +151,13 @@ export default function PoliciesListContent() {
       {/* Page Header */}
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-white">My Policies</h1>
-        <p className="mt-1 text-slate-400">All assigned policy bundles</p>
+        <p className="mt-1 text-dark-400">All assigned policy bundles</p>
       </div>
 
       {/* Filters */}
-      <div className="mb-8 bg-slate-800/50 backdrop-blur-xl rounded-xl border border-slate-700/50 p-6">
+      <div className="mb-8 bg-dark-800/50 backdrop-blur-xl rounded-xl border border-dark-700/50 p-6">
         <div className="flex items-center gap-3 mb-4">
-          <FunnelIcon className="h-5 w-5 text-slate-400" />
+          <FunnelIcon className="h-5 w-5 text-dark-400" />
           <h2 className="text-lg font-semibold text-white">Filter Policies</h2>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -165,8 +165,8 @@ export default function PoliciesListContent() {
             onClick={() => setFilter('all')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'all'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                ? 'bg-copper-600 text-white'
+                : 'bg-dark-700 text-dark-300 hover:bg-dark-600'
             }`}
           >
             All ({assignments.length})
@@ -175,8 +175,8 @@ export default function PoliciesListContent() {
             onClick={() => setFilter('pending')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'pending'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                ? 'bg-copper-600 text-white'
+                : 'bg-dark-700 text-dark-300 hover:bg-dark-600'
             }`}
           >
             Pending ({assignments.filter(a => a.status === 'assigned' || a.status === 'acknowledged').length})
@@ -185,8 +185,8 @@ export default function PoliciesListContent() {
             onClick={() => setFilter('overdue')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'overdue'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                ? 'bg-copper-600 text-white'
+                : 'bg-dark-700 text-dark-300 hover:bg-dark-600'
             }`}
           >
             Overdue ({assignments.filter(a => a.is_overdue && a.status !== 'completed').length})
@@ -195,8 +195,8 @@ export default function PoliciesListContent() {
             onClick={() => setFilter('completed')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               filter === 'completed'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                ? 'bg-copper-600 text-white'
+                : 'bg-dark-700 text-dark-300 hover:bg-dark-600'
             }`}
           >
             Completed ({assignments.filter(a => a.status === 'completed').length})
@@ -210,7 +210,7 @@ export default function PoliciesListContent() {
           {filteredAssignments.map((assignment) => (
             <div
               key={assignment.id}
-              className="bg-slate-800/50 backdrop-blur-xl rounded-xl border border-slate-700/50 hover:border-blue-500/30 hover:shadow-lg transition-all"
+              className="bg-dark-800/50 backdrop-blur-xl rounded-xl border border-dark-700/50 hover:border-copper-500/30 hover:shadow-lg transition-all"
             >
               <Link
                 href={`/dashboard/employee/policies/view?id=${assignment.policy_bundle_id}`}
@@ -222,14 +222,14 @@ export default function PoliciesListContent() {
                       ? 'bg-emerald-500/10'
                       : assignment.is_overdue
                       ? 'bg-red-500/10'
-                      : 'bg-blue-500/10'
+                      : 'bg-copper-500/10'
                   }`}>
                     {assignment.status === 'completed' ? (
                       <CheckCircleIconSolid className="h-8 w-8 text-emerald-400" />
                     ) : assignment.is_overdue ? (
                       <ExclamationTriangleIcon className="h-8 w-8 text-red-400" />
                     ) : (
-                      <DocumentTextIcon className="h-8 w-8 text-blue-400" />
+                      <DocumentTextIcon className="h-8 w-8 text-copper-400" />
                     )}
                   </div>
 
@@ -240,7 +240,7 @@ export default function PoliciesListContent() {
                           {assignment.bundle_name}
                         </h3>
                         {assignment.bundle_description && (
-                          <p className="text-sm text-slate-400 mb-3">
+                          <p className="text-sm text-dark-400 mb-3">
                             {assignment.bundle_description}
                           </p>
                         )}
@@ -248,7 +248,7 @@ export default function PoliciesListContent() {
                       {getStatusBadge(assignment)}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400">
+                    <div className="flex flex-wrap items-center gap-6 text-sm text-dark-400">
                       <div className="flex items-center gap-2">
                         <DocumentTextIcon className="h-4 w-4" />
                         <span>{assignment.policy_count} {assignment.policy_count === 1 ? 'policy' : 'policies'}</span>
@@ -289,7 +289,7 @@ export default function PoliciesListContent() {
                   </div>
 
                   <div className="flex items-center">
-                    <span className="text-blue-400 font-medium">View →</span>
+                    <span className="text-copper-400 font-medium">View →</span>
                   </div>
                 </div>
               </Link>
@@ -297,12 +297,12 @@ export default function PoliciesListContent() {
           ))}
         </div>
       ) : (
-        <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl border border-slate-700/50 p-12 text-center">
-          <DocumentTextIcon className="h-16 w-16 text-slate-600 mx-auto mb-4" />
+        <div className="bg-dark-800/50 backdrop-blur-xl rounded-xl border border-dark-700/50 p-12 text-center">
+          <DocumentTextIcon className="h-16 w-16 text-dark-600 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-white mb-2">
             No policies found
           </h3>
-          <p className="text-slate-400 mb-6">
+          <p className="text-dark-400 mb-6">
             {filter === 'all'
               ? 'You have no assigned policies at this time.'
               : `You have no ${filter} policies.`}
@@ -310,7 +310,7 @@ export default function PoliciesListContent() {
           {filter !== 'all' && (
             <button
               onClick={() => setFilter('all')}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="px-6 py-3 bg-copper-600 text-white rounded-lg hover:bg-copper-700 transition-colors font-medium"
             >
               View All Policies
             </button>

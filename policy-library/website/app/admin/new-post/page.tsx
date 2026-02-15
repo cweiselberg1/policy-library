@@ -138,7 +138,7 @@ ${formData.content}`;
                 required
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent"
                 placeholder="e.g., Complete HIPAA Compliance Guide 2026"
               />
             </div>
@@ -156,7 +156,7 @@ ${formData.content}`;
                 onChange={handleChange}
                 rows={3}
                 maxLength={160}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent"
                 placeholder="A brief description for search engines and social media..."
               />
               <p className="text-sm text-gray-500 mt-1">
@@ -175,7 +175,7 @@ ${formData.content}`;
                 name="keywords"
                 value={formData.keywords}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent"
                 placeholder="HIPAA, compliance, healthcare, security"
               />
             </div>
@@ -190,7 +190,7 @@ ${formData.content}`;
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent"
               >
                 <option>HIPAA Fundamentals</option>
                 <option>Security Rule</option>
@@ -210,7 +210,7 @@ ${formData.content}`;
                 name="featured"
                 checked={formData.featured}
                 onChange={handleChange}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 text-copper-600 focus:ring-copper-500 border-gray-300 rounded"
               />
               <label htmlFor="featured" className="ml-2 block text-sm text-gray-700">
                 Featured post (show on homepage)
@@ -229,7 +229,7 @@ ${formData.content}`;
                 value={formData.content}
                 onChange={handleChange}
                 rows={20}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-copper-500 focus:border-transparent font-mono text-sm"
                 placeholder="# Your Blog Post Title
 
 ## Introduction
@@ -251,7 +251,7 @@ More content...
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="flex-1 bg-copper-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-copper-700 focus:outline-none focus:ring-2 focus:ring-copper-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {isSubmitting ? 'Downloading...' : 'Download Blog Post'}
               </button>
@@ -267,9 +267,9 @@ More content...
         </div>
 
         {/* Quick Reference */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-blue-900 mb-3">Markdown Quick Reference</h2>
-          <div className="grid grid-cols-2 gap-4 text-sm text-blue-800">
+        <div className="mt-8 bg-copper-50 border border-copper-200 rounded-lg p-6">
+          <h2 className="text-lg font-semibold text-copper-900 mb-3">Markdown Quick Reference</h2>
+          <div className="grid grid-cols-2 gap-4 text-sm text-copper-800">
             <div>
               <code># Heading 1</code>
               <br />

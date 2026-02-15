@@ -28,25 +28,34 @@ export default function PolicyReviewPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchPolicies();
+    loadPoliciesAndProgress();
   }, []);
 
-  const fetchPolicies = async () => {
+  const loadPoliciesAndProgress = async () => {
     try {
-      const response = await fetch('/api/training/policies');
-
-      if (response.status === 401) {
-        router.push('/login');
-        return;
-      }
-
+      // Load policies from static JSON file
+      const response = await fetch('/policy-index.json');
       if (!response.ok) {
-        throw new Error('Failed to fetch policies');
+        throw new Error('Failed to load policies');
       }
 
       const data = await response.json();
-      setPolicies(data.policies || []);
-      setAcknowledgedPolicies(new Set(data.acknowledged || []));
+      const allPolicies = (data.policies || []).map((policy: any) => ({
+        id: policy.id,
+        title: policy.title,
+        category: policy.category,
+        description: policy.description || 'No description available',
+        required: true, // Mark all as required for training
+      }));
+
+      setPolicies(allPolicies);
+
+      // Load acknowledged policies from localStorage
+      const saved = localStorage.getItem('hipaa-training-progress');
+      if (saved) {
+        const progress = JSON.parse(saved);
+        setAcknowledgedPolicies(new Set(progress.policies_completed || []));
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load policies');
     } finally {
@@ -66,27 +75,20 @@ export default function PolicyReviewPage() {
     });
   };
 
-  const handleSaveAndExit = async () => {
+  const handleSaveAndExit = () => {
     setSaving(true);
     setError('');
 
     try {
-      // Save progress without marking module complete
-      const response = await fetch('/api/training/progress', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          policies_completed: Array.from(acknowledgedPolicies),
-          modules_completed: [],
-          current_step: 'policies',
-          percentage: 0,
-        }),
-      });
+      // Save progress to localStorage without marking module complete
+      const progressData = {
+        policies_completed: Array.from(acknowledgedPolicies),
+        modules_completed: [],
+        current_step: 'policies',
+        percentage: 0,
+      };
 
-      if (!response.ok) {
-        throw new Error('Failed to save progress');
-      }
-
+      localStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
       router.push('/training');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save progress');
@@ -95,26 +97,20 @@ export default function PolicyReviewPage() {
     }
   };
 
-  const handleContinue = async () => {
+  const handleContinue = () => {
     setSaving(true);
     setError('');
 
     try {
-      const response = await fetch('/api/training/progress', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          policies_completed: Array.from(acknowledgedPolicies),
-          modules_completed: ['policies'],
-          current_step: 'hipaa-101',
-          percentage: 33,
-        }),
-      });
+      // Save progress to localStorage and mark module complete
+      const progressData = {
+        policies_completed: Array.from(acknowledgedPolicies),
+        modules_completed: ['policies'],
+        current_step: 'hipaa-101',
+        percentage: 33,
+      };
 
-      if (!response.ok) {
-        throw new Error('Failed to save progress');
-      }
-
+      localStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
       router.push('/training/hipaa-101');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save progress');
@@ -136,33 +132,33 @@ export default function PolicyReviewPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-pearl-50 via-evergreen-50/30 to-sand-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-slate-600">Loading policies...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-evergreen-700 mx-auto"></div>
+          <p className="mt-4 text-[--text-muted]">Loading policies...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-pearl-50 via-evergreen-50/30 to-sand-50">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40">
+      <header className="bg-white border-b border-pearl-200 shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-evergreen-700 to-evergreen-600 shadow-lg">
                 <BookOpenIcon className="h-7 w-7 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">Policy Review</h1>
-                <p className="mt-1 text-slate-600">Review and acknowledge all required policies</p>
+                <h1 className="text-3xl font-bold text-evergreen-950" style={{ fontFamily: 'var(--font-dm-serif)' }}>Policy Review</h1>
+                <p className="mt-1 text-[--text-muted]">Review and acknowledge all required policies</p>
               </div>
             </div>
             <Link
               href="/training"
-              className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
+              className="text-sm text-copper-600 hover:text-copper-700 font-medium transition-colors"
             >
               ← Back to Dashboard
             </Link>
@@ -175,16 +171,16 @@ export default function PolicyReviewPage() {
           {/* Main Content */}
           <div>
             {/* Progress Bar */}
-            <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-8">
+            <div className="bg-white rounded-lg shadow-sm border border-pearl-200 p-6 mb-8">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-slate-700">Progress</span>
-                <span className="text-sm font-medium text-slate-700">
+                <span className="text-sm font-medium text-[--text-secondary]">Progress</span>
+                <span className="text-sm font-medium text-[--text-secondary]">
                   {acknowledgedPolicies.size} / {requiredPolicies.length} Required
                 </span>
               </div>
-              <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div className="h-2 bg-pearl-100 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-blue-600 to-cyan-600 transition-all duration-300"
+                  className="h-full bg-gradient-to-r from-copper-600 to-copper-500 transition-all duration-300"
                   style={{
                     width: `${(acknowledgedPolicies.size / requiredPolicies.length) * 100}%`,
                   }}
@@ -212,7 +208,7 @@ export default function PolicyReviewPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="sticky bottom-6 bg-white rounded-2xl border-2 border-slate-200 p-6 shadow-2xl">
+            <div className="sticky bottom-6 bg-white rounded-2xl border-2 border-pearl-200 p-6 shadow-2xl">
               {!allRequiredAcknowledged && (
                 <div className="mb-6 rounded-lg border-l-4 border-amber-600 bg-amber-50 p-4">
                   <div className="flex gap-3">
@@ -230,7 +226,7 @@ export default function PolicyReviewPage() {
                 <button
                   onClick={handleSaveAndExit}
                   disabled={saving}
-                  className="px-8 py-4 border-2 border-slate-300 text-slate-900 font-semibold rounded-lg hover:bg-slate-50 hover:border-slate-400 transition-all text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-8 py-4 border-2 border-pearl-300 text-evergreen-950 font-semibold rounded-lg hover:bg-pearl-50 hover:border-evergreen-300 transition-all text-center disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Save & Exit
                 </button>
@@ -238,7 +234,7 @@ export default function PolicyReviewPage() {
                 <button
                   onClick={handleContinue}
                   disabled={!allRequiredAcknowledged || saving}
-                  className="relative flex-1 sm:flex-[2] flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-black rounded-lg shadow-[8px_8px_0px_0px_rgba(30,64,175,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(30,64,175,0.4)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 uppercase tracking-wider text-base overflow-hidden group"
+                  className="relative flex-1 sm:flex-[2] flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-copper-600 to-copper-500 text-white font-black rounded-lg shadow-[8px_8px_0px_0px_rgba(168,90,40,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(168,90,40,0.4)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 uppercase tracking-wider text-base overflow-hidden group"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></span>
                   {saving ? (

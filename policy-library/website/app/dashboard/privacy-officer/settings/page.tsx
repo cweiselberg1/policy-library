@@ -119,23 +119,23 @@ export default function SettingsPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-slate-800/50 backdrop-blur-xl border-b border-slate-700/50 shadow-2xl sticky top-0 z-10">
+      <header className="bg-dark-800/50 backdrop-blur-xl border-b border-dark-700/50 shadow-2xl sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-copper-400 via-copper-300 to-evergreen-400 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-dm-serif)' }}>
               Settings
             </h1>
-            <p className="mt-2 text-slate-400">Configure your account and organizational preferences</p>
+            <p className="mt-2 text-dark-400">Configure your account and organizational preferences</p>
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-6 py-12 space-y-8">
         {/* Privacy Officer Assignment - CRITICAL for Step 1 */}
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-8">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <UserCircleIcon className="h-8 w-8 text-cyan-400" />
+              <UserCircleIcon className="h-8 w-8 text-copper-400" />
               <h2 className="text-2xl font-bold text-white">Privacy Officer Assignment</h2>
               {isPrivacyOfficerAssigned && (
                 <span className="flex items-center gap-1 px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm font-semibold">
@@ -148,53 +148,53 @@ export default function SettingsPage() {
 
           {showPrivacyOfficerSuccess && (
             <div className="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/50 rounded-lg text-emerald-400">
-              ✓ Privacy Officer saved successfully!
+              Privacy Officer saved successfully!
             </div>
           )}
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-dark-300 mb-2">
                 Privacy Officer Name *
               </label>
               <input
                 type="text"
                 value={privacyOfficer.name}
                 onChange={(e) => setPrivacyOfficer({ ...privacyOfficer, name: e.target.value })}
-                className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 bg-dark-900/50 border border-dark-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-copper-500"
                 placeholder="Enter Privacy Officer name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-dark-300 mb-2">
                 Email Address *
               </label>
               <input
                 type="email"
                 value={privacyOfficer.email}
                 onChange={(e) => setPrivacyOfficer({ ...privacyOfficer, email: e.target.value })}
-                className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 bg-dark-900/50 border border-dark-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-copper-500"
                 placeholder="privacy.officer@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-dark-300 mb-2">
                 Phone Number (Optional)
               </label>
               <input
                 type="tel"
                 value={privacyOfficer.phone}
                 onChange={(e) => setPrivacyOfficer({ ...privacyOfficer, phone: e.target.value })}
-                className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full px-4 py-2 bg-dark-900/50 border border-dark-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-copper-500"
                 placeholder="(555) 123-4567"
               />
             </div>
 
             <button
               onClick={handleSavePrivacyOfficer}
-              className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all"
+              className="px-6 py-2 bg-gradient-to-r from-copper-500 to-copper-600 text-white font-semibold rounded-lg hover:from-copper-600 hover:to-copper-700 transition-all"
             >
               Save Privacy Officer
             </button>
@@ -202,40 +202,40 @@ export default function SettingsPage() {
         </div>
 
         {/* Organization Information */}
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-8">
           <div className="flex items-center gap-3 mb-6">
-            <KeyIcon className="h-8 w-8 text-violet-400" />
+            <KeyIcon className="h-8 w-8 text-copper-400" />
             <h2 className="text-2xl font-bold text-white">Organization Information</h2>
           </div>
 
           {showOrgSuccess && (
             <div className="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/50 rounded-lg text-emerald-400">
-              ✓ Organization information saved successfully!
+              Organization information saved successfully!
             </div>
           )}
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-dark-300 mb-2">
                 Organization Name *
               </label>
               <input
                 type="text"
                 value={organization.name}
                 onChange={(e) => setOrganization({ ...organization, name: e.target.value })}
-                className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
+                className="w-full px-4 py-2 bg-dark-900/50 border border-dark-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-copper-500"
                 placeholder="Enter your organization name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-dark-300 mb-2">
                 Organization Type *
               </label>
               <select
                 value={organization.type}
                 onChange={(e) => setOrganization({ ...organization, type: e.target.value })}
-                className="w-full px-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
+                className="w-full px-4 py-2 bg-dark-900/50 border border-dark-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-copper-500"
               >
                 <option value="covered-entity">Covered Entity</option>
                 <option value="business-associate">Business Associate</option>
@@ -245,7 +245,7 @@ export default function SettingsPage() {
 
             <button
               onClick={handleSaveOrganization}
-              className="px-6 py-2 bg-gradient-to-r from-violet-500 to-purple-500 text-white font-semibold rounded-lg hover:from-violet-600 hover:to-purple-600 transition-all"
+              className="px-6 py-2 bg-gradient-to-r from-copper-500 to-copper-600 text-white font-semibold rounded-lg hover:from-copper-600 hover:to-copper-700 transition-all"
             >
               Save Organization
             </button>
@@ -253,28 +253,28 @@ export default function SettingsPage() {
         </div>
 
         {/* Notification Preferences */}
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-8">
           <div className="flex items-center gap-3 mb-6">
-            <BellIcon className="h-8 w-8 text-blue-400" />
+            <BellIcon className="h-8 w-8 text-copper-400" />
             <h2 className="text-2xl font-bold text-white">Notification Preferences</h2>
           </div>
 
           {showNotifSuccess && (
             <div className="mb-6 p-4 bg-emerald-500/20 border border-emerald-500/50 rounded-lg text-emerald-400">
-              ✓ Notification preferences saved successfully!
+              Notification preferences saved successfully!
             </div>
           )}
 
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-700 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-dark-900/50 border border-dark-700 rounded-lg">
               <div>
                 <h3 className="font-semibold text-white">Email Notifications</h3>
-                <p className="text-sm text-slate-400">Receive email updates about compliance activities</p>
+                <p className="text-sm text-dark-400">Receive email updates about compliance activities</p>
               </div>
               <button
                 onClick={() => setNotificationPrefs({ ...notificationPrefs, emailNotifications: !notificationPrefs.emailNotifications })}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notificationPrefs.emailNotifications ? 'bg-cyan-500' : 'bg-slate-600'
+                  notificationPrefs.emailNotifications ? 'bg-copper-500' : 'bg-dark-600'
                 }`}
               >
                 <span
@@ -285,15 +285,15 @@ export default function SettingsPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-700 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-dark-900/50 border border-dark-700 rounded-lg">
               <div>
                 <h3 className="font-semibold text-white">Incident Alerts</h3>
-                <p className="text-sm text-slate-400">Get notified immediately when incidents are reported</p>
+                <p className="text-sm text-dark-400">Get notified immediately when incidents are reported</p>
               </div>
               <button
                 onClick={() => setNotificationPrefs({ ...notificationPrefs, incidentAlerts: !notificationPrefs.incidentAlerts })}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notificationPrefs.incidentAlerts ? 'bg-cyan-500' : 'bg-slate-600'
+                  notificationPrefs.incidentAlerts ? 'bg-copper-500' : 'bg-dark-600'
                 }`}
               >
                 <span
@@ -304,15 +304,15 @@ export default function SettingsPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-slate-900/50 border border-slate-700 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-dark-900/50 border border-dark-700 rounded-lg">
               <div>
                 <h3 className="font-semibold text-white">Compliance Reminders</h3>
-                <p className="text-sm text-slate-400">Receive reminders for upcoming compliance deadlines</p>
+                <p className="text-sm text-dark-400">Receive reminders for upcoming compliance deadlines</p>
               </div>
               <button
                 onClick={() => setNotificationPrefs({ ...notificationPrefs, complianceReminders: !notificationPrefs.complianceReminders })}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notificationPrefs.complianceReminders ? 'bg-cyan-500' : 'bg-slate-600'
+                  notificationPrefs.complianceReminders ? 'bg-copper-500' : 'bg-dark-600'
                 }`}
               >
                 <span
@@ -325,7 +325,7 @@ export default function SettingsPage() {
 
             <button
               onClick={handleSaveNotifications}
-              className="px-6 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all"
+              className="px-6 py-2 bg-gradient-to-r from-copper-500 to-copper-600 text-white font-semibold rounded-lg hover:from-copper-600 hover:to-copper-700 transition-all"
             >
               Save Notification Preferences
             </button>

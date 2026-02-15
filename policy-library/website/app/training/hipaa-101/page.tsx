@@ -164,25 +164,24 @@ Administrative Security:
     }));
   };
 
-  const handleComplete = async () => {
+  const handleComplete = () => {
     setSaving(true);
     setError('');
 
     try {
-      const response = await fetch('/api/training/progress', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          modules_completed: ['policies', 'hipaa-101'],
-          current_step: 'cybersecurity',
-          percentage: 66,
-        }),
-      });
+      // Load existing progress to preserve policies_completed
+      const saved = localStorage.getItem('hipaa-training-progress');
+      const existingProgress = saved ? JSON.parse(saved) : {};
 
-      if (!response.ok) {
-        throw new Error('Failed to save progress');
-      }
+      // Save progress to localStorage
+      const progressData = {
+        policies_completed: existingProgress.policies_completed || [],
+        modules_completed: ['policies', 'hipaa-101'],
+        current_step: 'cybersecurity',
+        percentage: 66,
+      };
 
+      localStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
       router.push('/training/cybersecurity');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save progress');
@@ -202,23 +201,23 @@ Administrative Security:
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-pearl-50 via-evergreen-50/30 to-sand-50">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40">
+      <header className="bg-white border-b border-pearl-200 shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-600 to-blue-600 shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-evergreen-700 to-evergreen-600 shadow-lg">
                 <ShieldCheckIcon className="h-7 w-7 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-slate-900">HIPAA 101</h1>
-                <p className="mt-1 text-slate-600">Learn the fundamentals of HIPAA compliance</p>
+                <h1 className="text-3xl font-bold text-evergreen-950" style={{ fontFamily: 'var(--font-dm-serif)' }}>HIPAA 101</h1>
+                <p className="mt-1 text-[--text-muted]">Learn the fundamentals of HIPAA compliance</p>
               </div>
             </div>
             <Link
               href="/training"
-              className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
+              className="text-sm text-copper-600 hover:text-copper-700 font-medium transition-colors"
             >
               ← Back to Dashboard
             </Link>
@@ -233,12 +232,12 @@ Administrative Security:
             {!showQuiz ? (
               <>
                 {/* Section Progress */}
-                <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-8">
+                <div className="bg-white rounded-lg shadow-sm border border-pearl-200 p-6 mb-8">
                   <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-semibold text-slate-900">
+                    <h2 className="text-lg font-semibold text-evergreen-950">
                       Section {currentSection + 1} of {sections.length}
                     </h2>
-                    <span className="text-sm text-slate-600">
+                    <span className="text-sm text-[--text-muted]">
                       {sections.filter((s) => s.completed).length} completed
                     </span>
                   </div>
@@ -251,8 +250,8 @@ Administrative Security:
                           section.completed
                             ? 'bg-emerald-500'
                             : index === currentSection
-                            ? 'bg-blue-500'
-                            : 'bg-slate-200'
+                            ? 'bg-copper-500'
+                            : 'bg-pearl-200'
                         }`}
                       />
                     ))}
@@ -260,19 +259,19 @@ Administrative Security:
                 </div>
 
                 {/* Content */}
-                <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8 mb-8">
+                <div className="bg-white rounded-lg shadow-sm border border-pearl-200 p-8 mb-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
-                      <ShieldCheckIcon className="h-6 w-6 text-blue-600" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-evergreen-100">
+                      <ShieldCheckIcon className="h-6 w-6 text-evergreen-700" />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-900">
+                    <h2 className="text-2xl font-bold text-evergreen-950">
                       {sections[currentSection].title}
                     </h2>
                   </div>
 
                   <div className="prose prose-slate max-w-none">
                     {sections[currentSection].content.split('\n').map((paragraph, index) => (
-                      <p key={index} className="text-slate-700 mb-4 whitespace-pre-line">
+                      <p key={index} className="text-[--text-secondary] mb-4 whitespace-pre-line">
                         {paragraph}
                       </p>
                     ))}
@@ -284,14 +283,14 @@ Administrative Security:
                   <button
                     onClick={() => setCurrentSection(Math.max(0, currentSection - 1))}
                     disabled={currentSection === 0}
-                    className="px-6 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-6 py-3 border-2 border-pearl-300 text-[--text-secondary] font-semibold rounded-lg hover:bg-pearl-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Previous
                   </button>
 
                   <button
                     onClick={handleNextSection}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-copper-600 to-copper-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
                   >
                     {currentSection < sections.length - 1 ? 'Next Section' : 'Start Quiz'}
                     <ArrowRightIcon className="h-5 w-5" />
@@ -301,14 +300,14 @@ Administrative Security:
             ) : (
               <>
                 {/* Quiz Section */}
-                <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8 mb-8">
+                <div className="bg-white rounded-lg shadow-sm border border-pearl-200 p-8 mb-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-100">
-                      <ShieldCheckIcon className="h-6 w-6 text-cyan-600" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-copper-100">
+                      <ShieldCheckIcon className="h-6 w-6 text-copper-600" />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold text-slate-900">Knowledge Check</h2>
-                      <p className="text-sm text-slate-600">
+                      <h2 className="text-2xl font-bold text-evergreen-950">Knowledge Check</h2>
+                      <p className="text-sm text-[--text-muted]">
                         Answer all questions to complete this module (75% required to pass)
                       </p>
                     </div>
@@ -375,7 +374,7 @@ Administrative Security:
                 <div className="flex items-center justify-between">
                   <button
                     onClick={() => setShowQuiz(false)}
-                    className="px-6 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-all"
+                    className="px-6 py-3 border-2 border-pearl-300 text-[--text-secondary] font-semibold rounded-lg hover:bg-pearl-50 transition-all"
                   >
                     Review Content
                   </button>
@@ -383,7 +382,7 @@ Administrative Security:
                   <button
                     onClick={handleComplete}
                     disabled={!allQuestionsAnswered || !quizPassed || saving}
-                    className="relative flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-black rounded-lg shadow-[8px_8px_0px_0px_rgba(6,182,212,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(6,182,212,0.4)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 uppercase tracking-wider overflow-hidden group"
+                    className="relative flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-copper-600 to-copper-500 text-white font-black rounded-lg shadow-[8px_8px_0px_0px_rgba(168,90,40,0.3)] hover:shadow-[12px_12px_0px_0px_rgba(168,90,40,0.4)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 uppercase tracking-wider overflow-hidden group"
                   >
                     <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></span>
                     {saving ? (

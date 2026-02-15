@@ -17,8 +17,8 @@ export default function ProgressIndicator({ steps, currentStepId }: ProgressIndi
   const currentIndex = steps.findIndex((step) => step.id === currentStepId);
 
   return (
-    <div className="bg-white rounded-xl border-2 border-slate-200 p-6 shadow-sm">
-      <h3 className="text-lg font-bold text-slate-900 mb-6">Training Progress</h3>
+    <div className="bg-dark-800 rounded-xl border-2 border-dark-700 p-6 shadow-sm">
+      <h3 className="text-lg font-bold text-white mb-6">Training Progress</h3>
 
       <div className="space-y-1">
         {steps.map((step, index) => {
@@ -32,7 +32,7 @@ export default function ProgressIndicator({ steps, currentStepId }: ProgressIndi
               {index < steps.length - 1 && (
                 <div
                   className={`absolute left-4 top-10 w-0.5 h-8 transition-colors ${
-                    isCompleted || isPast ? 'bg-emerald-500' : 'bg-slate-200'
+                    isCompleted || isPast ? 'bg-emerald-500' : 'bg-dark-700'
                   }`}
                 />
               )}
@@ -45,8 +45,8 @@ export default function ProgressIndicator({ steps, currentStepId }: ProgressIndi
                     isCompleted || isPast
                       ? 'bg-emerald-500'
                       : isCurrent
-                      ? 'bg-blue-500 ring-4 ring-blue-100'
-                      : 'bg-slate-200'
+                      ? 'bg-copper-500 ring-4 ring-copper-900/50'
+                      : 'bg-dark-700'
                   }`}
                 >
                   {isCompleted || isPast ? (
@@ -54,7 +54,7 @@ export default function ProgressIndicator({ steps, currentStepId }: ProgressIndi
                   ) : (
                     <span
                       className={`text-sm font-bold ${
-                        isCurrent ? 'text-white' : 'text-slate-500'
+                        isCurrent ? 'text-white' : 'text-dark-500'
                       }`}
                     >
                       {index + 1}
@@ -67,21 +67,21 @@ export default function ProgressIndicator({ steps, currentStepId }: ProgressIndi
                   <p
                     className={`text-sm font-medium transition-colors ${
                       isCurrent
-                        ? 'text-slate-900'
+                        ? 'text-white'
                         : isCompleted || isPast
-                        ? 'text-slate-600'
-                        : 'text-slate-400'
+                        ? 'text-dark-400'
+                        : 'text-dark-600'
                     }`}
                   >
                     {step.title}
                   </p>
                   {isCurrent && (
-                    <p className="text-xs text-blue-600 font-medium mt-0.5">
+                    <p className="text-xs text-copper-500 font-medium mt-0.5">
                       In Progress
                     </p>
                   )}
                   {(isCompleted || isPast) && (
-                    <p className="text-xs text-emerald-600 font-medium mt-0.5">
+                    <p className="text-xs text-emerald-500 font-medium mt-0.5">
                       Completed
                     </p>
                   )}
@@ -93,16 +93,16 @@ export default function ProgressIndicator({ steps, currentStepId }: ProgressIndi
       </div>
 
       {/* Overall Progress */}
-      <div className="mt-6 pt-6 border-t border-slate-200">
+      <div className="mt-6 pt-6 border-t border-dark-700">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-slate-700">Overall</span>
-          <span className="text-sm font-bold text-blue-600">
+          <span className="text-sm font-medium text-dark-300">Overall</span>
+          <span className="text-sm font-bold text-copper-500">
             {steps.filter((s) => s.completed).length} / {steps.length}
           </span>
         </div>
-        <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+        <div className="h-2 bg-dark-900 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-blue-600 to-emerald-600 transition-all duration-500"
+            className="h-full bg-gradient-to-r from-copper-600 to-emerald-600 transition-all duration-500"
             style={{
               width: `${(steps.filter((s) => s.completed).length / steps.length) * 100}%`,
             }}

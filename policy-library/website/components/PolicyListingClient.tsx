@@ -23,12 +23,12 @@ const CATEGORIES = [
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Administrative Safeguards': 'bg-blue-100 text-blue-800 ring-blue-600/20',
-  'Physical Safeguards': 'bg-emerald-100 text-emerald-800 ring-emerald-600/20',
-  'Technical Safeguards': 'bg-violet-100 text-violet-800 ring-violet-600/20',
+  'Administrative Safeguards': 'bg-evergreen-100 text-evergreen-800 ring-evergreen-600/20',
+  'Physical Safeguards': 'bg-evergreen-100 text-evergreen-800 ring-evergreen-600/20',
+  'Technical Safeguards': 'bg-copper-100 text-copper-700 ring-copper-600/20',
   'Privacy Rule': 'bg-pink-100 text-pink-800 ring-pink-600/20',
   'Breach Notification': 'bg-orange-100 text-orange-800 ring-orange-600/20',
-  'Organizational Requirements': 'bg-cyan-100 text-cyan-800 ring-cyan-600/20',
+  'Organizational Requirements': 'bg-copper-50 text-copper-700 ring-copper-600/20',
 };
 
 interface PolicyListingClientProps {
@@ -87,15 +87,15 @@ export function PolicyListingClient({ policies, entityType, title, description }
   // Download functionality removed - handled elsewhere in business flow
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-pearl-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <div className="bg-gradient-to-r from-evergreen-700 to-evergreen-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="max-w-3xl">
-            <h1 className="text-4xl font-bold mb-4">{title}</h1>
-            <p className="text-xl text-blue-100">{description}</p>
+            <h1 className="text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-dm-serif)' }}>{title}</h1>
+            <p className="text-xl text-evergreen-100">{description}</p>
             <div className="mt-6 flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-blue-100">
+              <div className="flex items-center gap-2 text-evergreen-100">
                 <DocumentTextIcon className="h-5 w-5" />
                 <span>{policies.length} policies available</span>
               </div>
@@ -111,18 +111,18 @@ export function PolicyListingClient({ policies, entityType, title, description }
             {/* Search */}
             <div className="flex-1">
               <div className="relative">
-                <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-pearl-400" />
                 <input
                   type="text"
                   placeholder="Search policies..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-10 py-2 border border-pearl-200 rounded-lg focus:ring-2 focus:ring-evergreen-500 focus:border-transparent"
                 />
                 {searchTerm && (
                   <button
                     onClick={() => setSearchTerm('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-pearl-400 hover:text-evergreen-700"
                   >
                     <XMarkIcon className="h-5 w-5" />
                   </button>
@@ -135,7 +135,7 @@ export function PolicyListingClient({ policies, entityType, title, description }
               <select
                 value={selectedCategory}
                 onChange={(e) => handleCategoryChange(e.target.value)}
-                className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full py-2 px-3 border border-pearl-200 rounded-lg focus:ring-2 focus:ring-evergreen-500 focus:border-transparent"
               >
                 {CATEGORIES.map((category) => (
                   <option key={category} value={category}>
@@ -149,7 +149,7 @@ export function PolicyListingClient({ policies, entityType, title, description }
           </div>
 
           {/* Results Count */}
-          <div className="mt-4 text-sm text-gray-600">
+          <div className="mt-4 text-sm text-[--text-muted]">
             Showing {filteredPolicies.length} of {policies.length} policies
           </div>
         </div>
@@ -160,14 +160,14 @@ export function PolicyListingClient({ policies, entityType, title, description }
             <Link
               key={policy.id}
               href={`/policies/${encodeURIComponent(policy.id)}`}
-              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 border border-gray-200"
+              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 border border-pearl-200"
             >
               <div className="flex items-start justify-between mb-3">
-                <DocumentTextIcon className="h-6 w-6 text-blue-600 flex-shrink-0" />
+                <DocumentTextIcon className="h-6 w-6 text-evergreen-700 flex-shrink-0" />
                 {policy.category && (
                   <span
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ring-1 ring-inset ${
-                      CATEGORY_COLORS[policy.category] || 'bg-gray-100 text-gray-800 ring-gray-600/20'
+                      CATEGORY_COLORS[policy.category] || 'bg-pearl-100 text-evergreen-800 ring-pearl-300'
                     }`}
                   >
                     {policy.category}
@@ -175,21 +175,21 @@ export function PolicyListingClient({ policies, entityType, title, description }
                 )}
               </div>
 
-              <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+              <h3 className="text-lg font-semibold text-evergreen-950 mb-2 line-clamp-2">
                 {policy.title}
               </h3>
 
               {policy.description && (
-                <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                <p className="text-sm text-[--text-muted] mb-4 line-clamp-3">
                   {policy.description}
                 </p>
               )}
 
               <div className="flex items-center justify-between mt-auto">
                 {policy.hipaa_reference && (
-                  <span className="text-xs text-gray-500">{policy.hipaa_reference}</span>
+                  <span className="text-xs text-[--text-muted]">{policy.hipaa_reference}</span>
                 )}
-                <ArrowRightIcon className="h-4 w-4 text-blue-600" />
+                <ArrowRightIcon className="h-4 w-4 text-copper-600" />
               </div>
             </Link>
           ))}
@@ -198,14 +198,14 @@ export function PolicyListingClient({ policies, entityType, title, description }
         {/* No Results */}
         {filteredPolicies.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-            <DocumentTextIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No policies found</h3>
-            <p className="text-gray-600 mb-6">
+            <DocumentTextIcon className="h-12 w-12 text-pearl-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-evergreen-950 mb-2">No policies found</h3>
+            <p className="text-[--text-muted] mb-6">
               Try adjusting your search or filters to find what you're looking for.
             </p>
             <button
               onClick={handleClearFilters}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-copper-600 text-white rounded-lg hover:bg-copper-700 transition-colors"
             >
               Clear Filters
             </button>

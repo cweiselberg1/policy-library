@@ -24,27 +24,31 @@ export default function CreateDepartmentModal({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
-      const response = await fetch('/api/departments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          parent_id: formData.parent_id || null,
-          description: formData.description || null,
-          budget: formData.budget ? Number(formData.budget) : null,
-        }),
-      });
+      const saved = JSON.parse(localStorage.getItem('hipaa-departments') || '[]');
 
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Failed to create department');
-      }
+      const newDepartment: DepartmentNode = {
+        id: `dept-${Date.now()}`,
+        organization_id: 'local',
+        name: formData.name || '',
+        description: formData.description || null,
+        parent_id: formData.parent_id || null,
+        manager_id: null,
+        budget: formData.budget ? Number(formData.budget) : null,
+        status: 'active',
+        metadata: null,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        children: [],
+      };
+
+      saved.push(newDepartment);
+      localStorage.setItem('hipaa-departments', JSON.stringify(saved));
 
       onCreated();
     } catch (err) {
@@ -69,13 +73,13 @@ export default function CreateDepartmentModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-dark-800 border border-dark-700 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-700">
+        <div className="flex items-center justify-between p-6 border-b border-dark-700">
           <h2 className="text-2xl font-bold text-white">Create Department</h2>
           <button
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-white transition-colors"
+            className="p-2 text-dark-400 hover:text-white transition-colors"
           >
             <XMarkIcon className="h-6 w-6" />
           </button>
@@ -91,7 +95,7 @@ export default function CreateDepartmentModal({
 
           {/* Department Name */}
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-dark-300 mb-2">
               Department Name *
             </label>
             <input
@@ -99,28 +103,28 @@ export default function CreateDepartmentModal({
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
+              className="w-full px-4 py-3 bg-dark-900/50 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-evergreen-500/50 focus:border-evergreen-500 transition-all"
               placeholder="e.g., Engineering, Human Resources"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-dark-300 mb-2">
               Description
             </label>
             <textarea
               value={formData.description || ''}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               rows={3}
-              className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all resize-none"
+              className="w-full px-4 py-3 bg-dark-900/50 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-evergreen-500/50 focus:border-evergreen-500 transition-all resize-none"
               placeholder="Brief description of this department's purpose..."
             />
           </div>
 
           {/* Parent Department */}
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-dark-300 mb-2">
               Parent Department
             </label>
             <select
@@ -131,7 +135,7 @@ export default function CreateDepartmentModal({
                   parent_id: e.target.value || null,
                 })
               }
-              className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
+              className="w-full px-4 py-3 bg-dark-900/50 border border-dark-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-evergreen-500/50 focus:border-evergreen-500 transition-all"
             >
               <option value="">None (Top Level)</option>
               {flatDepartments.map((dept) => (
@@ -140,18 +144,18 @@ export default function CreateDepartmentModal({
                 </option>
               ))}
             </select>
-            <p className="text-slate-500 text-sm mt-2">
+            <p className="text-dark-500 text-sm mt-2">
               Select a parent to create a sub-department
             </p>
           </div>
 
           {/* Budget */}
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-dark-300 mb-2">
               Annual Budget
             </label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">$</span>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-dark-500">$</span>
               <input
                 type="number"
                 min="0"
@@ -160,7 +164,7 @@ export default function CreateDepartmentModal({
                 onChange={(e) =>
                   setFormData({ ...formData, budget: e.target.value ? Number(e.target.value) : undefined })
                 }
-                className="w-full pl-8 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all"
+                className="w-full pl-8 pr-4 py-3 bg-dark-900/50 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-evergreen-500/50 focus:border-evergreen-500 transition-all"
                 placeholder="0"
               />
             </div>
@@ -171,14 +175,14 @@ export default function CreateDepartmentModal({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 bg-slate-700 text-white font-semibold rounded-xl hover:bg-slate-600 transition-all"
+              className="flex-1 px-6 py-3 bg-dark-700 text-white font-semibold rounded-xl hover:bg-dark-600 transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-violet-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-evergreen-600 to-evergreen-700 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-evergreen-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Creating...' : 'Create Department'}
             </button>

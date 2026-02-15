@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /.next/
-Disallow: /out/
-Sitemap: https://hipaa-policy-library.oneGuyconsulting.com/sitemap.xml
+Disallow: /dashboard/
+Disallow: /admin/
+Sitemap: https://hipaa-policy-library.oneguyconsulting.com/sitemap.xml

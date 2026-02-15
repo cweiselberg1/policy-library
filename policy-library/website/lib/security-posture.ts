@@ -411,17 +411,17 @@ export function savePostureSnapshot(posture: SecurityPosture): void {
 export function getRatingColor(rating: string): { bg: string; text: string; border: string } {
   switch (rating) {
     case 'Excellent': return { bg: 'bg-green-100', text: 'text-green-700', border: 'border-green-300' };
-    case 'Good': return { bg: 'bg-blue-100', text: 'text-blue-700', border: 'border-blue-300' };
+    case 'Good': return { bg: 'bg-copper-100', text: 'text-copper-700', border: 'border-copper-300' };
     case 'Fair': return { bg: 'bg-yellow-100', text: 'text-yellow-700', border: 'border-yellow-300' };
     case 'Poor': return { bg: 'bg-orange-100', text: 'text-orange-700', border: 'border-orange-300' };
     case 'Critical': return { bg: 'bg-red-100', text: 'text-red-700', border: 'border-red-300' };
-    default: return { bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-300' };
+    default: return { bg: 'bg-pearl-100', text: 'text-dark-700', border: 'border-dark-300' };
   }
 }
 
 export function getScoreColor(score: number): string {
   if (score >= 90) return 'text-green-600';
-  if (score >= 75) return 'text-blue-600';
+  if (score >= 75) return 'text-copper-600';
   if (score >= 60) return 'text-yellow-600';
   if (score >= 40) return 'text-orange-600';
   return 'text-red-600';
@@ -429,7 +429,7 @@ export function getScoreColor(score: number): string {
 
 export function getScoreRingColor(score: number): string {
   if (score >= 90) return 'stroke-green-500';
-  if (score >= 75) return 'stroke-blue-500';
+  if (score >= 75) return 'stroke-copper-500';
   if (score >= 60) return 'stroke-yellow-500';
   if (score >= 40) return 'stroke-orange-500';
   return 'stroke-red-500';

@@ -46,7 +46,7 @@ export default function EmployeeComplianceMatrix({ employeeCompliance }: Employe
     }
     if (rate >= 70) {
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-medium rounded border border-orange-500/20">
+        <span className="inline-flex items-center gap-1 px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-medium rounded border border-copper-500/20">
           <ClockIcon className="h-3 w-3" />
           Pending
         </span>
@@ -94,27 +94,27 @@ export default function EmployeeComplianceMatrix({ employeeCompliance }: Employe
   return (
     <div className="space-y-6">
       {/* Filters */}
-      <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
+      <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* Search */}
           <div className="md:col-span-2 relative">
-            <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+            <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-dark-400" />
             <input
               type="text"
               placeholder="Search employees..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 transition-all"
+              className="w-full pl-12 pr-4 py-3 bg-dark-900/50 border border-dark-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-copper-500/50 focus:border-copper-500 transition-all"
             />
           </div>
 
           {/* Status Filter */}
           <div className="relative">
-            <FunnelIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+            <FunnelIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-dark-400" />
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value as any)}
-              className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 transition-all appearance-none"
+              className="w-full pl-12 pr-4 py-3 bg-dark-900/50 border border-dark-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-copper-500/50 focus:border-copper-500 transition-all appearance-none"
             >
               <option value="all">All Statuses</option>
               <option value="compliant">Compliant (100%)</option>
@@ -127,7 +127,7 @@ export default function EmployeeComplianceMatrix({ employeeCompliance }: Employe
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 transition-all"
+            className="px-4 py-3 bg-dark-900/50 border border-dark-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-copper-500/50 focus:border-copper-500 transition-all"
           >
             <option value="name">Sort: Name</option>
             <option value="compliance">Sort: Compliance</option>
@@ -138,67 +138,67 @@ export default function EmployeeComplianceMatrix({ employeeCompliance }: Employe
 
       {/* Results Count */}
       <div className="flex items-center justify-between">
-        <p className="text-slate-400">
+        <p className="text-dark-400">
           Showing {filteredEmployees.length} of {employeeCompliance.length} employees
         </p>
       </div>
 
       {/* Employee Table */}
-      <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl overflow-hidden">
+      <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="bg-slate-900/50 border-b border-slate-700">
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <tr className="bg-dark-900/50 border-b border-dark-700">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-dark-400 uppercase tracking-wider">
                   Employee
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-dark-400 uppercase tracking-wider">
                   Department
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-dark-400 uppercase tracking-wider">
                   Progress
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-dark-400 uppercase tracking-wider">
                   Compliance
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-dark-400 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-dark-400 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-700/50">
               {filteredEmployees.map((employee) => (
-                <tr key={employee.employee_id} className="hover:bg-slate-700/30 transition-colors">
+                <tr key={employee.employee_id} className="hover:bg-dark-700/30 transition-colors">
                   {/* Employee Info */}
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-blue-500/10">
-                        <UserCircleIcon className="h-6 w-6 text-blue-400" />
+                      <div className="p-2 rounded-lg bg-copper-500/10">
+                        <UserCircleIcon className="h-6 w-6 text-copper-400" />
                       </div>
                       <div>
                         <p className="font-semibold text-white">{employee.employee_name}</p>
-                        <p className="text-sm text-slate-400">{employee.employee_id}</p>
+                        <p className="text-sm text-dark-400">{employee.employee_id}</p>
                       </div>
                     </div>
                   </td>
 
                   {/* Department */}
                   <td className="px-6 py-4">
-                    <span className="text-slate-300">{employee.department_name}</span>
+                    <span className="text-dark-300">{employee.department_name}</span>
                   </td>
 
                   {/* Progress */}
                   <td className="px-6 py-4">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-slate-400">
+                        <span className="text-dark-400">
                           {employee.completed_policies}/{employee.assigned_policies}
                         </span>
                       </div>
-                      <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                      <div className="h-2 bg-dark-700 rounded-full overflow-hidden">
                         <div
                           className={`h-full transition-all duration-500 ${
                             employee.compliance_rate === 100
@@ -231,7 +231,7 @@ export default function EmployeeComplianceMatrix({ employeeCompliance }: Employe
                           Send Reminder
                         </button>
                       )}
-                      <button className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-xs font-medium rounded-lg transition-colors">
+                      <button className="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 text-white text-xs font-medium rounded-lg transition-colors">
                         View Details
                       </button>
                     </div>
@@ -244,7 +244,7 @@ export default function EmployeeComplianceMatrix({ employeeCompliance }: Employe
 
         {filteredEmployees.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-slate-500">No employees match your filters</p>
+            <p className="text-dark-500">No employees match your filters</p>
           </div>
         )}
       </div>
@@ -252,28 +252,28 @@ export default function EmployeeComplianceMatrix({ employeeCompliance }: Employe
       {/* Summary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 backdrop-blur-xl border border-emerald-500/20 rounded-2xl p-6">
-          <p className="text-slate-400 text-sm font-medium mb-2">Fully Compliant</p>
+          <p className="text-dark-400 text-sm font-medium mb-2">Fully Compliant</p>
           <p className="text-4xl font-bold text-white">
             {filteredEmployees.filter((e) => e.compliance_rate === 100).length}
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500/10 to-amber-500/10 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-6">
-          <p className="text-slate-400 text-sm font-medium mb-2">In Progress</p>
+        <div className="bg-gradient-to-br from-orange-500/10 to-amber-500/10 backdrop-blur-xl border border-copper-500/20 rounded-2xl p-6">
+          <p className="text-dark-400 text-sm font-medium mb-2">In Progress</p>
           <p className="text-4xl font-bold text-white">
             {filteredEmployees.filter((e) => e.compliance_rate >= 70 && e.compliance_rate < 100).length}
           </p>
         </div>
 
         <div className="bg-gradient-to-br from-red-500/10 to-rose-500/10 backdrop-blur-xl border border-red-500/20 rounded-2xl p-6">
-          <p className="text-slate-400 text-sm font-medium mb-2">Non-Compliant</p>
+          <p className="text-dark-400 text-sm font-medium mb-2">Non-Compliant</p>
           <p className="text-4xl font-bold text-white">
             {filteredEmployees.filter((e) => e.compliance_rate < 70).length}
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-violet-500/10 to-purple-500/10 backdrop-blur-xl border border-violet-500/20 rounded-2xl p-6">
-          <p className="text-slate-400 text-sm font-medium mb-2">Pending Attestations</p>
+        <div className="bg-gradient-to-br from-evergreen-500/10 to-evergreen-600/10 backdrop-blur-xl border border-evergreen-500/20 rounded-2xl p-6">
+          <p className="text-dark-400 text-sm font-medium mb-2">Pending Attestations</p>
           <p className="text-4xl font-bold text-white">
             {filteredEmployees.reduce((sum, e) => sum + e.pending_attestations.length, 0)}
           </p>

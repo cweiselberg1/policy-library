@@ -388,24 +388,24 @@ export default function CybersecurityContent() {
   const passedQuiz = quizScore >= quizQuestions.length * 0.8;
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-evergreen-950 via-dark-900 to-evergreen-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <Link
             href="/dashboard/employee/training"
-            className="text-slate-400 hover:text-white transition-colors inline-flex items-center gap-2 mb-4"
+            className="text-dark-400 hover:text-white transition-colors inline-flex items-center gap-2 mb-4"
           >
             <ArrowLeftIcon className="w-4 h-4" />
             Back to Training
           </Link>
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-orange-500/10 rounded-xl">
-              <ShieldExclamationIcon className="w-8 h-8 text-orange-500" />
+            <div className="p-3 bg-copper-500/10 rounded-xl">
+              <ShieldExclamationIcon className="w-8 h-8 text-copper-500" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-white">Cybersecurity Awareness</h1>
-              <p className="text-slate-400 mt-1">Learn to identify and prevent security threats</p>
+              <p className="text-dark-400 mt-1">Learn to identify and prevent security threats</p>
             </div>
           </div>
         </div>
@@ -413,38 +413,38 @@ export default function CybersecurityContent() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar Progress */}
           <div className="lg:col-span-1">
-            <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6 sticky top-8">
+            <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-6 sticky top-8">
               <h3 className="text-lg font-semibold text-white mb-4">Training Progress</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-sm font-medium text-slate-300">Policy Review</div>
-                    <div className="text-xs text-slate-400 mt-0.5">Completed</div>
+                    <div className="text-sm font-medium text-dark-300">Policy Review</div>
+                    <div className="text-xs text-dark-400 mt-0.5">Completed</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-sm font-medium text-slate-300">HIPAA 101</div>
-                    <div className="text-xs text-slate-400 mt-0.5">Completed</div>
+                    <div className="text-sm font-medium text-dark-300">HIPAA 101</div>
+                    <div className="text-xs text-dark-400 mt-0.5">Completed</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 bg-orange-500 rounded-full flex-shrink-0 mt-0.5 animate-pulse" />
+                  <div className="w-5 h-5 bg-copper-500 rounded-full flex-shrink-0 mt-0.5 animate-pulse" />
                   <div>
                     <div className="text-sm font-medium text-white">Cybersecurity</div>
-                    <div className="text-xs text-orange-400 mt-0.5">In Progress</div>
+                    <div className="text-xs text-copper-400 mt-0.5">In Progress</div>
                   </div>
                 </div>
               </div>
 
               {!showQuiz && (
                 <>
-                  <div className="h-px bg-slate-700/50 my-6" />
+                  <div className="h-px bg-dark-700/50 my-6" />
                   <div>
                     <div className="flex items-center justify-between text-sm mb-2">
-                      <span className="text-slate-400">Section Progress</span>
+                      <span className="text-dark-400">Section Progress</span>
                       <span className="text-white font-medium">{currentSection + 1}/{sections.length}</span>
                     </div>
                     <div className="flex gap-1">
@@ -455,8 +455,8 @@ export default function CybersecurityContent() {
                             index < currentSection
                               ? 'bg-emerald-500'
                               : index === currentSection
-                              ? 'bg-orange-500'
-                              : 'bg-slate-700'
+                              ? 'bg-copper-500'
+                              : 'bg-dark-700'
                           }`}
                         />
                       ))}
@@ -465,8 +465,8 @@ export default function CybersecurityContent() {
                 </>
               )}
 
-              <div className="mt-6 p-4 bg-slate-900/50 rounded-lg">
-                <div className="flex items-center gap-2 text-slate-400 text-sm">
+              <div className="mt-6 p-4 bg-dark-900/50 rounded-lg">
+                <div className="flex items-center gap-2 text-dark-400 text-sm">
                   <ClockIcon className="w-4 h-4" />
                   <span>~20 minutes</span>
                 </div>
@@ -477,23 +477,23 @@ export default function CybersecurityContent() {
           {/* Main Content */}
           <div className="lg:col-span-3">
             {!showQuiz ? (
-              <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-8">
+              <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-8">
                 <div className="flex items-center gap-3 mb-6">
                   {(() => {
                     const Icon = sections[currentSection].icon;
-                    return <Icon className="w-8 h-8 text-orange-500" />;
+                    return <Icon className="w-8 h-8 text-copper-500" />;
                   })()}
                   <h2 className="text-2xl font-bold text-white">{sections[currentSection].title}</h2>
                 </div>
 
                 <div className="space-y-6">
                   {sections[currentSection].content.map((item, index) => (
-                    <div key={index} className="bg-slate-900/50 rounded-lg p-6">
+                    <div key={index} className="bg-dark-900/50 rounded-lg p-6">
                       <h3 className="text-lg font-semibold text-white mb-3">{item.subtitle}</h3>
-                      <p className="text-slate-300 mb-4">{item.description}</p>
+                      <p className="text-dark-300 mb-4">{item.description}</p>
                       <ul className="space-y-2">
                         {item.keyPoints.map((point, pointIndex) => (
-                          <li key={pointIndex} className="flex items-start gap-3 text-slate-300">
+                          <li key={pointIndex} className="flex items-start gap-3 text-dark-300">
                             <CheckCircleIcon className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                             <span>{point}</span>
                           </li>
@@ -503,14 +503,14 @@ export default function CybersecurityContent() {
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between mt-8 pt-6 border-t border-slate-700/50">
+                <div className="flex items-center justify-between mt-8 pt-6 border-t border-dark-700/50">
                   <button
                     onClick={handlePrevSection}
                     disabled={currentSection === 0}
                     className={`px-6 py-3 rounded-lg font-medium transition-all ${
                       currentSection === 0
-                        ? 'bg-slate-800 text-slate-600 cursor-not-allowed'
-                        : 'bg-slate-700 text-white hover:bg-slate-600'
+                        ? 'bg-dark-800 text-dark-600 cursor-not-allowed'
+                        : 'bg-dark-700 text-white hover:bg-dark-600'
                     }`}
                   >
                     <div className="flex items-center gap-2">
@@ -521,7 +521,7 @@ export default function CybersecurityContent() {
 
                   <button
                     onClick={handleNextSection}
-                    className="px-6 py-3 rounded-lg font-medium bg-gradient-to-r from-orange-600 to-red-600 text-white hover:from-orange-500 hover:to-red-500 transition-all shadow-lg shadow-orange-500/20"
+                    className="px-6 py-3 rounded-lg font-medium bg-gradient-to-r from-copper-600 to-copper-700 text-white hover:from-copper-500 hover:to-copper-600 transition-all shadow-lg shadow-copper-500/20"
                   >
                     <div className="flex items-center gap-2">
                       {currentSection < sections.length - 1 ? 'Next Section' : 'Take Quiz'}
@@ -531,13 +531,13 @@ export default function CybersecurityContent() {
                 </div>
               </div>
             ) : (
-              <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-xl p-8">
+              <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-xl p-8">
                 <h2 className="text-2xl font-bold text-white mb-6">Knowledge Check</h2>
 
                 {!showResults ? (
                   <div className="space-y-8">
                     {quizQuestions.map((question, qIndex) => (
-                      <div key={qIndex} className="bg-slate-900/50 rounded-lg p-6">
+                      <div key={qIndex} className="bg-dark-900/50 rounded-lg p-6">
                         <h3 className="text-lg font-semibold text-white mb-4">
                           {qIndex + 1}. {question.question}
                         </h3>
@@ -548,8 +548,8 @@ export default function CybersecurityContent() {
                               onClick={() => handleQuizAnswer(qIndex, oIndex)}
                               className={`w-full text-left px-4 py-3 rounded-lg transition-all ${
                                 quizAnswers[qIndex] === oIndex
-                                  ? 'bg-orange-500/20 border-2 border-orange-500 text-white'
-                                  : 'bg-slate-800 border-2 border-slate-700 text-slate-300 hover:border-slate-600'
+                                  ? 'bg-copper-500/20 border-2 border-copper-500 text-white'
+                                  : 'bg-dark-800 border-2 border-dark-700 text-dark-300 hover:border-dark-600'
                               }`}
                             >
                               {option}
@@ -559,14 +559,14 @@ export default function CybersecurityContent() {
                       </div>
                     ))}
 
-                    <div className="flex justify-end pt-6 border-t border-slate-700/50">
+                    <div className="flex justify-end pt-6 border-t border-dark-700/50">
                       <button
                         onClick={handleSubmitQuiz}
                         disabled={quizAnswers.includes(-1)}
                         className={`px-8 py-3 rounded-lg font-medium transition-all ${
                           quizAnswers.includes(-1)
-                            ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-orange-600 to-red-600 text-white hover:from-orange-500 hover:to-red-500 shadow-lg shadow-orange-500/20'
+                            ? 'bg-dark-700 text-dark-500 cursor-not-allowed'
+                            : 'bg-gradient-to-r from-copper-600 to-copper-700 text-white hover:from-copper-500 hover:to-copper-600 shadow-lg shadow-copper-500/20'
                         }`}
                       >
                         Submit Quiz
@@ -592,11 +592,11 @@ export default function CybersecurityContent() {
                           <h3 className={`text-xl font-bold ${passedQuiz ? 'text-emerald-400' : 'text-red-400'}`}>
                             {passedQuiz ? 'Congratulations!' : 'Not Quite There'}
                           </h3>
-                          <p className="text-slate-300 mt-1">
+                          <p className="text-dark-300 mt-1">
                             You scored {quizScore} out of {quizQuestions.length} ({Math.round((quizScore / quizQuestions.length) * 100)}%)
                           </p>
                           {!passedQuiz && (
-                            <p className="text-slate-400 text-sm mt-2">You need 80% to pass. Please review the material and try again.</p>
+                            <p className="text-dark-400 text-sm mt-2">You need 80% to pass. Please review the material and try again.</p>
                           )}
                         </div>
                       </div>
@@ -606,7 +606,7 @@ export default function CybersecurityContent() {
                       {quizQuestions.map((question, qIndex) => {
                         const isCorrect = quizAnswers[qIndex] === question.correctAnswer;
                         return (
-                          <div key={qIndex} className="bg-slate-900/50 rounded-lg p-6">
+                          <div key={qIndex} className="bg-dark-900/50 rounded-lg p-6">
                             <h3 className="text-lg font-semibold text-white mb-4">
                               {qIndex + 1}. {question.question}
                             </h3>
@@ -622,7 +622,7 @@ export default function CybersecurityContent() {
                                         ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
                                         : isSelected
                                         ? 'bg-red-500/10 border-red-500/30 text-red-300'
-                                        : 'bg-slate-800 border-slate-700 text-slate-400'
+                                        : 'bg-dark-800 border-dark-700 text-dark-400'
                                     }`}
                                   >
                                     <div className="flex items-center justify-between">
@@ -638,10 +638,10 @@ export default function CybersecurityContent() {
                             </div>
                             <div
                               className={`p-4 rounded-lg ${
-                                isCorrect ? 'bg-emerald-500/10' : 'bg-orange-500/10'
+                                isCorrect ? 'bg-emerald-500/10' : 'bg-copper-500/10'
                               }`}
                             >
-                              <p className="text-sm text-slate-300">{question.explanation}</p>
+                              <p className="text-sm text-dark-300">{question.explanation}</p>
                             </div>
                           </div>
                         );
@@ -655,11 +655,11 @@ export default function CybersecurityContent() {
                         </div>
                       )}
 
-                      <div className="flex justify-end gap-4 pt-6 border-t border-slate-700/50">
+                      <div className="flex justify-end gap-4 pt-6 border-t border-dark-700/50">
                         {!passedQuiz && (
                           <button
                             onClick={handleRetakeQuiz}
-                            className="px-6 py-3 rounded-lg font-medium bg-slate-700 text-white hover:bg-slate-600 transition-all"
+                            className="px-6 py-3 rounded-lg font-medium bg-dark-700 text-white hover:bg-dark-600 transition-all"
                           >
                             Retake Quiz
                           </button>
@@ -667,7 +667,7 @@ export default function CybersecurityContent() {
                         {passedQuiz && (
                           <button
                             onClick={handleCompleteModule}
-                            className="px-8 py-3 rounded-lg font-medium bg-gradient-to-r from-emerald-600 to-cyan-600 text-white hover:from-emerald-500 hover:to-cyan-500 transition-all shadow-lg shadow-emerald-500/20"
+                            className="px-8 py-3 rounded-lg font-medium bg-gradient-to-r from-emerald-600 to-evergreen-600 text-white hover:from-emerald-500 hover:to-evergreen-500 transition-all shadow-lg shadow-emerald-500/20"
                           >
                             <div className="flex items-center gap-2">
                               <CheckCircleIcon className="w-5 h-5" />

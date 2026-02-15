@@ -49,7 +49,7 @@ export default function LoginForm() {
             onChange={(e) => setEmail(e.target.value)}
             required
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-copper-500 disabled:bg-gray-50 disabled:text-gray-500"
             placeholder="you@example.com"
           />
         </div>
@@ -65,7 +65,7 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
             disabled={loading}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:text-gray-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-copper-500 disabled:bg-gray-50 disabled:text-gray-500"
             placeholder="••••••••"
           />
         </div>
@@ -79,7 +79,7 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+          className="w-full px-4 py-2 bg-copper-600 text-white font-medium rounded-lg hover:bg-copper-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
         >
           {loading ? 'Signing in...' : 'Sign In'}
         </button>

@@ -1,22 +1,36 @@
-'use client';
+import { Metadata } from 'next';
+import SRAClient from '@/components/SRAClient';
+import { PageViewTracker } from '@/components/PageViewTracker';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+export const metadata: Metadata = {
+  title: 'Security Risk Assessment (SRA) | HIPAA Policy Library',
+  description: 'Comprehensive HIPAA Security Risk Assessment with 72 questions covering safeguards, business associates, access controls, encryption, breach response, and more. Get real-time compliance scoring and remediation guidance.',
+  keywords: [
+    'security risk assessment',
+    'SRA',
+    'HIPAA compliance',
+    'risk assessment',
+    'healthcare security',
+    'ePHI protection',
+    'business associates',
+    'access controls',
+    'encryption',
+    'breach response',
+    'physical security',
+    'employee training',
+  ],
+  openGraph: {
+    title: 'HIPAA Security Risk Assessment (SRA)',
+    description: 'Comprehensive 72-question security risk assessment for healthcare organizations with compliance scoring and remediation guidance.',
+    type: 'website',
+  },
+};
 
 export default function SRAPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Redirect to IT Risk Assessment (Security Risk Assessment)
-    router.replace('/audit/it-risk');
-  }, [router]);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-4 border-cyan-500 border-t-transparent mx-auto"></div>
-        <p className="mt-6 text-slate-300 text-lg">Redirecting to Security Risk Assessment...</p>
-      </div>
-    </div>
+    <>
+      <PageViewTracker pageName="Security Risk Assessment" />
+      <SRAClient />
+    </>
   );
 }

@@ -51,9 +51,9 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
     <div className="space-y-6">
       {/* Overview Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-slate-400 text-sm font-medium">High Compliance</p>
+            <p className="text-dark-400 text-sm font-medium">High Compliance</p>
             <CheckCircleIcon className="h-5 w-5 text-emerald-400" />
           </div>
           <p className="text-4xl font-bold text-white">
@@ -62,9 +62,9 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
           <p className="text-sm text-emerald-400 mt-2">≥90% compliant</p>
         </div>
 
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-slate-400 text-sm font-medium">Needs Attention</p>
+            <p className="text-dark-400 text-sm font-medium">Needs Attention</p>
             <ExclamationTriangleIcon className="h-5 w-5 text-orange-400" />
           </div>
           <p className="text-4xl font-bold text-white">
@@ -73,9 +73,9 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
           <p className="text-sm text-orange-400 mt-2">70-89% compliant</p>
         </div>
 
-        <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
+        <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-slate-400 text-sm font-medium">Critical</p>
+            <p className="text-dark-400 text-sm font-medium">Critical</p>
             <ExclamationTriangleIcon className="h-5 w-5 text-red-400" />
           </div>
           <p className="text-4xl font-bold text-white">
@@ -86,14 +86,14 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
       </div>
 
       {/* Department List */}
-      <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6">
+      <div className="bg-dark-800/50 backdrop-blur-xl border border-dark-700/50 rounded-2xl p-6">
         <h3 className="text-xl font-bold text-white mb-6">Department Breakdown</h3>
 
         <div className="space-y-4">
           {sortedDepartments.map((dept) => (
             <div
               key={dept.department_id}
-              className="bg-slate-900/50 border border-slate-700/50 rounded-xl overflow-hidden hover:border-slate-600 transition-all"
+              className="bg-dark-900/50 border border-dark-700/50 rounded-xl overflow-hidden hover:border-dark-600 transition-all"
             >
               {/* Department Header */}
               <div
@@ -104,7 +104,7 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4 flex-1">
-                    <button className="text-slate-400 hover:text-white transition-colors">
+                    <button className="text-dark-400 hover:text-white transition-colors">
                       {expandedId === dept.department_id ? (
                         <ChevronDownIcon className="h-5 w-5" />
                       ) : (
@@ -120,12 +120,12 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
                       <h4 className="text-white font-semibold">{dept.department_name}</h4>
                       <div className="flex items-center gap-4 mt-1">
                         <div className="flex items-center gap-2">
-                          <UserGroupIcon className="h-4 w-4 text-slate-500" />
-                          <span className="text-sm text-slate-400">
+                          <UserGroupIcon className="h-4 w-4 text-dark-500" />
+                          <span className="text-sm text-dark-400">
                             {dept.employees_count} employees
                           </span>
                         </div>
-                        <span className="text-sm text-slate-400">
+                        <span className="text-sm text-dark-400">
                           {dept.compliant_employees} compliant
                         </span>
                       </div>
@@ -137,13 +137,13 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
                     <p className={`text-3xl font-bold ${getComplianceTextColor(dept.compliance_rate)}`}>
                       {Math.round(dept.compliance_rate)}%
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">Compliance Rate</p>
+                    <p className="text-xs text-dark-500 mt-1">Compliance Rate</p>
                   </div>
                 </div>
 
                 {/* Progress Bar */}
                 <div className="mt-4">
-                  <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                  <div className="h-2 bg-dark-700 rounded-full overflow-hidden">
                     <div
                       className={`h-full bg-gradient-to-r ${getComplianceColor(dept.compliance_rate)} transition-all duration-500`}
                       style={{ width: `${dept.compliance_rate}%` }}
@@ -154,20 +154,20 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
 
               {/* Expanded Content */}
               {expandedId === dept.department_id && (
-                <div className="border-t border-slate-700/50 bg-slate-800/30 p-4">
+                <div className="border-t border-dark-700/50 bg-dark-800/30 p-4">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-slate-900/50 rounded-lg p-4">
-                      <p className="text-sm text-slate-500 mb-1">Total Employees</p>
+                    <div className="bg-dark-900/50 rounded-lg p-4">
+                      <p className="text-sm text-dark-500 mb-1">Total Employees</p>
                       <p className="text-2xl font-bold text-white">{dept.employees_count}</p>
                     </div>
 
-                    <div className="bg-slate-900/50 rounded-lg p-4">
-                      <p className="text-sm text-slate-500 mb-1">Compliant</p>
+                    <div className="bg-dark-900/50 rounded-lg p-4">
+                      <p className="text-sm text-dark-500 mb-1">Compliant</p>
                       <p className="text-2xl font-bold text-emerald-400">{dept.compliant_employees}</p>
                     </div>
 
-                    <div className="bg-slate-900/50 rounded-lg p-4">
-                      <p className="text-sm text-slate-500 mb-1">Non-Compliant</p>
+                    <div className="bg-dark-900/50 rounded-lg p-4">
+                      <p className="text-sm text-dark-500 mb-1">Non-Compliant</p>
                       <p className="text-2xl font-bold text-red-400">
                         {dept.employees_count - dept.compliant_employees}
                       </p>
@@ -175,7 +175,7 @@ export default function ComplianceDashboard({ departmentCompliance }: Compliance
                   </div>
 
                   <div className="flex gap-3 mt-4">
-                    <button className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
+                    <button className="flex-1 px-4 py-2 bg-copper-600 hover:bg-copper-700 text-white text-sm font-medium rounded-lg transition-colors">
                       View Employees
                     </button>
                     <button className="flex-1 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors">
