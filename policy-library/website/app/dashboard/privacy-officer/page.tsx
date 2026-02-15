@@ -292,44 +292,6 @@ export default function PrivacyOfficerDashboard() {
           </div>
         </div>
 
-        {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-xl border border-blue-500/20 rounded-2xl p-6">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-slate-400 text-sm font-medium">Total Employees</p>
-              <UserGroupIcon className="h-5 w-5 text-blue-400" />
-            </div>
-            <p className="text-4xl font-bold text-white">{stats.total_employees}</p>
-            <p className="text-sm text-cyan-400 mt-2">{stats.active_employees} active</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-violet-500/10 to-purple-500/10 backdrop-blur-xl border border-violet-500/20 rounded-2xl p-6">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-slate-400 text-sm font-medium">Departments</p>
-              <BuildingOfficeIcon className="h-5 w-5 text-violet-400" />
-            </div>
-            <p className="text-4xl font-bold text-white">{stats.total_departments}</p>
-            <p className="text-sm text-violet-400 mt-2">Hierarchical structure</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 backdrop-blur-xl border border-emerald-500/20 rounded-2xl p-6">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-slate-400 text-sm font-medium">Compliance Rate</p>
-              <ChartBarIcon className="h-5 w-5 text-emerald-400" />
-            </div>
-            <p className="text-4xl font-bold text-white">{Math.round(stats.compliance_rate)}%</p>
-            <p className="text-sm text-emerald-400 mt-2">Organization-wide</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-500/10 to-red-500/10 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-6">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-slate-400 text-sm font-medium">Pending</p>
-              <BellIcon className="h-5 w-5 text-orange-400" />
-            </div>
-            <p className="text-4xl font-bold text-white">{stats.pending_attestations}</p>
-            <p className="text-sm text-orange-400 mt-2">Attestations due</p>
-          </div>
-        </div>
 
       </main>
     </div>
