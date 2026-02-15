@@ -50,8 +50,6 @@ const navigation: NavItem[] = [
       { name: 'Physical Audit', href: '/audit/physical' },
       { name: 'IT Risk', href: '/audit' },
       { name: 'Data Device', href: '/audit/data-device' },
-      { name: 'Vuln Assessment', href: '/assessment/vuln' },
-      { name: 'Scope Builder', href: '/assessment/scope' },
     ],
   },
   {
