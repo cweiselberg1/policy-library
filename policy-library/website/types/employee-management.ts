@@ -135,36 +135,40 @@ export interface DepartmentNode extends Department {
 
 export interface Employee {
   id: string
-  organization_id: string
-  department_id: string
-  manager_id: string | null
-  employee_id: string
-  position_title: string
+  full_name: string
+  email: string
+  organization_id?: string
+  department_id?: string
+  manager_id?: string | null
+  employee_id?: string
+  position_title?: string
   employment_status: 'active' | 'inactive' | 'on_leave' | 'terminated'
   employment_type: 'full_time' | 'part_time' | 'contractor' | 'temporary'
   start_date: string
-  end_date: string | null
-  salary_grade: string | null
-  location: string | null
-  phone: string | null
-  mobile_phone: string | null
-  emergency_contact: Json | null
-  skills: string[]
-  custom_fields: Json | null
+  end_date?: string | null
+  salary_grade?: string | null
+  location?: string | null
+  phone?: string | null
+  mobile_phone?: string | null
+  emergency_contact?: Json | null
+  skills?: string[]
+  custom_fields?: Json | null
   created_at: string
   updated_at: string
 }
 
 export interface EmployeeInsert {
-  id: string
-  organization_id: string
-  department_id: string
+  id?: string
+  full_name: string
+  email: string
+  organization_id?: string
+  department_id?: string
   manager_id?: string | null
-  employee_id: string
-  position_title: string
+  employee_id?: string
+  position_title?: string
   employment_status?: 'active' | 'inactive' | 'on_leave' | 'terminated'
   employment_type?: 'full_time' | 'part_time' | 'contractor' | 'temporary'
-  start_date: string
+  start_date?: string
   end_date?: string | null
   salary_grade?: string | null
   location?: string | null

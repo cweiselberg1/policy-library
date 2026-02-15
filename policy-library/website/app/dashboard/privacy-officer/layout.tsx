@@ -15,7 +15,9 @@ import {
   ChevronRightIcon,
   Bars3Icon,
   XMarkIcon,
-  ShieldCheckIcon,
+  UserGroupIcon,
+  BuildingOfficeIcon,
+  BuildingStorefrontIcon,
 } from '@heroicons/react/24/outline';
 
 interface NavItem {
@@ -53,11 +55,6 @@ const navigation: NavItem[] = [
     ],
   },
   {
-    name: 'Security Posture',
-    href: '/dashboard/privacy-officer/security-posture',
-    icon: ShieldCheckIcon,
-  },
-  {
     name: 'Gaps',
     href: '/dashboard/privacy-officer/gaps',
     icon: ExclamationTriangleIcon,
@@ -68,12 +65,27 @@ const navigation: NavItem[] = [
     icon: WrenchScrewdriverIcon,
   },
   {
+    name: 'Employees',
+    href: '/dashboard/privacy-officer/employees',
+    icon: UserGroupIcon,
+  },
+  {
+    name: 'Departments',
+    href: '/dashboard/privacy-officer/departments',
+    icon: BuildingOfficeIcon,
+  },
+  {
+    name: 'Vendors',
+    href: 'https://vendors.oneguyconsulting.com',
+    icon: BuildingStorefrontIcon,
+  },
+  {
     name: 'Incidents',
     href: '/dashboard/privacy-officer/incidents',
     icon: BellIcon,
     children: [
       { name: 'Report', href: '/dashboard/employee/report-incident' },
-      { name: 'Review', href: '/dashboard/privacy-officer/incidents' },
+      { name: 'Review', href: '/dashboard/privacy-officer/incidents/review' },
     ],
   },
   {
@@ -99,6 +111,7 @@ export default function PrivacyOfficerLayout({
   };
 
   const isActive = (href: string) => {
+    if (href.startsWith('http')) return false;
     if (href === '/dashboard/privacy-officer') {
       return pathname === href;
     }
@@ -112,37 +125,57 @@ export default function PrivacyOfficerLayout({
         const hasChildren = item.children && item.children.length > 0;
         const isExpanded = expandedItems.includes(item.name);
 
+        const isExternal = item.href.startsWith('http');
+        const linkClassName = `group flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg transition-all ${
+          active
+            ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/20'
+            : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
+        }`;
+        const linkContent = (
+          <>
+            <div className="flex items-center gap-3">
+              <item.icon className="h-5 w-5" />
+              <span>{item.name}</span>
+            </div>
+            {hasChildren && (
+              <span className="transition-transform">
+                {isExpanded ? (
+                  <ChevronDownIcon className="h-4 w-4" />
+                ) : (
+                  <ChevronRightIcon className="h-4 w-4" />
+                )}
+              </span>
+            )}
+          </>
+        );
+
         return (
           <div key={item.name}>
-            <Link
-              href={item.href}
-              onClick={(e) => {
-                if (hasChildren) {
-                  e.preventDefault();
-                  toggleExpanded(item.name);
-                }
-                setMobileMenuOpen(false);
-              }}
-              className={`group flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg transition-all ${
-                active
-                  ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/20'
-                  : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <item.icon className="h-5 w-5" />
-                <span>{item.name}</span>
-              </div>
-              {hasChildren && (
-                <span className="transition-transform">
-                  {isExpanded ? (
-                    <ChevronDownIcon className="h-4 w-4" />
-                  ) : (
-                    <ChevronRightIcon className="h-4 w-4" />
-                  )}
-                </span>
-              )}
-            </Link>
+            {isExternal ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkClassName}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {linkContent}
+              </a>
+            ) : (
+              <Link
+                href={item.href}
+                onClick={(e) => {
+                  if (hasChildren) {
+                    e.preventDefault();
+                    toggleExpanded(item.name);
+                  }
+                  setMobileMenuOpen(false);
+                }}
+                className={linkClassName}
+              >
+                {linkContent}
+              </Link>
+            )}
 
             {hasChildren && isExpanded && (
               <div className="ml-8 mt-1 space-y-1">
