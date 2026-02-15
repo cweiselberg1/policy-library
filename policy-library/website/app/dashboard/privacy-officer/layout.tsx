@@ -165,9 +165,8 @@ export default function PrivacyOfficerLayout({
             ) : (
               <Link
                 href={item.href}
-                onClick={(e) => {
+                onClick={() => {
                   if (hasChildren) {
-                    e.preventDefault();
                     toggleExpanded(item.name);
                   }
                   setMobileMenuOpen(false);
