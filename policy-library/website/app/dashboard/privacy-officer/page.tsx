@@ -177,49 +177,6 @@ export default function PrivacyOfficerDashboard() {
     }
   }, []);
 
-  const navigationCards = [
-    {
-      title: 'Employees',
-      description: 'Manage employee invitations and access',
-      href: '/dashboard/privacy-officer/employees',
-      icon: UserGroupIcon,
-      color: 'from-blue-600 to-cyan-600',
-      stats: `${stats.active_employees} active`,
-    },
-    {
-      title: 'Departments',
-      description: 'Organize hierarchical structure',
-      href: '/dashboard/privacy-officer/departments',
-      icon: BuildingOfficeIcon,
-      color: 'from-violet-600 to-purple-600',
-      stats: `${stats.total_departments} departments`,
-    },
-    {
-      title: 'Policy Bundles',
-      description: 'Create and assign policy collections',
-      href: '/dashboard/privacy-officer/policy-bundles',
-      icon: DocumentTextIcon,
-      color: 'from-emerald-600 to-teal-600',
-      stats: `${stats.policy_bundles} bundles`,
-    },
-    {
-      title: 'Compliance Dashboard',
-      description: 'Track attestations and compliance',
-      href: '/dashboard/privacy-officer/compliance',
-      icon: ChartBarIcon,
-      color: 'from-orange-600 to-red-600',
-      stats: `${Math.round(stats.compliance_rate)}% compliant`,
-    },
-    {
-      title: 'Incident Management',
-      description: 'Track and manage security incidents',
-      href: '/dashboard/privacy-officer/incidents',
-      icon: BellIcon,
-      color: 'from-red-600 to-pink-600',
-      stats: 'View all incidents',
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
@@ -374,42 +331,6 @@ export default function PrivacyOfficerDashboard() {
           </div>
         </div>
 
-        {/* Navigation Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {navigationCards.map((card) => (
-            <Link
-              key={card.href}
-              href={card.href}
-              className="group relative bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 hover:border-slate-600 transition-all duration-300 hover:shadow-2xl overflow-hidden"
-            >
-              {/* Gradient Overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-
-              <div className="relative">
-                <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${card.color} bg-opacity-10 mb-4`}>
-                  <card.icon className="h-8 w-8 text-white" />
-                </div>
-
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                  {card.title}
-                </h3>
-
-                <p className="text-slate-400 mb-4">
-                  {card.description}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-slate-500">
-                    {card.stats}
-                  </span>
-                  <span className="text-cyan-400 group-hover:translate-x-2 transition-transform">
-                    →
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
       </main>
     </div>
   );
