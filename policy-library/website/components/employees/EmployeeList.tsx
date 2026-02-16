@@ -13,7 +13,6 @@ import {
   AcademicCapIcon,
 } from '@heroicons/react/24/outline';
 import type { EmployeeWithDepartment } from '@/types/employee-management';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface TrainingAssignment {
   id: string;
@@ -40,7 +39,7 @@ export default function EmployeeList({ employees, onEmployeeUpdated, onAssignTra
     // Load training assignments from localStorage
     const loadTrainingAssignments = () => {
       try {
-        const saved = orgStorage.getItem('hipaa-training-assignments');
+        const saved = localStorage.getItem('hipaa-training-assignments');
         if (saved) {
           setTrainingAssignments(JSON.parse(saved));
         }

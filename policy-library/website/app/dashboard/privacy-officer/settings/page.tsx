@@ -9,7 +9,6 @@ import {
   KeyIcon,
 } from '@heroicons/react/24/outline';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 export default function SettingsPage() {
   // Privacy Officer state
@@ -39,7 +38,7 @@ export default function SettingsPage() {
   // Load saved data on mount
   useEffect(() => {
     // Load Privacy Officer
-    const savedOfficer = orgStorage.getItem('hipaa-privacy-officer');
+    const savedOfficer = localStorage.getItem('hipaa-privacy-officer');
     if (savedOfficer) {
       try {
         const data = JSON.parse(savedOfficer);
@@ -55,7 +54,7 @@ export default function SettingsPage() {
     }
 
     // Load Organization
-    const savedOrg = orgStorage.getItem('hipaa-organization');
+    const savedOrg = localStorage.getItem('hipaa-organization');
     if (savedOrg) {
       try {
         const data = JSON.parse(savedOrg);
@@ -69,7 +68,7 @@ export default function SettingsPage() {
     }
 
     // Load Notification Preferences
-    const savedPrefs = orgStorage.getItem('hipaa-notification-prefs');
+    const savedPrefs = localStorage.getItem('hipaa-notification-prefs');
     if (savedPrefs) {
       try {
         const data = JSON.parse(savedPrefs);
@@ -92,7 +91,7 @@ export default function SettingsPage() {
       assignedDate: new Date().toISOString(),
     };
 
-    orgStorage.setItem('hipaa-privacy-officer', JSON.stringify(data));
+    localStorage.setItem('hipaa-privacy-officer', JSON.stringify(data));
     setIsPrivacyOfficerAssigned(true);
     setShowPrivacyOfficerSuccess(true);
     setTimeout(() => setShowPrivacyOfficerSuccess(false), 3000);
@@ -105,14 +104,14 @@ export default function SettingsPage() {
       return;
     }
 
-    orgStorage.setItem('hipaa-organization', JSON.stringify(organization));
+    localStorage.setItem('hipaa-organization', JSON.stringify(organization));
     setShowOrgSuccess(true);
     setTimeout(() => setShowOrgSuccess(false), 3000);
   };
 
   // Save Notification Preferences
   const handleSaveNotifications = () => {
-    orgStorage.setItem('hipaa-notification-prefs', JSON.stringify(notificationPrefs));
+    localStorage.setItem('hipaa-notification-prefs', JSON.stringify(notificationPrefs));
     setShowNotifSuccess(true);
     setTimeout(() => setShowNotifSuccess(false), 3000);
   };

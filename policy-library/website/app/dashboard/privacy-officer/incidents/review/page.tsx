@@ -8,7 +8,6 @@ import {
   PlusIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface Incident {
   id: string;
@@ -33,7 +32,7 @@ export default function IncidentsReviewPage() {
 
   const loadIncidents = () => {
     try {
-      const saved = JSON.parse(orgStorage.getItem('hipaa-incidents') || '[]');
+      const saved = JSON.parse(localStorage.getItem('hipaa-incidents') || '[]');
       setIncidents(saved);
     } catch {
       setIncidents([]);

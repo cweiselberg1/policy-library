@@ -7,7 +7,6 @@ import InviteEmployeeModal from '@/components/employees/InviteEmployeeModal';
 import AssignTrainingModal from '@/components/employees/AssignTrainingModal';
 import EmployeeList from '@/components/employees/EmployeeList';
 import type { EmployeeWithDepartment, Department } from '@/types/employee-management';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface TrainingAssignment {
   id: string;
@@ -34,9 +33,9 @@ export default function EmployeesPage() {
 
   const loadData = () => {
     try {
-      const savedEmployees = JSON.parse(orgStorage.getItem('hipaa-employees') || '[]');
-      const savedDepts = JSON.parse(orgStorage.getItem('hipaa-departments') || '[]');
-      const savedAssignments = JSON.parse(orgStorage.getItem('hipaa-training-assignments') || '[]');
+      const savedEmployees = JSON.parse(localStorage.getItem('hipaa-employees') || '[]');
+      const savedDepts = JSON.parse(localStorage.getItem('hipaa-departments') || '[]');
+      const savedAssignments = JSON.parse(localStorage.getItem('hipaa-training-assignments') || '[]');
       setEmployees(savedEmployees);
       setDepartments(savedDepts);
       setTrainingAssignments(savedAssignments);

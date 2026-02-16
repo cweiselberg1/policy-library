@@ -3,7 +3,6 @@
  * Reads from multiple localStorage assessment sources to compute a unified security score
  * One Guy Consulting
  */
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 // ─── Data Models ───────────────────────────────────────────────
 
@@ -69,7 +68,7 @@ function extractSRAScore(): AssessmentStatus {
   };
 
   try {
-    const saved = orgStorage.getItem(STORAGE_KEYS.sra);
+    const saved = localStorage.getItem(STORAGE_KEYS.sra);
     if (!saved) return status;
 
     const data = JSON.parse(saved);
@@ -114,7 +113,7 @@ function extractITRiskScore(): AssessmentStatus {
   };
 
   try {
-    const saved = orgStorage.getItem(STORAGE_KEYS.itRisk);
+    const saved = localStorage.getItem(STORAGE_KEYS.itRisk);
     if (!saved) return status;
 
     const data = JSON.parse(saved);
@@ -151,7 +150,7 @@ function extractVulnScore(): AssessmentStatus {
   };
 
   try {
-    const saved = orgStorage.getItem(STORAGE_KEYS.vuln);
+    const saved = localStorage.getItem(STORAGE_KEYS.vuln);
     if (!saved) return status;
 
     const data = JSON.parse(saved);
@@ -193,7 +192,7 @@ function extractSRARisks(): UnifiedRisk[] {
   const risks: UnifiedRisk[] = [];
 
   try {
-    const saved = orgStorage.getItem(STORAGE_KEYS.sra);
+    const saved = localStorage.getItem(STORAGE_KEYS.sra);
     if (!saved) return risks;
 
     const data = JSON.parse(saved);
@@ -224,7 +223,7 @@ function extractITRiskRisks(): UnifiedRisk[] {
   const risks: UnifiedRisk[] = [];
 
   try {
-    const saved = orgStorage.getItem(STORAGE_KEYS.itRisk);
+    const saved = localStorage.getItem(STORAGE_KEYS.itRisk);
     if (!saved) return risks;
 
     const data = JSON.parse(saved);
@@ -263,7 +262,7 @@ function extractVulnRisks(): UnifiedRisk[] {
   const risks: UnifiedRisk[] = [];
 
   try {
-    const saved = orgStorage.getItem(STORAGE_KEYS.vuln);
+    const saved = localStorage.getItem(STORAGE_KEYS.vuln);
     if (!saved) return risks;
 
     const data = JSON.parse(saved);
@@ -371,7 +370,7 @@ export function calculateSecurityPosture(): SecurityPosture {
 
 function loadPostureHistory(): PostureHistoryEntry[] {
   try {
-    const saved = orgStorage.getItem(STORAGE_KEYS.postureHistory);
+    const saved = localStorage.getItem(STORAGE_KEYS.postureHistory);
     if (!saved) return [];
     return JSON.parse(saved);
   } catch {
@@ -404,7 +403,7 @@ export function savePostureSnapshot(posture: SecurityPosture): void {
   cutoff.setDate(cutoff.getDate() - 90);
   const filtered = history.filter((h) => new Date(h.date) >= cutoff);
 
-  orgStorage.setItem(STORAGE_KEYS.postureHistory, JSON.stringify(filtered));
+  localStorage.setItem(STORAGE_KEYS.postureHistory, JSON.stringify(filtered));
 }
 
 // ─── Rating Helpers ────────────────────────────────────────────

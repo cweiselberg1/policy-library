@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { AuthProvider } from '@/components/auth/AuthProvider';
-import { getUser } from '@/lib/supabase/auth';
 import {
   HomeIcon,
   DocumentTextIcon,
@@ -49,32 +48,7 @@ export default function EmployeeLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [authChecked, setAuthChecked] = useState(false);
-
-  useEffect(() => {
-    async function checkAuth() {
-      const { data, error } = await getUser();
-      if (error || !data?.user) {
-        router.replace('/login');
-        return;
-      }
-      setAuthChecked(true);
-    }
-    checkAuth();
-  }, [router]);
-
-  if (!authChecked) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-evergreen-950 via-dark-900 to-evergreen-950 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-copper-500 border-t-transparent mx-auto"></div>
-          <p className="mt-6 text-dark-300 text-lg">Loading dashboard...</p>
-        </div>
-      </div>
-    );
-  }
 
   const isActive = (href: string) => {
     if (href === '/dashboard/employee') {

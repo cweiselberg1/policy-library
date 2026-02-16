@@ -13,7 +13,6 @@ import {
 } from '@heroicons/react/24/outline';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { getTrainingProgress, getModuleCompletions } from '@/lib/supabase/training';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface TrainingProgress {
   modules_completed: string[];
@@ -91,7 +90,7 @@ export default function TrainingHubContent() {
 
             setProgress(newProgress);
             // Cache to localStorage
-            orgStorage.setItem('training_progress', JSON.stringify(newProgress));
+            localStorage.setItem('training_progress', JSON.stringify(newProgress));
             return;
           }
         } catch (error) {
@@ -100,7 +99,7 @@ export default function TrainingHubContent() {
       }
 
       // Fallback to localStorage
-      const stored = orgStorage.getItem('training_progress');
+      const stored = localStorage.getItem('training_progress');
       if (stored) {
         try {
           setProgress(JSON.parse(stored));

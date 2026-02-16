@@ -10,7 +10,6 @@ import {
 } from '@heroicons/react/24/outline';
 import ProgressTracker from '@/components/training/ProgressTracker';
 import ModuleCard from '@/components/training/ModuleCard';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface TrainingProgress {
   policies_completed: string[];
@@ -29,7 +28,7 @@ export default function TrainingDashboard() {
 
   useEffect(() => {
     // Load progress from localStorage
-    const saved = orgStorage.getItem('hipaa-training-progress');
+    const saved = localStorage.getItem('hipaa-training-progress');
     if (saved) {
       try {
         const data = JSON.parse(saved);

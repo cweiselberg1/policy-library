@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import type { DepartmentNode, CreateDepartmentRequest } from '@/types/employee-management';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface CreateDepartmentModalProps {
   onClose: () => void;
@@ -31,7 +30,7 @@ export default function CreateDepartmentModal({
     setLoading(true);
 
     try {
-      const saved = JSON.parse(orgStorage.getItem('hipaa-departments') || '[]');
+      const saved = JSON.parse(localStorage.getItem('hipaa-departments') || '[]');
 
       const newDepartment: DepartmentNode = {
         id: `dept-${Date.now()}`,
@@ -49,7 +48,7 @@ export default function CreateDepartmentModal({
       };
 
       saved.push(newDepartment);
-      orgStorage.setItem('hipaa-departments', JSON.stringify(saved));
+      localStorage.setItem('hipaa-departments', JSON.stringify(saved));
 
       onCreated();
     } catch (err) {

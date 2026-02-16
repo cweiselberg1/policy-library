@@ -22,7 +22,6 @@ import {
   ShieldCheckIcon,
   DocumentTextIcon,
 } from '@heroicons/react/24/outline';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 const STORAGE_KEY = 'ogc-engagement-scope';
 
@@ -39,7 +38,7 @@ export default function EngagementScopeBuilder() {
 
   // Load from localStorage
   useEffect(() => {
-    const saved = orgStorage.getItem(STORAGE_KEY);
+    const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const data = JSON.parse(saved);
@@ -53,7 +52,7 @@ export default function EngagementScopeBuilder() {
   // Save to localStorage
   useEffect(() => {
     scope.updatedAt = new Date().toISOString();
-    orgStorage.setItem(STORAGE_KEY, JSON.stringify(scope));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(scope));
   }, [scope]);
 
   const updateClientInfo = (field: string, value: string) => {
@@ -121,7 +120,7 @@ export default function EngagementScopeBuilder() {
       const fresh = createDefaultScope();
       setScope(fresh);
       setCurrentStep(1);
-      orgStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(STORAGE_KEY);
     }
   };
 

@@ -18,7 +18,6 @@ import {
   ChevronDownIcon,
 } from '@heroicons/react/24/outline';
 import { CheckCircleIcon as CheckCircleSolidIcon } from '@heroicons/react/24/solid';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -271,7 +270,7 @@ export default function RemediationPlansPage() {
 
   useEffect(() => {
     try {
-      const raw = orgStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const data = JSON.parse(raw);
         if (Array.isArray(data)) {
@@ -286,7 +285,7 @@ export default function RemediationPlansPage() {
 
   useEffect(() => {
     if (!loaded) return;
-    orgStorage.setItem(STORAGE_KEY, JSON.stringify(plans));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(plans));
   }, [plans, loaded]);
 
   // -- Derived data ---------------------------------------------------------

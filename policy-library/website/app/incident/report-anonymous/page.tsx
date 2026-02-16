@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ShieldExclamationIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 export default function AnonymousReportPage() {
   const [formData, setFormData] = useState({
@@ -23,7 +22,7 @@ export default function AnonymousReportPage() {
     setSubmitting(true);
 
     try {
-      const existing = JSON.parse(orgStorage.getItem('hipaa-incidents') || '[]');
+      const existing = JSON.parse(localStorage.getItem('hipaa-incidents') || '[]');
       const refNum = `INC-${Date.now().toString(36).toUpperCase()}`;
       const newIncident = {
         id: `incident-${Date.now()}`,
@@ -34,7 +33,7 @@ export default function AnonymousReportPage() {
         created_at: new Date().toISOString(),
       };
       existing.push(newIncident);
-      orgStorage.setItem('hipaa-incidents', JSON.stringify(existing));
+      localStorage.setItem('hipaa-incidents', JSON.stringify(existing));
       setReferenceNumber(refNum);
       setSuccess(true);
     } catch (err) {

@@ -6,7 +6,6 @@ import { ArrowLeftIcon, PlusIcon } from '@heroicons/react/24/outline';
 import DepartmentTree from '@/components/departments/DepartmentTree';
 import CreateDepartmentModal from '@/components/departments/CreateDepartmentModal';
 import type { DepartmentNode } from '@/types/employee-management';
-import { orgStorage } from '@/lib/supabase/org-storage';
 
 export default function DepartmentsPage() {
   const [departments, setDepartments] = useState<DepartmentNode[]>([]);
@@ -18,7 +17,7 @@ export default function DepartmentsPage() {
 
   const loadDepartments = () => {
     try {
-      const saved = JSON.parse(orgStorage.getItem('hipaa-departments') || '[]');
+      const saved = JSON.parse(localStorage.getItem('hipaa-departments') || '[]');
       setDepartments(saved);
     } catch {
       setDepartments([]);

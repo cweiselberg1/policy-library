@@ -2,16 +2,13 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
-import { getSession, getUserProfile, signOut } from '@/lib/supabase/auth'
-import { loadOrgData, orgStorage } from '@/lib/supabase/org-storage'
+import { getSession, getUser, signOut } from '@/lib/supabase/auth'
 import type { User } from '@supabase/supabase-js'
 
 interface AuthContextType {
   user: User | null
   isLoading: boolean
   isAuthenticated: boolean
-  organizationId: string | null
-  organizationName: string | null
   logout: () => Promise<void>
 }
 
@@ -20,26 +17,15 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [organizationId, setOrganizationId] = useState<string | null>(null)
-  const [organizationName, setOrganizationName] = useState<string | null>(null)
   const router = useRouter()
 
   useEffect(() => {
+    // Check initial session
     const checkAuth = async () => {
       try {
         const { data: sessionData } = await getSession()
         if (sessionData?.session?.user) {
-          const authUser = sessionData.session.user
-          setUser(authUser)
-
-          // Fetch profile to get organization_id
-          const { data: profile } = await getUserProfile(authUser.id)
-          if (profile?.organization_id) {
-            setOrganizationId(profile.organization_id)
-            setOrganizationName(profile.organization ?? null)
-            // Hydrate org data cache from Supabase
-            await loadOrgData(profile.organization_id)
-          }
+          setUser(sessionData.session.user)
         } else {
           setUser(null)
         }
@@ -61,10 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         console.error('Logout error:', error)
         return
       }
-      orgStorage.clear()
       setUser(null)
-      setOrganizationId(null)
-      setOrganizationName(null)
       router.push('/login')
     } catch (error) {
       console.error('Logout error:', error)
@@ -75,8 +58,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     user,
     isLoading,
     isAuthenticated: !!user,
-    organizationId,
-    organizationName,
     logout,
   }
 
