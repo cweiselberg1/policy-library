@@ -26,6 +26,7 @@ import {
   ChartBarIcon,
 } from '@heroicons/react/24/outline';
 import { useAnalytics } from '@/lib/mixpanel';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 const STORAGE_KEY = 'data-device-audit';
 
@@ -49,7 +50,7 @@ export default function DataDeviceAuditClient() {
 
   // Load saved data from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = orgStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const data = JSON.parse(saved);
@@ -63,7 +64,7 @@ export default function DataDeviceAuditClient() {
   // Save to localStorage
   useEffect(() => {
     if (devices.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ devices, lastSaved: new Date().toISOString() }));
+      orgStorage.setItem(STORAGE_KEY, JSON.stringify({ devices, lastSaved: new Date().toISOString() }));
     }
   }, [devices]);
 
@@ -149,7 +150,7 @@ export default function DataDeviceAuditClient() {
       setDevices([]);
       setReport(null);
       setShowReport(false);
-      localStorage.removeItem(STORAGE_KEY);
+      orgStorage.removeItem(STORAGE_KEY);
       analytics?.track('Device Audit Cleared');
     }
   };

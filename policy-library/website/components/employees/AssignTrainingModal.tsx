@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { XMarkIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
 import type { EmployeeWithDepartment } from '@/types/employee-management';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface TrainingAssignment {
   id: string;
@@ -75,7 +76,7 @@ export default function AssignTrainingModal({
     try {
       // Load existing assignments
       const existingAssignments: TrainingAssignment[] = JSON.parse(
-        localStorage.getItem('hipaa-training-assignments') || '[]'
+        orgStorage.getItem('hipaa-training-assignments') || '[]'
       );
 
       // Create new assignments for each employee and module combination
@@ -109,7 +110,7 @@ export default function AssignTrainingModal({
 
       // Save all assignments
       const updatedAssignments = [...existingAssignments, ...newAssignments];
-      localStorage.setItem('hipaa-training-assignments', JSON.stringify(updatedAssignments));
+      orgStorage.setItem('hipaa-training-assignments', JSON.stringify(updatedAssignments));
 
       setSuccess(true);
       setTimeout(() => {

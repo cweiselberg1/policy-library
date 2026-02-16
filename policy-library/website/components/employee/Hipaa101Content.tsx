@@ -14,6 +14,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { upsertTrainingProgress, completeModule } from '@/lib/supabase/training';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface Section {
   id: string;
@@ -208,7 +209,7 @@ export default function Hipaa101Content() {
 
     // Update localStorage progress (fallback cache)
     const progressKey = 'training_progress';
-    const currentProgress = JSON.parse(localStorage.getItem(progressKey) || '{"modules_completed":[],"current_step":"policy-review","percentage":0}');
+    const currentProgress = JSON.parse(orgStorage.getItem(progressKey) || '{"modules_completed":[],"current_step":"policy-review","percentage":0}');
 
     const updatedProgress = {
       ...currentProgress,
@@ -217,7 +218,7 @@ export default function Hipaa101Content() {
       percentage: 66,
     };
 
-    localStorage.setItem(progressKey, JSON.stringify(updatedProgress));
+    orgStorage.setItem(progressKey, JSON.stringify(updatedProgress));
 
     // Navigate to next module
     router.push('/dashboard/employee/training/cybersecurity');

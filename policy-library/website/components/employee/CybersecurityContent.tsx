@@ -15,6 +15,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { upsertTrainingProgress, completeModule } from '@/lib/supabase/training';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface TrainingProgress {
   current_module: string;
@@ -311,7 +312,7 @@ export default function CybersecurityContent() {
   const [saveError, setSaveError] = useState<string | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('training_progress');
+    const stored = orgStorage.getItem('training_progress');
     if (stored) {
       setProgress(JSON.parse(stored));
     }
@@ -354,7 +355,7 @@ export default function CybersecurityContent() {
       percentage: 100,
       last_updated: new Date().toISOString(),
     };
-    localStorage.setItem('training_progress', JSON.stringify(updatedProgress));
+    orgStorage.setItem('training_progress', JSON.stringify(updatedProgress));
 
     // Save to Supabase if user is authenticated
     if (user?.id) {

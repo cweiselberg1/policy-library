@@ -15,6 +15,7 @@ import {
   CheckCircleIcon,
   ArrowRightIcon,
 } from '@heroicons/react/24/outline';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -811,7 +812,7 @@ export default function GapsPage() {
   // Check if remediation plans have been generated from gaps
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hipaa-remediation-plans');
+      const raw = orgStorage.getItem('hipaa-remediation-plans');
       if (raw) {
         const plans = JSON.parse(raw);
         if (Array.isArray(plans)) {
@@ -827,9 +828,9 @@ export default function GapsPage() {
   // Mark gap analysis as completed when user visits this page
   useEffect(() => {
     try {
-      const existing = localStorage.getItem('hipaa-gap-analysis');
+      const existing = orgStorage.getItem('hipaa-gap-analysis');
       if (!existing) {
-        localStorage.setItem('hipaa-gap-analysis', JSON.stringify(GAP_DATA.map(g => ({ id: g.id, category: g.category, reviewed: true }))));
+        orgStorage.setItem('hipaa-gap-analysis', JSON.stringify(GAP_DATA.map(g => ({ id: g.id, category: g.category, reviewed: true }))));
       }
     } catch (e) {
       console.error('Failed to save gap analysis state:', e);
@@ -893,7 +894,7 @@ export default function GapsPage() {
       };
 
       // Load existing plans
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = orgStorage.getItem(STORAGE_KEY);
       let existingPlans: any[] = [];
       if (raw) {
         const data = JSON.parse(raw);
@@ -961,7 +962,7 @@ export default function GapsPage() {
 
       // Combine and save
       const allPlans = [...existingPlans, ...newPlans];
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(allPlans));
+      orgStorage.setItem(STORAGE_KEY, JSON.stringify(allPlans));
 
       setHasGeneratedPlans(true);
       setShowGenerateConfirm(false);

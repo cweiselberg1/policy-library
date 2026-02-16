@@ -24,6 +24,7 @@ import {
   ChatBubbleBottomCenterTextIcon,
 } from '@heroicons/react/24/outline';
 import { useAnalytics } from '@/lib/mixpanel';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 const STORAGE_KEY = 'hipaa-sra-assessment';
 
@@ -47,7 +48,7 @@ export default function SRAClient() {
 
   // Load saved progress from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = orgStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const data = JSON.parse(saved);
@@ -71,7 +72,7 @@ export default function SRAClient() {
       report,
       lastSaved: new Date().toISOString(),
     };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    orgStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }, [responses, notes, report]);
 
   const handleYesNo = (questionId: string, answer: 'yes' | 'no') => {
@@ -170,7 +171,7 @@ export default function SRAClient() {
       setNotes({});
       setReport(null);
       setShowResults(false);
-      localStorage.removeItem(STORAGE_KEY);
+      orgStorage.removeItem(STORAGE_KEY);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };

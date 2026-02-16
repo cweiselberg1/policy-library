@@ -10,6 +10,7 @@ import {
 } from '@heroicons/react/24/outline';
 import PolicyChecklistItem from '@/components/training/PolicyChecklistItem';
 import ProgressIndicator from '@/components/training/ProgressIndicator';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface Policy {
   id: string;
@@ -51,7 +52,7 @@ export default function PolicyReviewPage() {
       setPolicies(allPolicies);
 
       // Load acknowledged policies from localStorage
-      const saved = localStorage.getItem('hipaa-training-progress');
+      const saved = orgStorage.getItem('hipaa-training-progress');
       if (saved) {
         const progress = JSON.parse(saved);
         setAcknowledgedPolicies(new Set(progress.policies_completed || []));
@@ -88,7 +89,7 @@ export default function PolicyReviewPage() {
         percentage: 0,
       };
 
-      localStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
+      orgStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
       router.push('/training');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save progress');
@@ -110,7 +111,7 @@ export default function PolicyReviewPage() {
         percentage: 33,
       };
 
-      localStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
+      orgStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
       router.push('/training/hipaa-101');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save progress');

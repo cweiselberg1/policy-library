@@ -12,6 +12,7 @@ import {
   DocumentTextIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 type OrgType = 'covered_entity' | 'business_associate';
 
@@ -96,7 +97,7 @@ export default function PolicyBundlesPage() {
   // Load org type from localStorage on mount
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('hipaa-org-type');
+      const saved = orgStorage.getItem('hipaa-org-type');
       if (saved === 'covered_entity' || saved === 'business_associate') {
         setOrgType(saved);
       }
@@ -158,7 +159,7 @@ export default function PolicyBundlesPage() {
       }));
 
       setBundles(newBundles);
-      localStorage.setItem('hipaa-policy-bundles', JSON.stringify(newBundles));
+      orgStorage.setItem('hipaa-policy-bundles', JSON.stringify(newBundles));
     } catch (err) {
       console.error('Failed to generate bundles:', err);
     } finally {
@@ -172,7 +173,7 @@ export default function PolicyBundlesPage() {
 
     // Try loading existing bundles first
     try {
-      const saved = localStorage.getItem('hipaa-policy-bundles');
+      const saved = orgStorage.getItem('hipaa-policy-bundles');
       if (saved) {
         const parsed: PolicyBundle[] = JSON.parse(saved);
         // Verify bundles match current org type
@@ -189,15 +190,15 @@ export default function PolicyBundlesPage() {
   }, [orgType, generateBundles]);
 
   const handleSelectOrgType = (type: OrgType) => {
-    localStorage.setItem('hipaa-org-type', type);
+    orgStorage.setItem('hipaa-org-type', type);
     setOrgType(type);
     // Force regeneration
     generateBundles(type);
   };
 
   const handleChangeOrgType = () => {
-    localStorage.removeItem('hipaa-org-type');
-    localStorage.removeItem('hipaa-policy-bundles');
+    orgStorage.removeItem('hipaa-org-type');
+    orgStorage.removeItem('hipaa-policy-bundles');
     setOrgType(null);
     setBundles([]);
     setExpandedId(null);

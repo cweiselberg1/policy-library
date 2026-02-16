@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { signIn } from '@/lib/supabase/auth'
+import { signIn, getUserProfile } from '@/lib/supabase/auth'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
@@ -27,7 +27,13 @@ export default function LoginForm() {
       }
 
       if (data?.user) {
-        router.push('/dashboard')
+        // Check if user has an organization
+        const { data: profile } = await getUserProfile(data.user.id)
+        if (!profile?.organization_id) {
+          router.push('/onboarding')
+        } else {
+          router.push('/dashboard')
+        }
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.')
