@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/24/outline';
 import QuizQuestion from '@/components/training/QuizQuestion';
 import ProgressIndicator from '@/components/training/ProgressIndicator';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface Section {
   id: string;
@@ -170,7 +171,7 @@ Administrative Security:
 
     try {
       // Load existing progress to preserve policies_completed
-      const saved = localStorage.getItem('hipaa-training-progress');
+      const saved = orgStorage.getItem('hipaa-training-progress');
       const existingProgress = saved ? JSON.parse(saved) : {};
 
       // Save progress to localStorage
@@ -181,7 +182,7 @@ Administrative Security:
         percentage: 66,
       };
 
-      localStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
+      orgStorage.setItem('hipaa-training-progress', JSON.stringify(progressData));
       router.push('/training/cybersecurity');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save progress');

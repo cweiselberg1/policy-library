@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { orgStorage } from '@/lib/supabase/org-storage';
+
 interface InviteEmployeeModalProps {
   onClose: () => void;
   onInvited: () => void;
@@ -27,7 +29,7 @@ export default function InviteEmployeeModal({
 
     try {
       // Load existing employees from localStorage
-      const existingEmployees = JSON.parse(localStorage.getItem('hipaa-employees') || '[]');
+      const existingEmployees = JSON.parse(orgStorage.getItem('hipaa-employees') || '[]');
 
       // Create new employee object
       const newEmployee = {
@@ -50,7 +52,7 @@ export default function InviteEmployeeModal({
       const updatedEmployees = [...existingEmployees, newEmployee];
 
       // Save back to localStorage
-      localStorage.setItem('hipaa-employees', JSON.stringify(updatedEmployees));
+      orgStorage.setItem('hipaa-employees', JSON.stringify(updatedEmployees));
 
       setSuccess(true);
       setTimeout(() => {

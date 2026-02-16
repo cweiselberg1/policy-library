@@ -23,6 +23,7 @@ export interface Database {
           email: string
           full_name: string | null
           organization: string | null
+          organization_id: string | null
           role: string | null
           created_at: string
           updated_at: string
@@ -32,6 +33,7 @@ export interface Database {
           email: string
           full_name?: string | null
           organization?: string | null
+          organization_id?: string | null
           role?: string | null
           created_at?: string
           updated_at?: string
@@ -41,11 +43,20 @@ export interface Database {
           email?: string
           full_name?: string | null
           organization?: string | null
+          organization_id?: string | null
           role?: string | null
           created_at?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: 'profiles_organization_id_fkey'
+            columns: ['organization_id']
+            isOneToOne: false
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
+          }
+        ]
       }
       organizations: {
         Row: {
@@ -685,6 +696,38 @@ export interface Database {
           created_at?: string
         }
         Relationships: []
+      }
+      org_data: {
+        Row: {
+          id: string
+          organization_id: string
+          data_key: string
+          data_value: Json | null
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          data_key: string
+          data_value?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          organization_id?: string
+          data_key?: string
+          data_value?: Json | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'org_data_organization_id_fkey'
+            columns: ['organization_id']
+            isOneToOne: false
+            referencedRelation: 'organizations'
+            referencedColumns: ['id']
+          }
+        ]
       }
     }
     Views: {

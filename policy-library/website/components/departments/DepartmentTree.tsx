@@ -10,6 +10,7 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/24/outline';
 import type { DepartmentNode } from '@/types/employee-management';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface DepartmentTreeProps {
   departments: DepartmentNode[];
@@ -47,9 +48,9 @@ function DepartmentTreeNode({ department, depth, onDepartmentUpdated }: Departme
     }
 
     try {
-      const saved = JSON.parse(localStorage.getItem('hipaa-departments') || '[]');
+      const saved = JSON.parse(orgStorage.getItem('hipaa-departments') || '[]');
       const filtered = saved.filter((dept: DepartmentNode) => dept.id !== department.id);
-      localStorage.setItem('hipaa-departments', JSON.stringify(filtered));
+      orgStorage.setItem('hipaa-departments', JSON.stringify(filtered));
       onDepartmentUpdated();
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to delete department');

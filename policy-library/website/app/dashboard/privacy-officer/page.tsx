@@ -13,6 +13,7 @@ import {
   ArrowRightIcon,
 } from '@heroicons/react/24/outline';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface DashboardStats {
   total_employees: number;
@@ -27,11 +28,11 @@ function computeStepStatuses(): Record<number, string> {
   const statuses: Record<number, string> = {};
 
   // Step 1: Privacy Officer
-  const po = localStorage.getItem('hipaa-privacy-officer');
+  const po = orgStorage.getItem('hipaa-privacy-officer');
   statuses[1] = po ? 'Completed' : 'Pending';
 
   // Step 2: SRA
-  const sra = localStorage.getItem('hipaa-sra-assessment');
+  const sra = orgStorage.getItem('hipaa-sra-assessment');
   if (sra) {
     try {
       const data = JSON.parse(sra);
@@ -50,7 +51,7 @@ function computeStepStatuses(): Record<number, string> {
   }
 
   // Step 3: Gap Analysis
-  const gaps = localStorage.getItem('hipaa-gap-analysis');
+  const gaps = orgStorage.getItem('hipaa-gap-analysis');
   try {
     statuses[3] = gaps && JSON.parse(gaps).length > 0 ? 'Completed' : 'Pending';
   } catch {
@@ -58,7 +59,7 @@ function computeStepStatuses(): Record<number, string> {
   }
 
   // Step 4: Remediation Plans
-  const remed = localStorage.getItem('hipaa-remediation-plans');
+  const remed = orgStorage.getItem('hipaa-remediation-plans');
   try {
     statuses[4] = remed && JSON.parse(remed).length > 0 ? 'Completed' : 'Pending';
   } catch {
@@ -66,7 +67,7 @@ function computeStepStatuses(): Record<number, string> {
   }
 
   // Step 5: Review Policies
-  const bundles = localStorage.getItem('hipaa-policy-bundles');
+  const bundles = orgStorage.getItem('hipaa-policy-bundles');
   try {
     statuses[5] = bundles && JSON.parse(bundles).length > 0 ? 'Completed' : 'Pending';
   } catch {
@@ -74,12 +75,12 @@ function computeStepStatuses(): Record<number, string> {
   }
 
   // Step 6: Publish Policies
-  const published = localStorage.getItem('hipaa-published-policies');
+  const published = orgStorage.getItem('hipaa-published-policies');
   statuses[6] = published ? 'Completed' : 'Pending';
 
   // Step 7: User Invites & Training
-  const emps = localStorage.getItem('hipaa-employees');
-  const assignments = localStorage.getItem('hipaa-training-assignments');
+  const emps = orgStorage.getItem('hipaa-employees');
+  const assignments = orgStorage.getItem('hipaa-training-assignments');
   try {
     const employees = emps ? JSON.parse(emps) : [];
     const trainingAssignments = assignments ? JSON.parse(assignments) : [];
@@ -99,7 +100,7 @@ function computeStepStatuses(): Record<number, string> {
   }
 
   // Step 8: Vendor Management
-  const vendors = localStorage.getItem('hipaa-vendors');
+  const vendors = orgStorage.getItem('hipaa-vendors');
   try {
     statuses[8] = vendors && JSON.parse(vendors).length > 0 ? 'Completed' : 'Pending';
   } catch {
@@ -107,19 +108,19 @@ function computeStepStatuses(): Record<number, string> {
   }
 
   // Step 9: Physical Site Audit
-  const physical = localStorage.getItem('hipaa-physical-audit');
+  const physical = orgStorage.getItem('hipaa-physical-audit');
   statuses[9] = physical ? 'Completed' : 'Pending';
 
   // Step 10: IT Risk
-  const itRisk = localStorage.getItem('hipaa-it-risk');
+  const itRisk = orgStorage.getItem('hipaa-it-risk');
   statuses[10] = itRisk ? 'Completed' : 'Pending';
 
   // Step 11: Data Device Audit
-  const devices = localStorage.getItem('hipaa-device-audit');
+  const devices = orgStorage.getItem('hipaa-device-audit');
   statuses[11] = devices ? 'Completed' : 'Pending';
 
   // Step 12: Incident Management
-  const incidents = localStorage.getItem('hipaa-incidents');
+  const incidents = orgStorage.getItem('hipaa-incidents');
   try {
     statuses[12] = incidents && JSON.parse(incidents).length > 0 ? 'Completed' : 'Pending';
   } catch {
@@ -147,14 +148,14 @@ export default function PrivacyOfficerDashboard() {
 
     // Compute stats from localStorage
     try {
-      const emps = localStorage.getItem('hipaa-employees');
+      const emps = orgStorage.getItem('hipaa-employees');
       const employees = emps ? JSON.parse(emps) : [];
       const activeEmployees = employees.filter((e: any) => e.status === 'active').length;
 
-      const depts = localStorage.getItem('hipaa-departments');
+      const depts = orgStorage.getItem('hipaa-departments');
       const departments = depts ? JSON.parse(depts) : [];
 
-      const bundles = localStorage.getItem('hipaa-policy-bundles');
+      const bundles = orgStorage.getItem('hipaa-policy-bundles');
       const policyBundles = bundles ? JSON.parse(bundles) : [];
 
       // Calculate compliance rate based on completed steps

@@ -28,6 +28,7 @@ import {
   CheckCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 const STORAGE_KEY = 'ogc-vuln-assessment';
 
@@ -57,7 +58,7 @@ export default function VulnAssessmentClient() {
 
   // Load from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = orgStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const data = JSON.parse(saved);
@@ -79,7 +80,7 @@ export default function VulnAssessmentClient() {
       ...currentReport,
       lastSaved: new Date().toISOString(),
     };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    orgStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     if (currentReport) setReport(currentReport);
   }, [scans]);
 
@@ -191,7 +192,7 @@ export default function VulnAssessmentClient() {
       setScans([]);
       setReport(null);
       resetIdCounter();
-      localStorage.removeItem(STORAGE_KEY);
+      orgStorage.removeItem(STORAGE_KEY);
     }
   };
 

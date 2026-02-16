@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import ComplianceDashboard from '@/components/compliance/ComplianceDashboard';
 import EmployeeComplianceMatrix from '@/components/compliance/EmployeeComplianceMatrix';
+import { orgStorage } from '@/lib/supabase/org-storage';
 
 interface ComplianceData {
   organization_compliance_rate: number;
@@ -40,8 +41,8 @@ export default function CompliancePage() {
 
   const loadComplianceData = () => {
     try {
-      const employees = JSON.parse(localStorage.getItem('hipaa-employees') || '[]');
-      const departments = JSON.parse(localStorage.getItem('hipaa-departments') || '[]');
+      const employees = JSON.parse(orgStorage.getItem('hipaa-employees') || '[]');
+      const departments = JSON.parse(orgStorage.getItem('hipaa-departments') || '[]');
 
       // Build compliance data from localStorage
       const data: ComplianceData = {
