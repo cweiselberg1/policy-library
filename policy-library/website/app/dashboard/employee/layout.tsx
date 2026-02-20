@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { AuthProvider } from '@/components/auth/AuthProvider';
-import { getUser } from '@/lib/supabase/auth';
+import { getSession, getUserProfile } from '@/lib/supabase/auth';
 import {
   HomeIcon,
   DocumentTextIcon,
@@ -12,6 +12,7 @@ import {
   AcademicCapIcon,
   Bars3Icon,
   XMarkIcon,
+  ArrowRightStartOnRectangleIcon,
 } from '@heroicons/react/24/outline';
 
 interface NavItem {
@@ -41,6 +42,11 @@ const navigation: NavItem[] = [
     href: '/dashboard/employee/report-incident',
     icon: ShieldExclamationIcon,
   },
+  {
+    name: 'Sign Out',
+    href: '/logout',
+    icon: ArrowRightStartOnRectangleIcon,
+  },
 ];
 
 export default function EmployeeLayout({
@@ -55,11 +61,22 @@ export default function EmployeeLayout({
 
   useEffect(() => {
     async function checkAuth() {
-      const { data, error } = await getUser();
-      if (error || !data?.user) {
+      const { data: sessionData } = await getSession();
+      const user = sessionData?.session?.user;
+
+      if (!user) {
         router.replace('/login');
         return;
       }
+
+      const { data: profile } = await getUserProfile(user.id);
+      const role = profile?.role;
+
+      if (role === 'privacy_officer' || role === 'admin' || role === 'compliance_manager') {
+        router.replace('/dashboard/privacy-officer');
+        return;
+      }
+
       setAuthChecked(true);
     }
     checkAuth();
@@ -126,29 +143,37 @@ export default function EmployeeLayout({
 
       {/* Sidebar for desktop */}
       <aside className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col">
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-evergreen-900/80 backdrop-blur-xl border-r border-evergreen-800/50 px-6 py-8">
-          <div className="flex h-16 shrink-0 items-center">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-copper-600 to-copper-500">
-                <DocumentTextIcon className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-white">Employee Portal</p>
-                <p className="text-xs text-dark-400">HIPAA Compliance</p>
-              </div>
-            </Link>
+        <div className="flex grow flex-col bg-evergreen-900/80 backdrop-blur-xl border-r border-evergreen-800/50">
+          <div className="px-6 pt-8 pb-2 shrink-0">
+            <div className="flex h-16 shrink-0 items-center">
+              <Link href="/" className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-copper-600 to-copper-500">
+                  <DocumentTextIcon className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-white">Employee Portal</p>
+                  <p className="text-xs text-dark-400">HIPAA Compliance</p>
+                </div>
+              </Link>
+            </div>
           </div>
 
-          <nav className="flex flex-1 flex-col">
-            <ul className="flex flex-1 flex-col gap-y-2">
+          <nav className="flex-1 overflow-y-auto px-6 py-2">
+            <ul className="flex flex-col gap-y-2">
               <NavItems />
             </ul>
           </nav>
 
-          <div className="border-t border-evergreen-800 pt-4">
+          <div className="shrink-0 border-t border-evergreen-800 px-6 py-3 space-y-1">
+            <Link
+              href="/logout"
+              className="block px-4 py-2 text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-900/20 rounded-lg transition-colors"
+            >
+              Sign Out
+            </Link>
             <Link
               href="/"
-              className="flex items-center gap-2 px-4 py-2 text-sm text-dark-400 hover:text-pearl-200 transition-colors"
+              className="block px-4 py-2 text-xs text-dark-500 hover:text-dark-300 transition-colors"
             >
               ← Back to Home
             </Link>
@@ -163,8 +188,8 @@ export default function EmployeeLayout({
             className="fixed inset-0 bg-evergreen-950/80 backdrop-blur-sm"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <aside className="fixed inset-y-0 left-0 w-72 bg-evergreen-900 border-r border-evergreen-800 overflow-y-auto">
-            <div className="flex flex-col gap-y-5 px-6 py-8">
+          <aside className="fixed inset-y-0 left-0 w-72 bg-evergreen-900 border-r border-evergreen-800 flex flex-col">
+            <div className="px-6 pt-8 pb-2 shrink-0">
               <div className="flex h-16 shrink-0 items-center">
                 <Link href="/" className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-copper-600 to-copper-500">
@@ -176,22 +201,30 @@ export default function EmployeeLayout({
                   </div>
                 </Link>
               </div>
+            </div>
 
-              <nav className="flex flex-1 flex-col">
-                <ul className="flex flex-1 flex-col gap-y-2">
-                  <NavItems />
-                </ul>
-              </nav>
+            <nav className="flex-1 overflow-y-auto px-6 py-2">
+              <ul className="flex flex-col gap-y-2">
+                <NavItems />
+              </ul>
+            </nav>
 
-              <div className="border-t border-evergreen-800 pt-4">
-                <Link
-                  href="/"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 px-4 py-2 text-sm text-dark-400 hover:text-pearl-200 transition-colors"
-                >
-                  ← Back to Home
-                </Link>
-              </div>
+            <div className="shrink-0 border-t border-evergreen-800 px-6 py-4 space-y-1">
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-dark-400 hover:text-pearl-200 transition-colors"
+              >
+                ← Back to Home
+              </Link>
+              <Link
+                href="/logout"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-dark-400 hover:text-red-400 transition-colors"
+              >
+                <ArrowRightStartOnRectangleIcon className="h-4 w-4" />
+                Sign Out
+              </Link>
             </div>
           </aside>
         </div>

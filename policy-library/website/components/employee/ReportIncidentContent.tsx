@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShieldExclamationIcon } from '@heroicons/react/24/outline';
 import { submitIncident } from '@/lib/supabase/employee';
+import { getSession, getUserProfile } from '@/lib/supabase/auth';
 
 export default function ReportIncidentContent() {
   const router = useRouter();
@@ -19,6 +20,24 @@ export default function ReportIncidentContent() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const getRedirectPath = async () => {
+    const { data: sessionData } = await getSession();
+    const userId = sessionData?.session?.user?.id;
+
+    if (!userId) {
+      return '/dashboard';
+    }
+
+    const { data: profile } = await getUserProfile(userId);
+    const role = profile?.role;
+
+    if (role === 'privacy_officer' || role === 'admin' || role === 'compliance_manager') {
+      return '/dashboard/privacy-officer';
+    }
+
+    return '/dashboard/employee';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -32,8 +51,9 @@ export default function ReportIncidentContent() {
 
       if (error) throw new Error(error.message || 'Failed to submit incident');
 
+      const redirectPath = await getRedirectPath();
       setSuccess(true);
-      setTimeout(() => router.push('/dashboard/employee'), 2000);
+      setTimeout(() => router.push(redirectPath), 2000);
     } catch (err) {
       console.error('Error submitting incident:', err);
       alert('Failed to submit incident. Please try again.');
@@ -185,7 +205,10 @@ export default function ReportIncidentContent() {
             </button>
             <button
               type="button"
-              onClick={() => router.push('/dashboard/employee')}
+              onClick={async () => {
+                const redirectPath = await getRedirectPath();
+                router.push(redirectPath);
+              }}
               className="px-6 py-3 bg-dark-700 text-white font-semibold rounded-xl hover:bg-dark-600 transition-colors"
             >
               Cancel
