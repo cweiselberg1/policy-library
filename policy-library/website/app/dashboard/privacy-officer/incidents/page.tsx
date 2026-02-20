@@ -13,7 +13,7 @@ export default function IncidentsPage() {
     {
       title: 'Report',
       description: 'Submit a new security incident report. Available for all employees with anonymous reporting option.',
-      href: '/dashboard/employee/report-incident',
+      href: '/dashboard/privacy-officer/incidents/report',
       icon: PencilSquareIcon,
       color: 'from-red-600 to-pink-600',
       features: [
