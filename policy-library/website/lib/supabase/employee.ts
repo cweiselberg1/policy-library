@@ -216,30 +216,11 @@ export async function submitIncident(incidentData: {
     return { data: null, error: new Error('Authentication required') }
   }
 
-  const { data: profile, error: profileError } = await supabase
+  const { data: profile } = await supabase
     .from('profiles')
     .select('organization_id, full_name, email')
     .eq('id', user.id)
     .single()
-
-  if (profileError || !profile?.organization_id) {
-    return { data: null, error: profileError || new Error('Unable to resolve organization') }
-  }
-
-  const insertPayload = {
-    organization_id: profile.organization_id,
-    reported_by: user.id,
-    reporter_name: profile.full_name || null,
-    reporter_email: profile.email || user.email || null,
-    is_anonymous: false,
-    title: incidentData.title,
-    description: incidentData.description,
-    category: incidentData.category,
-    severity: incidentData.severity,
-    location: incidentData.location || null,
-    affected_systems: incidentData.affected_systems || [],
-    affected_individuals_count: incidentData.affected_individuals_count ?? null,
-  }
 
   type IncidentInsertResult = {
     id: string
@@ -270,20 +251,48 @@ export async function submitIncident(incidentData: {
 
   const dynamicClient = supabase as unknown as DynamicTableClient
 
-  const { data, error } = await dynamicClient
-    .from('incidents')
-    .insert(insertPayload as Record<string, unknown>)
-    .select()
-    .single()
+  const insertPayload: Record<string, unknown> = {
+    reported_by: user.id,
+    reporter_name: profile?.full_name || null,
+    reporter_email: profile?.email || user.email || null,
+    is_anonymous: false,
+    title: incidentData.title,
+    description: incidentData.description,
+    category: incidentData.category,
+    severity: incidentData.severity,
+    location: incidentData.location || null,
+    affected_systems: incidentData.affected_systems || [],
+    affected_individuals_count: incidentData.affected_individuals_count ?? null,
+  }
+
+  let data: IncidentInsertResult | null = null
+  let error: { code?: string; message?: string } | null = null
+
+  if (profile?.organization_id) {
+    insertPayload.organization_id = profile.organization_id
+
+    const insertResult = await dynamicClient
+      .from('incidents')
+      .insert(insertPayload)
+      .select()
+      .single()
+
+    data = insertResult.data
+    error = insertResult.error
+  } else {
+    error = { code: 'PROFILE_ORG_MISSING', message: 'No organization found on profile' }
+  }
 
   const incidentsTableMissing =
     !!error &&
     (error.code === 'PGRST205' ||
       error.message?.includes("Could not find the table 'public.incidents'"))
 
+  const fallbackMode = !data
+
   const incidentRecord =
     data ??
-    (incidentsTableMissing
+    (fallbackMode
       ? {
           id: `fallback-${Date.now()}`,
           title: incidentData.title,
@@ -299,13 +308,11 @@ export async function submitIncident(incidentData: {
         }
       : null)
 
-  if (error && !incidentsTableMissing) {
-    return { data: null, error }
-  }
-
   const auditEventType = incidentsTableMissing
     ? 'incident_report_fallback'
-    : 'incident_report'
+    : fallbackMode
+      ? 'incident_report_fallback_generic'
+      : 'incident_report'
 
   const { error: auditError } = await supabase.from('audit_log').insert({
     event_type: auditEventType,
@@ -317,10 +324,11 @@ export async function submitIncident(incidentData: {
       severity: incidentData.severity,
       affected_individuals_count: incidentData.affected_individuals_count ?? null,
       fallback_mode: incidentsTableMissing,
+      fallback_reason: error?.message || null,
     } as unknown as Database['public']['Tables']['audit_log']['Insert']['details'],
   })
   if (auditError) {
-    return { data: null, error: auditError }
+    console.warn('Incident audit log insert failed:', auditError)
   }
 
   // Keep org cache in sync for pages currently reading `hipaa-incidents`.
