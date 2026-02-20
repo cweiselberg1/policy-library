@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { orgStorage } from '@/lib/supabase/org-storage';
+import { getSession } from '@/lib/supabase/auth';
 
 interface InviteEmployeeModalProps {
   onClose: () => void;
@@ -28,14 +29,47 @@ export default function InviteEmployeeModal({
     setLoading(true);
 
     try {
+      const normalizedEmail = formData.email.trim().toLowerCase();
+      const fullName = formData.full_name.trim();
+
       // Load existing employees from localStorage
       const existingEmployees = JSON.parse(orgStorage.getItem('hipaa-employees') || '[]');
+      const emailAlreadyExists = existingEmployees.some(
+        (employee: { email?: string }) => employee.email?.toLowerCase() === normalizedEmail
+      );
+
+      if (emailAlreadyExists) {
+        throw new Error('An employee with this email already exists.');
+      }
+
+      const { data: sessionData } = await getSession();
+      const accessToken = sessionData?.session?.access_token;
+      if (!accessToken) {
+        throw new Error('Your session expired. Please sign in again.');
+      }
+
+      const inviteResp = await fetch('/api/invite-employee', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          full_name: fullName,
+        }),
+      });
+
+      const inviteJson = await inviteResp.json().catch(() => ({}));
+      if (!inviteResp.ok) {
+        throw new Error(inviteJson.error || 'Failed to send invitation email.');
+      }
 
       // Create new employee object
       const newEmployee = {
         id: `emp-${Date.now()}`,
-        full_name: formData.full_name,
-        email: formData.email,
+        full_name: fullName,
+        email: normalizedEmail,
         employee_id: `EMP-${Date.now().toString().slice(-6)}`,
         position_title: '',
         department_id: '',
@@ -76,7 +110,7 @@ export default function InviteEmployeeModal({
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">Invitation Sent!</h3>
           <p className="text-dark-400">
-            An email invitation has been sent to {formData.email}
+            A sign-in invite email has been sent to {formData.email}
           </p>
         </div>
       </div>
